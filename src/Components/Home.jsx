@@ -8,9 +8,10 @@ import Ayat from '../Images/ayatrealestete.png'
 import Jamboro from '../Images/Jamborobole.jpg'
 import Ltnews2 from '../Images/news2.png'
 import Ltnews5 from '../Images/news5.jpg'
+import Ltnews3 from '../Images/ovid.jpg'
 import Calender from '../Images/calender.png'
 import adv1 from '../Images/advertizement1.png'
-import Hero from '../Images/Hero.mp4'
+// import Hero from '../Images/Hero.mp4'
 import Hero2 from '../Images/Hero2.mp4'
 import CardUpe from './cardupcoming.json'
 import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, FaPhoneAlt } from 'react-icons/fa'
@@ -246,7 +247,7 @@ const Home = () => {
                 {/* news section */}
                 <section className="container mx-auto my-12">
                     <h2 className="text-3xl font-bold mb-6 text-blue-950">Latest News</h2>
-                    <div className="grid md:grid-cols-2 grid-cols-1 sm:gap-6  justify-center">
+                    <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
                         <div className="bg-white p-6 shadow-lg rounded-lg">
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ltnews5} alt="Real Estate" className="object cover w-full h-full" />
@@ -266,6 +267,20 @@ const Home = () => {
                                 <img src={Ltnews2} alt="Real Estate" className="object cover w-full h-full" />
                             </div>
                             <h3 className="text-xl font-semibold text-blue-950">Hammer Real Estate</h3>
+                            <p className="text-gray-600">Lorem ipsum dolor sit amet,
+                                consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                                Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                                pretium quis, sem...</p>
+                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                                View More
+                            </button>
+                        </div>
+                        <div className="bg-white p-6 shadow-lg rounded-lg">
+                            <div className="rounded overflow-hidden w-full mb-4 h-96 ">
+                                <img src={Ltnews3} alt="Real Estate" className="object cover w-full h-full" />
+                            </div>
+                            <h3 className="text-xl font-semibold text-blue-950">Ovid Real Estate</h3>
                             <p className="text-gray-600">Lorem ipsum dolor sit amet,
                                 consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
                                 Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
