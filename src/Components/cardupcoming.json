@@ -1,0 +1,51 @@
+[
+    {
+        "id": 1,
+        "date": "October 12th, 2024",
+        "title": "Virtual Tour",
+        "description": "Join us on October 12th for an exclusive virtual tour.",
+        "buttonText": "Register",
+        "img": "src/Images/noah.jpg"
+    },
+    {
+        "id": 2,
+        "date": "October 24th, 2024",
+        "title": "Real Estate Expo",
+        "description": "Don't miss our October 24th Real Estate Expo.",
+        "buttonText": "Register",
+        "img": "src/Images/noah2.jpg"
+    },
+    {
+        "id": 3,
+        "date": "November 1st, 2024",
+        "title": "Investor Webinar",
+        "description": "Join us for our webinar on investing in the real estate market.",
+        "buttonText": "Sign Up",
+        "img": "src/Images/draft1.png"
+    },
+    {
+        "id": 4,
+        "date": "October 12th, 2024",
+        "title": "Virtual Tour",
+        "description": "Join us on October 12th for an exclusive virtual tour.",
+        "buttonText": "Register",
+        "img": "src/Images/design1.png"
+    },
+    {
+        "id": 5,
+        "date": "October 24th, 2024",
+        "title": "Real Estate Expo",
+        "description": "Don't miss our October 24th Real Estate Expo.",
+        "buttonText": "Register",
+        "img": "src/Images/design6.png"
+    },
+    {
+        "id": 6,
+        "date": "November 1st, 2024",
+        "title": "Investor Webinar",
+        "description": "Join us for our webinar on investing in the real estate market.",
+        "buttonText": "Sign Up",
+        "img": "src/Images/sunscription4.png"
+    }
+]
+
