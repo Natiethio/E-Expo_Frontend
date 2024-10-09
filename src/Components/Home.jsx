@@ -18,9 +18,9 @@ import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, F
 import { FiMail } from 'react-icons/fi'
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
 const Home = () => {
-    const [currentSlide, setCurrentSlide] = useState(0); // For the image slider
-    const [currentIndex, setCurrentIndex] = useState(0); // For the card carousel
-    const [cardsToShow, setCardsToShow] = useState(4); // Default 4 cards for large screens
+    const [currentSlide, setCurrentSlide] = useState(0); 
+    const [currentIndex, setCurrentIndex] = useState(0); 
+    const [cardsToShow, setCardsToShow] = useState(4); 
 
     const slides = [
         { id: 1, src: adv1 },
