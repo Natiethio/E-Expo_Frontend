@@ -21,7 +21,7 @@ const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0); 
     const [currentIndex, setCurrentIndex] = useState(0); 
     const [cardsToShow, setCardsToShow] = useState(4); 
-
+  
     const slides = [
         { id: 1, src: adv1 },
         { id: 2, src: adv1 },
@@ -54,7 +54,7 @@ const Home = () => {
         if (currentIndex < totalCards - cardsToShow) {
             setCurrentIndex(currentIndex + 1);
         } else {
-            setCurrentIndex(0); // Loop back to the start
+            setCurrentIndex(0); 
         }
     };
 
@@ -89,7 +89,8 @@ const Home = () => {
             <Helmet>
                 <title>Home</title>
             </Helmet>
-            <Header />
+
+            <Header/>
 
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
@@ -242,8 +243,7 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-
-
+                
                 {/* news section */}
                 <section className="container mx-auto my-12">
                     <h2 className="text-3xl font-bold mb-6 text-blue-950">Latest News</h2>

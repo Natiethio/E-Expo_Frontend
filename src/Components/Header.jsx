@@ -1,9 +1,13 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { FaBell } from 'react-icons/fa'
+import Login from './Login'
+import Register from './Register'
+
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
-
+  const [isLoginOpen, setIsLoginOpen] = useState(false);
+  const [isRegisterOpen, setIsRegisterOpen] = useState(false);
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -29,24 +33,25 @@ const Header = () => {
             E-Expo
           </div>
           <div className="space-x-6">
-            <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Explore Expo</a>
+            <a href="#" className=" text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Explore Expo</a>
             <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Timetables</a>
             <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Upcoming Events</a>
             <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">More</a>
           </div>
           <div className="space-x-4">
-            <button className="border font-semibold bg-blue-900 text-white w-24 px-3 py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-900 transition duration-300">
+            <button onClick={() => setIsLoginOpen(true)} className="border font-semibold bg-blue-900 text-white w-24 px-3 py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-900 transition duration-300">
               Login
             </button>
-            <button className="border font-semibold border-blue-900 text-blue-900 w-24 px-3 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+            <button onClick={() => setIsRegisterOpen(true)} className="border font-semibold border-blue-900 text-blue-900 w-24 px-3 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
               Register
             </button>
             <button className='text-blue-900'>
-              <FaBell/>
+              <FaBell />
             </button>
-            
           </div>
         </nav>
+        <Login open={isLoginOpen} setOpen={setIsLoginOpen} />
+        <Register open={isRegisterOpen} setOpen={setIsRegisterOpen} />
       </header>
     </div>
   )
