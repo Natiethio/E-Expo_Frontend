@@ -1,8 +1,16 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import google from '../Images/google.svg'
-const Login = ({ open, setOpen }) => {
+const Login = ({ open, setOpen, menuClose }) => {
+   
+    useEffect(()=>{
+        if (open) {
+            menuClose();
+        }
+    },[open , menuClose ])
+
+
     return (
         <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
             <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" />
@@ -44,12 +52,6 @@ const Login = ({ open, setOpen }) => {
                                 className="border inline-flex w-full justify-center rounded-md bg-blue-900 px-6 py-2 hover:text-blue-900 hover:bg-white hover:border-blue-900 hover:border:text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto">
                                 Login
                             </button>
-                            {/* <button
-                                type="button"
-                                onClick={() => setOpen(false)}
-                                className="border inline-flex w-full justify-center rounded-md bg-white border-blue-900 text-blue-900  px-4 py-2 hover:text-white hover:bg-blue-900  hover:border:text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto">
-                                Cancel
-                            </button> */}
                         </div>
                         <div className="relative flex py-3 px-5 items-center">
                             <div className="flex-grow border-t border-blue-900"></div>

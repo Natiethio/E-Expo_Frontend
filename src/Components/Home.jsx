@@ -18,10 +18,10 @@ import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, F
 import { FiMail } from 'react-icons/fi'
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
 const Home = () => {
-    const [currentSlide, setCurrentSlide] = useState(0); 
-    const [currentIndex, setCurrentIndex] = useState(0); 
-    const [cardsToShow, setCardsToShow] = useState(4); 
-  
+    const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentIndex, setCurrentIndex] = useState(0);
+    const [cardsToShow, setCardsToShow] = useState(4);
+
     const slides = [
         { id: 1, src: adv1 },
         { id: 2, src: adv1 },
@@ -54,7 +54,7 @@ const Home = () => {
         if (currentIndex < totalCards - cardsToShow) {
             setCurrentIndex(currentIndex + 1);
         } else {
-            setCurrentIndex(0); 
+            setCurrentIndex(0);
         }
     };
 
@@ -90,7 +90,7 @@ const Home = () => {
                 <title>Home</title>
             </Helmet>
 
-            <Header/>
+            <Header />
 
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
@@ -117,7 +117,25 @@ const Home = () => {
 
                 {/* Featured Real Estates */}
                 <section className="container mx-auto my-12">
-                    <h2 className="text-3xl font-bold mb-6 text-blue-950">Featured Projects</h2>
+                    <div className="sm:flex justify-between">
+                        <h2 className="text-3xl font-bold mb-6 text-blue-950 text-center">Featured Projects</h2>
+                        <div className="sm:flex space-x-2">
+                            <button
+                                onClick={prevCardSlide}
+                                className="left-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white text-center p-1 rounded-full z-10"
+                                style={{ height: '30px', width: '30px' }}
+                            >
+                                <FaArrowLeft />
+                            </button>
+                            <button
+                                onClick={nextCardSlide}
+                                className="right-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white p-1 rounded-full z-10"
+                                style={{ height: '30px', width: '30px' }}
+                            >
+                                <FaArrowRight />
+                            </button>
+                        </div>
+                    </div>
                     <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
                         <div className="bg-white p-6 shadow-lg rounded-lg">
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
@@ -129,6 +147,7 @@ const Home = () => {
                                 View More
                             </button>
                         </div>
+                        
                         <div className="bg-white p-6 shadow-lg rounded-lg">
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ayat} alt="Real Estate" className="object cover w-full h-full" />
@@ -243,7 +262,7 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-                
+
                 {/* news section */}
                 <section className="container mx-auto my-12">
                     <h2 className="text-3xl font-bold mb-6 text-blue-950">Latest News</h2>

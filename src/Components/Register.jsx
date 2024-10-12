@@ -1,8 +1,14 @@
 import React from 'react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 
-const Register = ({ open, setOpen }) => {
+const Register = ({ open, setOpen, menuClose }) => {
+
+useEffect(()=>{
+  if(open){
+    menuClose();
+  }
+},[open, menuClose])
     return (
         <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
             <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" />
