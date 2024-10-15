@@ -45,7 +45,7 @@
         "title": "Investor Webinar",
         "description": "Join us for our webinar on investing in the real estate market.",
         "buttonText": "Sign Up",
-        "img": "/Images/sunscription4.png"
+        "img": "public/Images/sunscription4.png"
     }
 ]
 
