@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { FaBell, FaBars, FaTimes } from 'react-icons/fa'
 import Login from './Login'
 import Register from './Register'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -55,12 +56,13 @@ const Header = () => {
       <header className={`fixed top-0 w-full z-50 transition-all duration-300  ${isScrolled ? 'bg-gray-100 shadow-lg' : 'bg-white'} `}>
         <nav className="container mx-auto p-4 flex justify-between items-center">
           <div className="text-2xl font-bold text-blue-900">
-            E-Expo
+            {/* <a className="Logo" href="/">E-Expo</a> */}
+            <Link to='/'>E-Expo</Link>
           </div>
 
-          {/* Links and buttons for large screens */}
           <div className="hidden md:flex space-x-6">
-            <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Explore Expo</a>
+            {/* <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Explore Expo</a> */}
+            <Link to='/Expo' className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Explore Expo</Link>
             <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Timetables</a>
             <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Upcoming Events</a>
             <a href="#" className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">More</a>
@@ -77,15 +79,28 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Hamburger menu for smaller screens */}
           <div className="md:hidden">
             <button onClick={handleMenuClick} className="text-2xl text-blue-900 focus:outline-none">
-              {showMenu ? <FaTimes /> : <FaBars />}
+              {showMenu ?  <FaTimes /> : <FaBars />}
             </button>
           </div>
+          {/* <div className="md:hidden">
+            <button onClick={handleMenuClick} className="text-2xl text-blue-900 focus:outline-none ">
+              <div
+                className={`transition-opacity duration-300 ease-in-out ${showMenu ? 'opacity-100' : 'opacity-0'} `}
+              >
+                <FaTimes />
+              </div>
+              <div
+                className={`transition-opacity duration-300 ease-in-out ${showMenu ? 'opacity-0' : 'opacity-100'} `}
+              >
+                <FaBars />
+              </div>
+            </button>
+          </div> */}
+
         </nav>
 
-        {/* Dropdown menu for smaller screens */}
         {showMenu && (
           <div className="md:hidden bg-gray-100 shadow-lg">
             <div className="space-y-4 py-4 px-4">
@@ -103,16 +118,13 @@ const Header = () => {
           </div>
         )}
 
-        {/* Login and Register modals */}
-        <Register open={isRegisterOpen} 
-        setOpen={setIsRegisterOpen} 
-        menuClose={handleMenuLogin}
-        />
+        <Register open={isRegisterOpen}
+          setOpen={setIsRegisterOpen}
+          menuClose={handleMenuLogin}/>
 
         <Login open={isLoginOpen}
           setOpen={setIsLoginOpen}
-          menuClose={handleMenuLogin}
-        />
+          menuClose={handleMenuLogin}/>
 
       </header>
     </div>

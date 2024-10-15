@@ -2,6 +2,7 @@ import React from 'react';
 import { FaFacebook, FaInstagram, FaTelegram, FaTwitter } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
 import { FaPhone } from 'react-icons/fa6';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -10,18 +11,16 @@ const Footer = () => {
       <div className="bg-gray-100 text-blue-900 py-12 mt-10 mx-4">
         <div className="container mx-auto grid md:grid-cols-4 sm:grid-cols-1 gap-8">
 
-          {/* Company Info */}
           <div>
             <h3 className="text-2xl font-bold text-blue-900 mb-5">E-Expo</h3>
             <p className="text-gray-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
           </div>
 
-          {/* Information Links */}
           <div>
             <h4 className="font-bold text-blue-900 mb-5">Information</h4>
             <ul>
               <li className="pb-2">
-                <a href="#" className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out">Explore Expo</a>
+                <Link to='/Expo' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out">Explore Expo</Link>
               </li>
               <li className="pb-2">
                 <a href="#" className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out">Upcoming Events</a>
@@ -35,7 +34,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Helpful Links */}
           <div>
             <h4 className="font-bold text-blue-900 mb-5">Helpful Links</h4>
             <ul>
@@ -60,7 +58,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Section */}
           <div>
             <h4 className="font-bold text-blue-900 mb-5">Contact Us</h4>
 

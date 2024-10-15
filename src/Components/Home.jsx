@@ -14,13 +14,17 @@ import adv1 from '../Images/advertizement1.png'
 // import Hero from '../Images/Hero.mp4'
 import Hero2 from '../Images/Hero2.mp4'
 import CardUpe from './cardupcoming.json'
+import CardFeatured from './cardfeatured.json'
 import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, FaPhoneAlt } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
+
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(4);
+    const [currentIndexFeatured, setCurrentIndexFeatured] = useState(0);
+    const [cardsToShowFeatured, setCardsToShowFeatured] = useState(3);
 
     const slides = [
         { id: 1, src: adv1 },
@@ -28,18 +32,20 @@ const Home = () => {
         { id: 3, src: adv1 },
     ];
 
-    const totalCards = CardUpe.length;
-
     useEffect(() => {
         const updateCardsToShow = () => {
             if (window.innerWidth >= 1200) {
                 setCardsToShow(4);
+                setCardsToShowFeatured(3);
             } else if (window.innerWidth >= 992) {
                 setCardsToShow(3);
+                setCardsToShowFeatured(2);
             } else if (window.innerWidth >= 768) {
                 setCardsToShow(2);
+                setCardsToShowFeatured(1);
             } else {
                 setCardsToShow(1);
+                setCardsToShowFeatured(1);
             }
         };
 
@@ -50,19 +56,65 @@ const Home = () => {
         return () => window.removeEventListener('resize', updateCardsToShow);
     }, []);
 
-    const nextCardSlide = () => {
-        if (currentIndex < totalCards - cardsToShow) {
-            setCurrentIndex(currentIndex + 1);
-        } else {
-            setCurrentIndex(0);
+    const totalCards = CardUpe.length;
+
+    const totalSlide = (section) => {
+        if (section === 'featured') {
+            return CardFeatured.length;
+        } else if (section === 'upcoming') {
+            return CardUpe.length;
         }
+        return 0;
     };
 
-    const prevCardSlide = () => {
-        if (currentIndex > 0) {
-            setCurrentIndex(currentIndex - 1);
-        } else {
-            setCurrentIndex(totalCards - cardsToShow);
+    const nextCardSlide = (section) => {
+        const totalCard = totalSlide(section);
+        switch (section) {
+            case 'upcoming':
+                if (currentIndex < totalCard - cardsToShow) {
+                    setCurrentIndex(currentIndex + 1);
+                } else {
+                    setCurrentIndex(0);
+                }
+                break;
+
+            case 'featured':
+                if (currentIndexFeatured < totalCard - cardsToShowFeatured) {
+                    setCurrentIndexFeatured(currentIndexFeatured + 1);
+                } else {
+                    setCurrentIndexFeatured(0);
+                }
+                break;
+
+            default:
+                break;
+        }
+
+    }
+
+
+    const prevCardSlide = (section) => {
+        const totalCard = totalSlide(section);
+
+        switch (section) {
+            case 'upcoming':
+                if (currentIndex > 0) {
+                    setCurrentIndex(currentIndex - 1);
+                } else {
+                    setCurrentIndex(totalCard - cardsToShow);
+                }
+                break;
+
+            case 'featured':
+                if (currentIndex > 0) {
+                    setCurrentIndexFeatured(currentIndexFeatured - 1);
+                } else {
+                    setCurrentIndexFeatured(totalCard - cardsToShowFeatured);
+                }
+                break;
+
+            default:
+                break;
         }
     };
 
@@ -76,9 +128,10 @@ const Home = () => {
         return () => clearInterval(slideInterval);
     }, [slides.length]);
 
+
     useEffect(() => {
         const autoSlide = setInterval(() => {
-            nextCardSlide();
+            nextCardSlide('upcoming');
         }, 5000);
 
         return () => clearInterval(autoSlide);
@@ -116,77 +169,21 @@ const Home = () => {
                 </section>
 
                 {/* Featured Real Estates */}
-                <section className="container mx-auto my-12">
-                    <div className="sm:flex justify-between">
-                        <h2 className="text-3xl font-bold mb-6 text-blue-950 text-center">Featured Projects</h2>
-                        <div className="sm:flex space-x-2">
-                            <button
-                                onClick={prevCardSlide}
-                                className="left-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white text-center p-1 rounded-full z-10"
-                                style={{ height: '30px', width: '30px' }}
-                            >
-                                <FaArrowLeft />
-                            </button>
-                            <button
-                                onClick={nextCardSlide}
-                                className="right-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white p-1 rounded-full z-10"
-                                style={{ height: '30px', width: '30px' }}
-                            >
-                                <FaArrowRight />
-                            </button>
-                        </div>
-                    </div>
-                    <div className="grid sm:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
-                        <div className="bg-white p-6 shadow-lg rounded-lg">
-                            <div className="rounded overflow-hidden w-full mb-4 h-96 ">
-                                <img src={Gift} alt="Real Estate" className="object cover w-full h-full" />
-                            </div>
-                            <h3 className="text-xl font-semibold text-blue-950">Gift Real Estate</h3>
-                            <p className="text-gray-600">A beautiful luxury Apartment in the city center.</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
-                                View More
-                            </button>
-                        </div>
-                        
-                        <div className="bg-white p-6 shadow-lg rounded-lg">
-                            <div className="rounded overflow-hidden w-full mb-4 h-96 ">
-                                <img src={Ayat} alt="Real Estate" className="object cover w-full h-full" />
-                            </div>
-                            <h3 className="text-xl font-semibold text-blue-950">Noah Real Estate</h3>
-                            <p className="text-gray-600">A beautiful luxury Apartment in the city center.</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
-                                View More
-                            </button>
-                        </div>
-                        <div className="bg-white p-6 shadow-lg rounded-lg">
-                            <div className="rounded overflow-hidden w-full mb-4 h-96 ">
-                                <img src={Jamboro} alt="Real Estate" className="object cover w-full h-full" />
-                            </div>
-                            <h3 className="text-xl font-semibold text-blue-950">Ayat Real Estate</h3>
-                            <p className="text-gray-600">A beautiful luxury Apartment in the city center.</p>
-                            <button className=" mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
-                                View More
-                            </button>
-                        </div>
-                    </div>
-                </section>
-
-                {/* upcoming events section */}
 
                 <section className="bg-gray-100 py-8">
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-950 text-center">Upcoming Events</h2>
-                            <div className="sm:flex space-x-2">
+                            <h2 className="text-3xl font-bold mb-6 text-blue-950 text-center">Featured Projects</h2>
+                            <div className="flex space-x-2 justify-center">
                                 <button
-                                    onClick={prevCardSlide}
+                                    onClick={() => prevCardSlide('featured')}
                                     className="left-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     <FaArrowLeft />
                                 </button>
                                 <button
-                                    onClick={nextCardSlide}
+                                    onClick={() => nextCardSlide('featured')}
                                     className="right-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
@@ -194,6 +191,64 @@ const Home = () => {
                                 </button>
                             </div>
                         </div>
+
+                        <div className="relative">
+                            <div className="overflow-hidden">
+                                <div
+                                    className="flex transition-transform duration-700 ease-in-out"
+                                    style={{
+                                        transform: `translateX(-${currentIndexFeatured * (100 / cardsToShowFeatured)}%)`
+                                    }}
+                                >
+                                    {CardFeatured.map((cardfeatured, index) => (
+                                        <div
+                                            key={index}
+                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3"
+                                            style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
+                                        >
+                                            <div className="bg-white p-6 shadow-lg rounded-lg">
+                                                <div className="rounded overflow-hidden w-full mb-4 h-96 ">
+                                                    <img src={cardfeatured.img} alt="Real Estate" className="object-cover w-full h-full" />
+                                                </div>
+                                                <h3 className="text-xl font-semibold text-blue-950">{cardfeatured.name}</h3>
+                                                <p className="text-gray-600">{cardfeatured.description}</p>
+                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                                    {cardfeatured.buttonText}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* upcoming events section */}
+
+                <section className="bg-gray-100 py-8">
+                    <div className="container mx-auto">
+                        <div className="sm:flex justify-between">
+                            <h2 className="text-3xl font-bold mb-6 text-blue-950 text-center">Upcoming Events</h2>
+                            <div className="flex space-x-2 justify-center">
+                                <button
+                                    onClick={() => prevCardSlide('upcoming')}
+                                    className="left-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white text-center p-1 rounded-full z-10"
+                                    style={{ height: '30px', width: '30px' }}
+                                >
+                                    <FaArrowLeft />
+                                </button>
+                                <button
+                                    onClick={() => nextCardSlide('upcoming')}
+                                    className="right-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white p-1 rounded-full z-10"
+                                    style={{ height: '30px', width: '30px' }}
+                                >
+                                    <FaArrowRight />
+                                </button>
+                            </div>
+                        </div>
+
                         <div className="relative">
                             <div className="overflow-hidden">
                                 <div
@@ -231,7 +286,6 @@ const Home = () => {
                     </div>
                 </section>
 
-
                 {/* advertizement section */}
                 <section className="container mx-auto my-12">
                     <h2 className="text-3xl font-bold mb-4 text-blue-950 text-center sm:text-left">Advertisements</h2>
@@ -240,16 +294,14 @@ const Home = () => {
                             <div
                                 key={slide.id}
                                 className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"
-                                    }`}
-                            >
+                                    }`}>
                                 <img
                                     src={slide.src}
                                     alt={`Advertisement ${index + 1}`}
-                                    className="w-full h-full object-contain"
+                                    className="w-full sm:h-full h-1/2 object-contain"
                                 />
                             </div>
                         ))}
-                        {/* Optional Dots for slide control */}
                         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
                             {slides.map((_, index) => (
                                 <button
@@ -321,32 +373,32 @@ const Home = () => {
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="name" className="block text-gray-500 mb-1">Name</label>
-                                        <input type="text" id="name" className="w-full px-3 py-2 border rounded-lg text-blue-900" placeholder="Enter your name" />
+                                        <input type="text" id="name" className="w-full px-3 py-2 border rounded-lg text-gray-600" placeholder="Enter your name" />
                                     </div>
                                     <div>
                                         <label for="phone" className="block text-gray-500 mb-1">Phone Number</label>
-                                        <input type="text" id="phone" className="w-full px-3 py-2 border rounded-lg text-blue-900" placeholder="Enter your phone number" />
+                                        <input type="text" id="phone" className="w-full px-3 py-2 border rounded-lg text-gray-600" placeholder="Enter your phone number" />
                                     </div>
                                 </div>
                                 <div class="mt-4">
                                     <label for="email" className="block text-gray-500 mb-1">Email</label>
-                                    <input type="email" id="email" className="w-full px-3 py-2 border rounded-lg text-blue-900" placeholder="Enter your Email" />
+                                    <input type="email" id="email" className="w-full px-3 py-2 border rounded-lg text-gray-600" placeholder="Enter your Email" />
                                 </div>
                                 <div class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
                                         <label for="city" className="block text-gray-500 mb-1">Country</label>
-                                        <select id="city" className="w-full px-3 py-2 border rounded-lg text-blue-900">
+                                        <select id="city" className="w-full px-3 py-2 border rounded-lg text-gray-600">
                                             <option>Select Country</option>
                                         </select>
                                     </div>
                                     <div>
                                         <label for="subject" className="block text-gray-500 mb-1">Subject</label>
-                                        <input type="text" id="subject" class="w-full px-3 py-2 border rounded-lg text-blue-900" placeholder="Subject" />
+                                        <input type="text" id="subject" class="w-full px-3 py-2 border rounded-lg text-gray-600" placeholder="Subject" />
                                     </div>
                                 </div>
                                 <div class="mt-4">
                                     <label for="description" className="block text-gray-500 mb-1">Description</label>
-                                    <textarea id="description" className="w-full px-3 py-2 border rounded-lg text-blue-900" rows="4" placeholder="Comments"></textarea>
+                                    <textarea id="description" className="w-full px-3 py-2 border rounded-lg text-gray-600" rows="4" placeholder="Comments"></textarea>
                                 </div>
                                 {/* <button class="mt-6 bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Submit Enquiry</button> */}
                                 <button className="mt-6 border font-semibold bg-blue-900  text-white w-24 px-3 py-2 rounded-lg hover:border-blue-900 hover:bg-gray-100 hover:text-blue-900 transition duration-300">
@@ -389,8 +441,9 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-                <Footer />
+               
             </div>
+            <Footer />
         </>
     )
 }
