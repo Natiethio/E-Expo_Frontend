@@ -5,42 +5,42 @@
         "name": "Gift Real Estate",
         "description": "A beautiful luxury Apartment in the city center.",
         "buttonText": "View More",
-        "img": "src/Images/giftLagare.jpg"
+        "img": "/Images/giftLagare.jpg"
     },
     {
         "id": 2,
         "name": "Ayat Real Estate",
         "description": "A beautiful luxury Apartment in the city center.",
         "buttonText": "View More",
-        "img": "src/Images/ayatrealestete.png"
+        "img": "/Images/ayatrealestete.png"
     },
     {
         "id": 3,
         "name": "Noah Real Estate",
         "description": "A beautiful luxury Apartment in the city center.",
         "buttonText": "View More",
-        "img": "src/Images/Jamborobole.jpg"
+        "img": "/Images/Jamborobole.jpg"
     },
     {
         "id": 4,
         "name": "Jamboro Real Estate",
         "description": "A beautiful luxury Apartment in the city center.",
         "buttonText": "View More",
-        "img": "src/Images/ayat2.png"
+        "img": "/Images/ayat2.png"
     },
     {
         "id": 5,
         "name": "Tsheay Real Estate",
         "description": "A beautiful luxury Apartment in the city center.",
         "buttonText": "View More",
-        "img": "src/Images/ayat3.png"
+        "img": "/Images/ayat3.png"
     },
     {
         "id": 6,
         "name": "Flintstone Homes Real Estate",
         "description": "A beautiful luxury Apartment in the city center.",
         "buttonText": "View More",
-        "img": "src/Images/jamboro2.png"
+        "img": "/Images/jamboro2.png"
     }
 ]
 
