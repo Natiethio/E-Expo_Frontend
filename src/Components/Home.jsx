@@ -10,7 +10,8 @@ import Ltnews2 from '../Images/news2.png'
 import Ltnews5 from '../Images/news5.jpg'
 import Ltnews3 from '../Images/ovid.jpg'
 import Calender from '../Images/calender.png'
-import adv1 from '../Images/advertizement1.png'
+import adv2 from '../Images/advertizement1.png'
+import adv1 from '../Images/Adv1.png'
 // import Hero from '../Images/Hero.mp4'
 import Hero2 from '../Images/Hero2.mp4'
 import CardUpe from './cardupcoming.json'
@@ -18,6 +19,7 @@ import CardFeatured from './cardfeatured.json'
 import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, FaPhoneAlt } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
+import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -25,6 +27,7 @@ const Home = () => {
     const [cardsToShow, setCardsToShow] = useState(4);
     const [currentIndexFeatured, setCurrentIndexFeatured] = useState(0);
     const [cardsToShowFeatured, setCardsToShowFeatured] = useState(3);
+    const Expo = useNavigate();
 
     const slides = [
         { id: 1, src: adv1 },
@@ -137,6 +140,10 @@ const Home = () => {
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
 
+    const handelExpo =()=>{
+       Expo('/Expo')
+    }
+
     return (
         <>
             <Helmet>
@@ -162,18 +169,18 @@ const Home = () => {
                     <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
                         <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
                         <p className="mt-4 text-lg">Explore the future of real estate with 3D tours and live events.</p>
-                        <button className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300">
-                            Explore Expo
+                        <button onClick={handelExpo}  className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-950 transition duration-300">
+                            Explore Expo 
                         </button>
                     </div>
                 </section>
 
                 {/* Featured Real Estates */}
 
-                <section className="bg-gray-100 py-8">
+                <section className="bg-gray-200 py-8">
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-950 text-center">Featured Projects</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center">Featured Projects</h2>
                             <div className="flex space-x-2 justify-center">
                                 <button
                                     onClick={() => prevCardSlide('featured')}
@@ -206,13 +213,13 @@ const Home = () => {
                                             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3"
                                             style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
                                         >
-                                            <div className="bg-white p-6 shadow-lg rounded-lg">
+                                            <div className="bg-white p-6 shadow-lg rounded-xl">
                                                 <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                                     <img src={cardfeatured.img} alt="Real Estate" className="object-cover w-full h-full" />
                                                 </div>
                                                 <h3 className="text-xl font-semibold text-blue-950">{cardfeatured.name}</h3>
                                                 <p className="text-gray-600">{cardfeatured.description}</p>
-                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                                     {cardfeatured.buttonText}
                                                 </button>
                                             </div>
@@ -230,7 +237,7 @@ const Home = () => {
                 <section className="bg-gray-100 py-8">
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-950 text-center">Upcoming Events</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center">Upcoming Events</h2>
                             <div className="flex space-x-2 justify-center">
                                 <button
                                     onClick={() => prevCardSlide('upcoming')}
@@ -263,18 +270,18 @@ const Home = () => {
                                             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3"
                                             style={{ flex: `0 0 ${100 / cardsToShow}%` }}
                                         >
-                                            <div className="bg-white p-6 shadow-lg rounded-lg">
+                                            <div className="bg-white p-6 shadow-lg rounded-xl">
                                                 <div className="flex items-center text-gray-600 mb-4">
                                                     <img src={Calender} alt="" className="w-7 h-7 mr-1" />
-                                                    {/* <FaCalendarAlt className="text-blue-900 mr-2" /> */}
+                                                    {/* <FaCalendarAlt className="text-blue-950 mr-2" /> */}
                                                     <p>{card.date}</p>
                                                 </div>
                                                 <div className="rounded overflow-hidden w-full mb-4 h-64">
                                                     <img src={card.img} alt={card.title} className="object-cover w-full h-full" />
                                                 </div>
-                                                <h3 className="text-xl text-blue-900 font-semibold">{card.title}</h3>
+                                                <h3 className="text-xl text-blue-950 font-semibold">{card.title}</h3>
                                                 <p className="text-gray-600">{card.description}</p>
-                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                                     Register
                                                 </button>
                                             </div>
@@ -286,10 +293,74 @@ const Home = () => {
                     </div>
                 </section>
 
+                {/* Why E-Expo */}
+                <section className="container mx-auto my-12 mb-20">
+                    <h2 className="text-3xl font-bold sm:mb-9 mb-0 text-blue-900 text-center sm:text-left">Why E-Expo?</h2>
+                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-2xl shadow-lg">
+                        <div className="absolute inset-0 transition-transform duration-1000 ease-in-out">
+                            <img
+                                src={adv2}
+                                className="w-full sm:h-full h-1/2 object-contain"
+                            />
+                        </div>
+                    </div>
+                </section>
+
                 {/* advertizement section */}
                 <section className="container mx-auto my-12">
+                    <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
+                        Advertisements
+                    </h2>
+                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-md shadow-lg p-4 bg-white">
+                        {slides.map((slide, index) => (
+                            <div
+                                key={slide.id}
+                                className={`absolute inset-0 flex w-full h-full transition-transform duration-1000 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"
+                                    }`}>
+
+                                <div className="sm:w-2/3 w-full h-full">
+                                    <img
+                                        src={slide.src}
+                                        alt={`Advertisement ${index + 1}`}
+                                        className="w-full h-full object-cover rounded-l-xl"
+                                    />
+                                </div>
+
+                                <div className="sm:w-full w-1/2 p-6 bg-white rounded-r-xl flex flex-col">
+                                    <h3 className="text-2xl font-semibold mb-2 text-blue-900">
+                                        Advertisement Title {index + 1}
+                                    </h3>
+                                    <p className="text-gray-600">
+                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                                        tincidunt, purus vel dictum tincidunt, elit felis gravida purus,
+                                        non malesuada nulla quam a lectus. Vivamus euismod volutpat sem
+                                        sed congue dolor sit amet, consectetur adipiscing elit. Sed
+                                        tincidunt, purus vel dictum tincidunt, elit felis gravida purus,
+                                        non malesuada nulla quam a lectus. Vivamus euismod volutpat sem
+                                        sed congue
+                                    </p>
+                                </div>
+                            </div>
+                        ))}
+
+                        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                            {slides.map((_, index) => (
+                                <button
+                                    key={index}
+                                    onClick={() => setCurrentSlide(index)}
+                                    className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-blue-500" : "bg-gray-300"
+                                        }`}
+                                />
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+
+                {/* advertizement section */}
+                {/* <section className="container mx-auto my-12 ">
                     <h2 className="text-3xl font-bold mb-4 text-blue-950 text-center sm:text-left">Advertisements</h2>
-                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-lg shadow-lg">
+                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-xl shadow-lg">
                         {slides.map((slide, index) => (
                             <div
                                 key={slide.id}
@@ -313,13 +384,13 @@ const Home = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section> */}
 
                 {/* news section */}
-                <section className="container mx-auto my-12">
-                    <h2 className="text-3xl font-bold mb-6 text-blue-950">Latest News</h2>
+                <section className="container mx-auto my-12  ">
+                    <h2 className="text-3xl font-bold mb-6 text-blue-900 ">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
-                        <div className="bg-white p-6 shadow-lg rounded-lg">
+                        <div className="bg-gray p-6 shadow-lg rounded-xl">
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ltnews5} alt="Real Estate" className="object cover w-full h-full" />
                             </div>
@@ -329,11 +400,11 @@ const Home = () => {
                                 Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                 nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
                                 pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                            <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                 View More
                             </button>
                         </div>
-                        <div className="bg-white p-6 shadow-lg rounded-lg">
+                        <div className="bg-white p-6 shadow-lg rounded-xl">
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ltnews2} alt="Real Estate" className="object cover w-full h-full" />
                             </div>
@@ -343,11 +414,11 @@ const Home = () => {
                                 Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                 nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
                                 pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                            <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                 View More
                             </button>
                         </div>
-                        <div className="bg-white p-6 shadow-lg rounded-lg">
+                        <div className="bg-white p-6 shadow-lg rounded-xl">
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ltnews3} alt="Real Estate" className="object cover w-full h-full" />
                             </div>
@@ -357,18 +428,19 @@ const Home = () => {
                                 Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                 nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
                                 pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                            <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                 View More
                             </button>
                         </div>
                     </div>
                 </section>
 
+
+                {/* Contact us section */}
                 <section>
-                    {/* Contact us section */}
-                    <div className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div className="bg-white shadow-lg p-6 rounded-lg">
-                            <h2 className="text-3xl font-bold text-blue-900 mb-5">Contact Us</h2>
+                    <div className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-2  gap-8">
+                        <div className="bg-white shadow-lg p-6 rounded-xl">
+                            <h2 className="text-3xl font-bold text-blue-950 mb-5">Contact Us</h2>
                             <form>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
@@ -400,39 +472,39 @@ const Home = () => {
                                     <label for="description" className="block text-gray-500 mb-1">Description</label>
                                     <textarea id="description" className="w-full px-3 py-2 border rounded-lg text-gray-600" rows="4" placeholder="Comments"></textarea>
                                 </div>
-                                {/* <button class="mt-6 bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Submit Enquiry</button> */}
-                                <button className="mt-6 border font-semibold bg-blue-900  text-white w-24 px-3 py-2 rounded-lg hover:border-blue-900 hover:bg-gray-100 hover:text-blue-900 transition duration-300">
+                                {/* <button class="mt-6 bg-blue-900 text-white px-4 py-2 rounded-xl hover:bg-blue-700">Submit Enquiry</button> */}
+                                <button className="mt-6 border font-semibold bg-blue-900  text-white w-24 px-3 py-2 rounded-lg hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
                                     Submit
                                 </button>
                             </form>
                         </div>
 
                         <div className="bg-white shadow-lg p-6 rounded-lg">
-                            <h2 className="text-xl  font-bold text-blue-900 mb-5">Contact Details</h2>
+                            <h2 className="text-xl  font-bold text-blue-950 mb-5">Contact Details</h2>
                             <div class="space-y-3">
                                 <div className="flex items-center">
-                                    <FaPhoneAlt class="text-blue-900 mr-2" />
+                                    <FaPhoneAlt class="text-blue-950 mr-2" />
                                     <span className='text-gray-500'>+251 907 000 111</span>
 
                                 </div>
                                 <div class="flex items-center">
-                                    <FaPhoneAlt className="text-blue-900 mr-2" />
+                                    <FaPhoneAlt className="text-blue-950 mr-2" />
                                     <span className='text-gray-500'>+251 908 000 222</span>
                                 </div>
                                 <div class="flex items-center">
-                                    <FiMail className="text-blue-900 mr-2" />
+                                    <FiMail className="text-blue-950 mr-2" />
                                     <span className='text-gray-500'>info@betenexpo.com</span>
                                 </div>
                                 <div className='flex text-center'>
-                                    <FaLocationDot className='text-blue-900 mr-2 text-xl' />
+                                    <FaLocationDot className='text-blue-950 mr-2 text-xl' />
                                     <p className='text-gray-500'>Sengatera Union Building, 12th Floor, office number : 001</p>
                                 </div>
                             </div>
-                            <h2 className="text-xl font-bold text-blue-900 mt-8 mb-3">Our Location</h2>
+                            <h2 className="text-xl font-bold text-blue-950 mt-8 mb-3">Our Location</h2>
                             <div className="map-container">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5429360696166!2d38.74532427426507!3d9.014135191046583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b855bc14f7b6b%3A0xeed47d624097c0f4!2sSengatera%20union%20building!5e0!3m2!1sen!2set!4v1728296078644!5m2!1sen!2set"
-                                    className="w-full h-72 border-0 rounded-lg shadow-lg"
+                                    className="w-full h-72 border-0 rounded-xl shadow-lg"
                                     allowFullScreen=""
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade">
@@ -441,7 +513,7 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-               
+
             </div>
             <Footer />
         </>

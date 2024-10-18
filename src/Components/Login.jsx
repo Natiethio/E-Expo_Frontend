@@ -49,14 +49,14 @@ const Login = ({ open, setOpen, menuClose }) => {
                         <div className="bg-gray-50 px-4 py-3 sm:flex space-x-20 sm:px-6 sm:justify-between ">
                             <button
                                 type="button"
-                                className="border inline-flex w-full justify-center rounded-md bg-blue-900 px-6 py-2 hover:text-blue-900 hover:bg-white hover:border-blue-900 hover:border:text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto">
+                                className="border inline-flex w-full justify-center rounded-md bg-blue-900 px-6 py-2 hover:text-blue-950 hover:bg-white hover:border-blue-900 hover:border:text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto">
                                 Login
                             </button>
-                            <a href="#" className="text-center text-gray-700 hover:text-blue-900 hover:font-bold transform transition-all ease-in-out">Forget Password?</a>
+                            <a href="#" className="text-center text-gray-700 hover:text-blue-950 hover:font-bold transform transition-all ease-in-out">Forget Password?</a>
                         </div>
                         <div className="relative flex py-3 px-5 items-center">
                             <div className="flex-grow border-t border-blue-900"></div>
-                            <span className="flex-shrink mx-4 text-blue-900">or</span>
+                            <span className="flex-shrink mx-4 text-blue-950">or</span>
                             <div className="flex-grow border-t border-blue-900"></div>
                         </div>
 

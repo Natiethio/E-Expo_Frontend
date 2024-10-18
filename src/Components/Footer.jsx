@@ -8,7 +8,7 @@ const Footer = () => {
   return (
     <div>
       {/* Main Footer */}
-      <div className="bg-gray-100 text-blue-900 py-12 mt-10 mx-4">
+      <div className="bg-gray-100 text-blue-900 py-12 mt-10 ">
         <div className="container mx-auto grid md:grid-cols-4 sm:grid-cols-1 gap-8">
 
           <div>
@@ -19,8 +19,11 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-blue-900 mb-5">Information</h4>
             <ul>
+             <li className="pb-2">
+                <Link to='/Expo' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-150 transform transition-all duration-300 ease-in-out">Real Estates</Link>
+              </li>
               <li className="pb-2">
-                <Link to='/Expo' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out">Explore Expo</Link>
+                <Link to='/Expo' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-150 transform transition-all duration-300 ease-in-out">Explore Expo</Link>
               </li>
               <li className="pb-2">
                 <a href="#" className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out">Upcoming Events</a>
@@ -81,7 +84,7 @@ const Footer = () => {
       </div>
 
       {/* Footer Bottom */}
-      <div className="bg-gray-800 text-white py-6">
+      <div className="bg-blue-950 text-white py-6">
         <div className="container mx-4 sm:flex justify-between items-center ">
           <p>&copy; 2024 Beten E-Expo. All rights reserved.</p>
           <div className="flex space-x-4 sm:pt-0 pt-3">

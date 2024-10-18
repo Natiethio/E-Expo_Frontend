@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
+import { Label } from '@headlessui/react'
 
 const Register = ({ open, setOpen, menuClose }) => {
 
@@ -63,7 +64,7 @@ const Register = ({ open, setOpen, menuClose }) => {
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div className="mb-3">
+                                            <div className="mb-1">
                                                 <div className="col-span-full">
                                                     <label for="confpassword" className="block text-sm font-medium leading-6 text-gray-700">Confirm Password</label>
                                                     <div className="mt-1">
@@ -76,23 +77,29 @@ const Register = ({ open, setOpen, menuClose }) => {
                                 </div>
                             </div>
                         </div>
-                        <div className="bg-gray-50 px-4 py-2 pb-4 sm:flex sm:flex-row-reverse sm:px-6 justify-center">
+                        <div className="bg-gray-50 px-4 py-2 pb-1 sm:flex sm:flex-row-reverse sm:px-6 justify-center">
                             <button
                                 type="button"
-                                className="border inline-flex w-full justify-center rounded-md bg-blue-900 px-6 py-2 hover:text-blue-900 hover:bg-white hover:border-blue-900 hover:border:text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto">
+                                className="border inline-flex w-full justify-center rounded-md bg-blue-900 px-6 py-2 hover:text-blue-950 hover:bg-white hover:border-blue-900 hover:border:text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto">
                                 Register
                             </button>
                             {/* <button
                                 type="button"
                                 onClick={() => setOpen(false)}
-                                className="border inline-flex w-full justify-center rounded-md bg-white border-blue-900 text-blue-900  px-4 py-2 hover:text-white hover:bg-blue-900  hover:border:text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto">
+                                className="border inline-flex w-full justify-center rounded-md bg-white border-blue-900 text-blue-950  px-4 py-2 hover:text-white hover:bg-blue-900  hover:border:text-sm font-semibold shadow-sm sm:ml-3 sm:w-auto">
                                 Cancel
                             </button> */}
                         </div>
+                        <div className='text-gray-700 text-center pb-4'>
+                            Don't have account yet?{' '}
+                            <a href="/" className="hover:underline-offset-8 font-semibold text-blue-900">
+                                Login&nbsp;
+                            </a>
+                        </div>
                     </DialogPanel>
                 </div>
-            </div>
-        </Dialog>
+            </div >
+        </Dialog >
 
     )
 }
