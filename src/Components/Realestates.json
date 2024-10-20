@@ -1,0 +1,62 @@
+[
+    {
+        "id": 1,
+        "name": "Ayat Real Estste",
+        "imgSrc": "/Images/reale1.png"
+    },
+    {
+        "id": 2,
+        "name": "Tshay Real Estse",
+        "imgSrc": "/Images/reale2.png"
+    },
+    {
+        "id": 3,
+        "name": "Noah Real Estate",
+        "imgSrc": "/Images/reale3.png"
+    },
+    {
+        "id": 4,
+        "name": "Jamboro Real Estate",
+        "imgSrc": "/Images/reale4.png"
+    },
+    {
+        "id": 5,
+        "name": "Gift Real Estse",
+        "imgSrc": "/Images/reale5.png"
+    },
+    {
+        "id": 6,
+        "name": "FlintStone Homes",
+        "imgSrc": "/Images/reale6.png"
+    },
+    {
+        "id": 7,
+        "name": "A Real Estate",
+        "imgSrc": "/Images/reale7.png"
+    },
+    {
+        "id": 8,
+        "name": "B Real Estate",
+        "imgSrc": "/Images/reale8.png"
+    },
+    {
+        "id": 9,
+        "name": "C Real Estate",
+        "imgSrc": "/Images/reale9.png"
+    },
+    {
+        "id": 10,
+        "name": "D Real Estate",
+        "imgSrc": "/Images/reale10.png"
+    },
+    {
+        "id": 11,
+        "name": "E Real Estse",
+        "imgSrc": "/Images/reale3.png"
+    },
+    {
+        "id": 12,
+        "name": "F Real Estste",
+        "imgSrc": "/Images/reale6.png"
+    }
+]

@@ -140,8 +140,8 @@ const Home = () => {
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
 
-    const handelExpo =()=>{
-       Expo('/Expo')
+    const handelExpo = () => {
+        Expo('/Expo')
     }
 
     return (
@@ -169,8 +169,8 @@ const Home = () => {
                     <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
                         <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
                         <p className="mt-4 text-lg">Explore the future of real estate with 3D tours and live events.</p>
-                        <button onClick={handelExpo}  className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-950 transition duration-300">
-                            Explore Expo 
+                        <button onClick={handelExpo} className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300">
+                            Explore Expo
                         </button>
                     </div>
                 </section>
@@ -202,7 +202,7 @@ const Home = () => {
                         <div className="relative">
                             <div className="overflow-hidden">
                                 <div
-                                    className="flex transition-transform duration-700 ease-in-out"
+                                    className="flex transition-transform duration-700 ease-in-out "
                                     style={{
                                         transform: `translateX(-${currentIndexFeatured * (100 / cardsToShowFeatured)}%)`
                                     }}
@@ -210,16 +210,15 @@ const Home = () => {
                                     {CardFeatured.map((cardfeatured, index) => (
                                         <div
                                             key={index}
-                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3"
-                                            style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
-                                        >
-                                            <div className="bg-white p-6 shadow-lg rounded-xl">
+                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 "
+                                            style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}>
+                                            <div className="bg-white p-6 shadow-lg rounded-xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
                                                 <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                                     <img src={cardfeatured.img} alt="Real Estate" className="object-cover w-full h-full" />
                                                 </div>
-                                                <h3 className="text-xl font-semibold text-blue-950">{cardfeatured.name}</h3>
+                                                <h3 className="text-xl font-semibold text-blue-900">{cardfeatured.name}</h3>
                                                 <p className="text-gray-600">{cardfeatured.description}</p>
-                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                                     {cardfeatured.buttonText}
                                                 </button>
                                             </div>
@@ -270,18 +269,18 @@ const Home = () => {
                                             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3"
                                             style={{ flex: `0 0 ${100 / cardsToShow}%` }}
                                         >
-                                            <div className="bg-white p-6 shadow-lg rounded-xl">
-                                                <div className="flex items-center text-gray-600 mb-4">
-                                                    <img src={Calender} alt="" className="w-7 h-7 mr-1" />
-                                                    {/* <FaCalendarAlt className="text-blue-950 mr-2" /> */}
-                                                    <p>{card.date}</p>
+                                            <div className="bg-white  shadow-lg rounded-2xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
+                                                <div className="flex items-center text-gray-600 ">
+                                                    {/* <img src={Calender} alt="" className="w-7 h-7 mr-1" /> */}
+                                                    {/* <FaCalendarAlt className="text-blue-900 mr-2" /> */}
+                                                    {/* <p>{card.date}</p> */}
                                                 </div>
-                                                <div className="rounded overflow-hidden w-full mb-4 h-64">
+                                                <div className="rounded overflow-hidden w-full mb-4 xl:h-64 sm:h-72 h-80 ">
                                                     <img src={card.img} alt={card.title} className="object-cover w-full h-full" />
                                                 </div>
-                                                <h3 className="text-xl text-blue-950 font-semibold">{card.title}</h3>
-                                                <p className="text-gray-600">{card.description}</p>
-                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                                                <h3 className="text-xl text-blue-900 font-semibold pl-3">{card.title}</h3>
+                                                {/* <p className="text-gray-600">{card.description}</p> */}
+                                                <button className="mt-4 border font-semibold m-3 border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                                     Register
                                                 </button>
                                             </div>
@@ -356,10 +355,38 @@ const Home = () => {
                     </div>
                 </section>
 
+                {/* <div class="p-10">
+                    
+                    <div class=" w-full lg:max-w-full lg:flex">
+                        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/mountain.jpg')" title="Mountain">
+                        </div>
+                        <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
+                            <div class="mb-8">
+                                <p class="text-sm text-gray-600 flex items-center">
+                                    <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                        <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
+                                    </svg>
+                                    Members only
+                                </p>
+                                <div class="text-gray-900 font-bold text-xl mb-2">Best Mountain Trails 2020</div>
+                                <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
+                            </div>
+                            <div class="flex items-center">
+                                <img class="w-10 h-10 rounded-full mr-4" src="" alt="Avatar of Writer" />
+                                <div class="text-sm">
+                                    <p class="text-gray-900 leading-none">John Smith</p>
+                                    <p class="text-gray-600">Aug 18</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> */}
+
+
 
                 {/* advertizement section */}
                 {/* <section className="container mx-auto my-12 ">
-                    <h2 className="text-3xl font-bold mb-4 text-blue-950 text-center sm:text-left">Advertisements</h2>
+                    <h2 className="text-3xl font-bold mb-4 text-blue-900 text-center sm:text-left">Advertisements</h2>
                     <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-xl shadow-lg">
                         {slides.map((slide, index) => (
                             <div
@@ -390,17 +417,17 @@ const Home = () => {
                 <section className="container mx-auto my-12  ">
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 ">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
-                        <div className="bg-gray p-6 shadow-lg rounded-xl">
+                        <div className="bg-white p-6 shadow-lg rounded-xl">
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ltnews5} alt="Real Estate" className="object cover w-full h-full" />
                             </div>
-                            <h3 className="text-xl font-semibold text-blue-950">Jamboro Real Estste</h3>
+                            <h3 className="text-xl font-semibold text-blue-900">Jamboro Real Estste</h3>
                             <p className="text-gray-600">Lorem ipsum dolor sit amet,
                                 consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
                                 Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                 nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
                                 pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                 View More
                             </button>
                         </div>
@@ -408,13 +435,13 @@ const Home = () => {
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ltnews2} alt="Real Estate" className="object cover w-full h-full" />
                             </div>
-                            <h3 className="text-xl font-semibold text-blue-950">Hammer Real Estate</h3>
+                            <h3 className="text-xl font-semibold text-blue-900">Hammer Real Estate</h3>
                             <p className="text-gray-600">Lorem ipsum dolor sit amet,
                                 consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
                                 Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                 nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
                                 pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                 View More
                             </button>
                         </div>
@@ -422,13 +449,13 @@ const Home = () => {
                             <div className="rounded overflow-hidden w-full mb-4 h-96 ">
                                 <img src={Ltnews3} alt="Real Estate" className="object cover w-full h-full" />
                             </div>
-                            <h3 className="text-xl font-semibold text-blue-950">Ovid Real Estate</h3>
+                            <h3 className="text-xl font-semibold text-blue-900">Ovid Real Estate</h3>
                             <p className="text-gray-600">Lorem ipsum dolor sit amet,
                                 consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
                                 Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
                                 nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
                                 pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                 View More
                             </button>
                         </div>
@@ -440,7 +467,7 @@ const Home = () => {
                 <section>
                     <div className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-2  gap-8">
                         <div className="bg-white shadow-lg p-6 rounded-xl">
-                            <h2 className="text-3xl font-bold text-blue-950 mb-5">Contact Us</h2>
+                            <h2 className="text-3xl font-bold text-blue-900 mb-5">Contact Us</h2>
                             <form>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div>
@@ -473,34 +500,34 @@ const Home = () => {
                                     <textarea id="description" className="w-full px-3 py-2 border rounded-lg text-gray-600" rows="4" placeholder="Comments"></textarea>
                                 </div>
                                 {/* <button class="mt-6 bg-blue-900 text-white px-4 py-2 rounded-xl hover:bg-blue-700">Submit Enquiry</button> */}
-                                <button className="mt-6 border font-semibold bg-blue-900  text-white w-24 px-3 py-2 rounded-lg hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
+                                <button className="mt-6 border font-semibold bg-blue-900  text-white w-24 px-3 py-2 rounded-lg hover:border-blue-900 hover:bg-gray-100 hover:text-blue-900 transition duration-300">
                                     Submit
                                 </button>
                             </form>
                         </div>
 
                         <div className="bg-white shadow-lg p-6 rounded-lg">
-                            <h2 className="text-xl  font-bold text-blue-950 mb-5">Contact Details</h2>
+                            <h2 className="text-xl  font-bold text-blue-900 mb-5">Contact Details</h2>
                             <div class="space-y-3">
                                 <div className="flex items-center">
-                                    <FaPhoneAlt class="text-blue-950 mr-2" />
+                                    <FaPhoneAlt class="text-blue-900 mr-2" />
                                     <span className='text-gray-500'>+251 907 000 111</span>
 
                                 </div>
                                 <div class="flex items-center">
-                                    <FaPhoneAlt className="text-blue-950 mr-2" />
+                                    <FaPhoneAlt className="text-blue-900 mr-2" />
                                     <span className='text-gray-500'>+251 908 000 222</span>
                                 </div>
                                 <div class="flex items-center">
-                                    <FiMail className="text-blue-950 mr-2" />
+                                    <FiMail className="text-blue-900 mr-2" />
                                     <span className='text-gray-500'>info@betenexpo.com</span>
                                 </div>
                                 <div className='flex text-center'>
-                                    <FaLocationDot className='text-blue-950 mr-2 text-xl' />
+                                    <FaLocationDot className='text-blue-900 mr-2 text-xl' />
                                     <p className='text-gray-500'>Sengatera Union Building, 12th Floor, office number : 001</p>
                                 </div>
                             </div>
-                            <h2 className="text-xl font-bold text-blue-950 mt-8 mb-3">Our Location</h2>
+                            <h2 className="text-xl font-bold text-blue-900 mt-8 mb-3">Our Location</h2>
                             <div className="map-container">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5429360696166!2d38.74532427426507!3d9.014135191046583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b855bc14f7b6b%3A0xeed47d624097c0f4!2sSengatera%20union%20building!5e0!3m2!1sen!2set!4v1728296078644!5m2!1sen!2set"

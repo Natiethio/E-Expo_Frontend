@@ -2,6 +2,7 @@ import React from 'react'
 import { useState, useEffect } from 'react'
 import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/react'
 import google from '../Images/google.svg'
+import { FaTimes } from 'react-icons/fa'
 const Login = ({ open, setOpen, menuClose }) => {
 
     useEffect(() => {
@@ -9,7 +10,6 @@ const Login = ({ open, setOpen, menuClose }) => {
             menuClose();
         }
     }, [open, menuClose])
-
 
     return (
         <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
@@ -20,8 +20,12 @@ const Login = ({ open, setOpen, menuClose }) => {
                         <div className="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                             <div className="sm:flex sm:items-start">
                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
-                                    <DialogTitle as="h3" className="text-2xl font-bold leading-6 text-blue-900 mb-5">
+                                    <DialogTitle as="h3" className="flex justify-between md:text-2xl text-lg font-bold leading-6 text-blue-900 mb-5">
                                         Login to Your Account
+                                        <button onClick={() => setOpen(false)} className="border border-blue-900 hover:border-blue-950  rounded-full text-blue-900 hover:text-blue-950">
+                                            <FaTimes />
+                                        </button>
+
                                     </DialogTitle>
                                     <div className="mt-4">
                                         <form>

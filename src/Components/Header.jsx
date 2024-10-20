@@ -66,24 +66,25 @@ const Header = () => {
         <div className="pb-2">
             <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-100 shadow-lg' : 'bg-white'} `}>
                 <nav className="container mx-auto p-4 flex justify-between items-center">
-                    <div className="text-2xl font-bold text-blue-900">
+                    <div className="xl:text-xl text-xl font-bold text-blue-900 pr-1">
                         <Link to="/">E-Expo</Link>
                     </div>
 
 
-                    <div className="hidden md:flex space-x-6">
+                    <div className="hidden md:flex lg:space-x-8 space-x-6">
                         <div className="relative">
-                            <a
-                                href="#"
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-transform duration-300"
-                                style={{ display: 'inline-block', transformOrigin: 'center' }}>
+                            <Link
+                                to="/Real_Estates"
+                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                style={{ display: 'inline-block', transformOrigin: 'center' }}
+                            >
                                 Real Estates
-                            </a>
+                            </Link>
                         </div>
                         <div className="relative">
                             <Link
                                 to="/Expo"
-                                className="text-gray-700 hover:text-blue-900 transform hover:font-bold transition-transform duration-300"
+                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Explore Expo
@@ -92,7 +93,7 @@ const Header = () => {
                         <div className="relative">
                             <a
                                 href="#"
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-transform duration-300"
+                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Upcoming Events
@@ -102,9 +103,8 @@ const Header = () => {
                         <div className="relative" ref={dropdownRef}>
                             <button
                                 onClick={() => setShowDropdown(!showDropdown)}
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transform transition-transform duration-300"
-                                style={{ display: 'inline-block', transformOrigin: 'center' }}
-                            >
+                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                style={{ display: 'inline-block', transformOrigin: 'center' }}>
                                 <div className="flex space-x-1 items-center">
                                     <span>More</span>
                                     <FaChevronDown />
@@ -148,7 +148,7 @@ const Header = () => {
                 </nav>
 
                 {showMenu && (
-                    <div className="md:hidden bg-gray-100 shadow-lg">
+                    <div className="xl:hidden bg-gray-100 shadow-lg">
                         <div className="space-y-4 py-4 px-4">
                             <div className="relative">
                                 <a
@@ -160,7 +160,7 @@ const Header = () => {
                             </div>
                             <div className="relative">
                                 <Link
-                                    to="/"
+                                    to="/Expo"
                                     className="text-gray-700 hover:text-blue-950 transform hover:font-bold transition-transform duration-300"
                                     style={{ display: 'inline-block', transformOrigin: 'center' }}>
                                     Explore Expo

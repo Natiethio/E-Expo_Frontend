@@ -21,7 +21,7 @@
         "title": "Investor Webinar",
         "description": "Join us for our webinar on investing in the real estate market.",
         "buttonText": "Sign Up",
-        "img": "/Images/draft1.png"
+        "img": "/Images/upcoming3.jpg"
     },
     {
         "id": 4,
@@ -29,7 +29,7 @@
         "title": "Virtual Tour",
         "description": "Join us on October 12th for an exclusive virtual tour.",
         "buttonText": "Register",
-        "img": "/Images/design1.png"
+        "img": "/Images/upcoming4.jpg"
     },
     {
         "id": 5,
@@ -37,7 +37,7 @@
         "title": "Real Estate Expo",
         "description": "Don't miss our October 24th Real Estate Expo.",
         "buttonText": "Register",
-        "img": "/Images/design6.png"
+        "img": "/Images/upcoming5.png"
     },
     {
         "id": 6,
@@ -45,7 +45,7 @@
         "title": "Investor Webinar",
         "description": "Join us for our webinar on investing in the real estate market.",
         "buttonText": "Sign Up",
-        "img": "/Images/sunscription4.png"
+        "img": "/Images/real estate.png"
     }
 ]
 
