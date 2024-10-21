@@ -8,8 +8,8 @@ const Footer = () => {
   return (
     <div>
       {/* Main Footer */}
-      <div className="bg-gray-100 text-blue-900 py-12 mt-10 ">
-        <div className="container mx-auto grid md:grid-cols-4 sm:grid-cols-1 gap-8">
+      <div className="bg-gray-100 text-blue-900 py-12 mt-10 p-3">
+        <div className="container mx-auto grid md:grid-cols-4 sm:grid-cols-2 gap-8">
 
           <div>
             <h3 className="text-2xl font-bold text-blue-900 mb-5">E-Expo</h3>

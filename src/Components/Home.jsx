@@ -507,8 +507,8 @@ const Home = () => {
                 </section> */}
 
                 {/* news section */}
-                <section className="container mx-auto my-12  ">
-                    <h2 className="text-3xl font-bold mb-6 text-blue-900 ">Latest News</h2>
+                <section className="container mx-auto my-12 p-4">
+                    <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
                         <div className="bg-white shadow-lg rounded-xl">
 

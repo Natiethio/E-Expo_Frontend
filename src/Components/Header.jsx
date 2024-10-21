@@ -151,12 +151,13 @@ const Header = () => {
                     <div className="xl:hidden bg-gray-100 shadow-lg">
                         <div className="space-y-4 py-4 px-4">
                             <div className="relative">
-                                <a
-                                    href="#"
-                                    className="text-gray-700 hover:text-blue-950 hover:font-bold transform transition-transform duration-300"
-                                    style={{ display: 'inline-block', transformOrigin: 'center' }}>
-                                    Real Estates
-                                </a>
+                            <Link
+                                to="/Real_Estates"
+                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                style={{ display: 'inline-block', transformOrigin: 'center' }}
+                            >
+                                Real Estates
+                            </Link>
                             </div>
                             <div className="relative">
                                 <Link
