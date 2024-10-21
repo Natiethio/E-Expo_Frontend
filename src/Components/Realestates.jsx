@@ -51,13 +51,20 @@ const Realestates = () => {
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-8">
                     {companiesData.map(company => (
                         <div key={company.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
-                            <img src={company.imgSrc} alt={company.name} className="w-full h-40 object-cover sm:h-48 md:h-52 lg:h-56" />
+                            {/* <img src={company.imgSrc} alt={company.name} className="w-full h-40 object-cover sm:h-48 md:h-52 lg:h-56" /> */}
+
+                            <div className="overflow-hidden w-full mb-4 h-80 rounded-t-xl">
+                                <img
+                                    src={company.imgSrc}
+                                    alt="Real Estate"
+                                    className="object-cover w-full h-full rounded-t-xl"
+                                />
+                            </div>
                             <div className="p-4 flex justify-between items-center">
                                 <h3 className="text-lg sm:text-xl font-semibold text-blue-900">{company.name}</h3>
                                 <button className="mt-4 border font-semibold border-blue-900 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900  hover:text-white transition duration-300">
                                     Details
                                 </button>
-
                             </div>
                         </div>
                     ))}

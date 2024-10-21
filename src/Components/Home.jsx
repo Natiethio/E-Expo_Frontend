@@ -20,6 +20,7 @@ import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, F
 import { FiMail } from 'react-icons/fi'
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom';
+import { formatDistanceToNow } from 'date-fns';
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -144,6 +145,13 @@ const Home = () => {
         Expo('/Expo')
     }
 
+    // const targetDate = new Date(cardfeatured.date); 
+    // const daysLeft = differenceInDays(targetDate, currentDate);
+
+    const getDaysLeft = (date) => {
+        return formatDistanceToNow(new Date(date), { addSuffix: true });
+    };
+
     return (
         <>
             <Helmet>
@@ -208,21 +216,60 @@ const Home = () => {
                                     }}
                                 >
                                     {CardFeatured.map((cardfeatured, index) => (
+                                        // <div
+                                        //     key={index}
+                                        //     className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4 rounded-xl"
+                                        //     style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}>
+                                        //     <div className="bg-white shadow-lg rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
+
+                                        //         <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
+
+                                        //             <img
+                                        //                 src={cardfeatured.img}
+                                        //                 alt="Real Estate"
+                                        //                 className="object-cover w-full h-full"
+                                        //             />
+                                        //         </div>
+
+                                        //         <div className="pl-6 pb-6">
+                                        //             <h3 className="text-xl font-semibold text-blue-900">{cardfeatured.name}</h3>
+                                        //             <p className="text-gray-600">{cardfeatured.description}</p>
+                                        //             <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                        //                 {cardfeatured.buttonText}
+                                        //             </button>
+                                        //         </div>
+                                        //     </div>
+                                        // </div>
                                         <div
                                             key={index}
-                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 "
-                                            style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}>
-                                            <div className="bg-white p-6 shadow-lg rounded-xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
-                                                <div className="rounded overflow-hidden w-full mb-4 h-96 ">
-                                                    <img src={cardfeatured.img} alt="Real Estate" className="object-cover w-full h-full" />
+                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4 rounded-xl"
+                                            style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
+                                        >
+                                            <div className="relative bg-white shadow-lg rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
+
+                                            
+                                                <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
+                                                    <h3 className="text-lg font-semibold">{cardfeatured.name}</h3>
                                                 </div>
-                                                <h3 className="text-xl font-semibold text-blue-900">{cardfeatured.name}</h3>
-                                                <p className="text-gray-600">{cardfeatured.description}</p>
-                                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
-                                                    {cardfeatured.buttonText}
-                                                </button>
+
+                                               
+                                                <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
+                                                    <img
+                                                        src={cardfeatured.img}
+                                                        alt="Real Estate"
+                                                        className="object-cover w-full h-full rounded-t-xl"
+                                                    />
+                                                </div>
+
+                                                <div className="pl-6 pb-6">
+                                                    <p className="text-gray-600">{cardfeatured.description}</p>
+                                                    <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                                        {cardfeatured.buttonText}
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
+
                                     ))}
                                 </div>
                             </div>
@@ -255,7 +302,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="relative">
+                        {/* <div className="relative">
                             <div className="overflow-hidden">
                                 <div
                                     className="flex transition-transform duration-700 ease-in-out"
@@ -271,18 +318,64 @@ const Home = () => {
                                         >
                                             <div className="bg-white  shadow-lg rounded-2xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
                                                 <div className="flex items-center text-gray-600 ">
-                                                    {/* <img src={Calender} alt="" className="w-7 h-7 mr-1" /> */}
-                                                    {/* <FaCalendarAlt className="text-blue-900 mr-2" /> */}
-                                                    {/* <p>{card.date}</p> */}
+
                                                 </div>
                                                 <div className="rounded overflow-hidden w-full mb-4 xl:h-64 sm:h-72 h-80 ">
                                                     <img src={card.img} alt={card.title} className="object-cover w-full h-full" />
                                                 </div>
                                                 <h3 className="text-xl text-blue-900 font-semibold pl-3">{card.title}</h3>
-                                                {/* <p className="text-gray-600">{card.description}</p> */}
+                                                
                                                 <button className="mt-4 border font-semibold m-3 border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                                     Register
                                                 </button>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+                        </div> */}
+
+                        <div className="relative">
+                            <div className="overflow-hidden">
+                                <div
+                                    className="flex transition-transform duration-700 ease-in-out"
+                                    style={{
+                                        transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
+                                    }}
+                                >
+                                    {CardUpe.map((card, index) => (
+                                        <div
+                                            key={index}
+                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4"
+                                            style={{ flex: `0 0 ${100 / cardsToShow}%` }}
+                                        >
+                                            <div className="relative bg-white shadow-lg rounded-xl overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
+
+
+                                                <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
+                                                    <span className="uppercase font-bold">{getDaysLeft(card.date)}</span>
+                                                </div>
+
+                                                <div className="absolute top-0 left-0 bg-blue-950 text-white py-1 px-3 rounded-br-lg">
+
+                                                </div>
+
+
+
+                                                <div className="rounded overflow-hidden w-full h-96">
+                                                    <img src={card.img} alt="Real Estate" className="object-cover w-full h-full" />
+                                                </div>
+
+
+                                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent h-64"></div>
+                                                <div className="absolute inset-x-0 bottom-0 p-4 text-white z-10">
+                                                    <h3 className="text-xl font-semibold">{card.title}</h3>
+                                                    {/* <p className="text-sm">{card.description}</p> */}
+
+                                                    <button className="mt-2 border font-semibold border-white text-white px-4 py-2 rounded hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
+                                                        {card.buttonText}
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     ))}
@@ -417,51 +510,68 @@ const Home = () => {
                 <section className="container mx-auto my-12  ">
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 ">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
-                        <div className="bg-white p-6 shadow-lg rounded-xl">
-                            <div className="rounded overflow-hidden w-full mb-4 h-96 ">
-                                <img src={Ltnews5} alt="Real Estate" className="object cover w-full h-full" />
+                        <div className="bg-white shadow-lg rounded-xl">
+
+                            <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
+                                <img src={Ltnews5} alt="Real Estate" className="object-cover w-full h-full" />
                             </div>
-                            <h3 className="text-xl font-semibold text-blue-900">Jamboro Real Estste</h3>
-                            <p className="text-gray-600">Lorem ipsum dolor sit amet,
-                                consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                                Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-                                pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
-                                View More
-                            </button>
-                        </div>
-                        <div className="bg-white p-6 shadow-lg rounded-xl">
-                            <div className="rounded overflow-hidden w-full mb-4 h-96 ">
-                                <img src={Ltnews2} alt="Real Estate" className="object cover w-full h-full" />
+                            <div className="p-6">
+                                <h3 className="text-xl font-semibold text-blue-900  pb-2">Jamboro Real Estate</h3>
+                                <p className="text-gray-600">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                                    pretium quis, sem...
+                                </p>
+
+                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                    View More
+                                </button>
                             </div>
-                            <h3 className="text-xl font-semibold text-blue-900">Hammer Real Estate</h3>
-                            <p className="text-gray-600">Lorem ipsum dolor sit amet,
-                                consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                                Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-                                pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
-                                View More
-                            </button>
                         </div>
-                        <div className="bg-white p-6 shadow-lg rounded-xl">
-                            <div className="rounded overflow-hidden w-full mb-4 h-96 ">
-                                <img src={Ltnews3} alt="Real Estate" className="object cover w-full h-full" />
+
+                        <div className="bg-white shadow-lg rounded-xl">
+
+                            <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
+                                <img src={Ltnews2} alt="Real Estate" className="object-cover w-full h-full" />
                             </div>
-                            <h3 className="text-xl font-semibold text-blue-900">Ovid Real Estate</h3>
-                            <p className="text-gray-600">Lorem ipsum dolor sit amet,
-                                consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
-                                Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                                nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
-                                pretium quis, sem...</p>
-                            <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
-                                View More
-                            </button>
+                            <div className="p-6">
+                                <h3 className="text-xl font-semibold text-blue-900 pb-2">Ayat Real Estate</h3>
+                                <p className="text-gray-600">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                                    pretium quis, sem...
+                                </p>
+
+                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                    View More
+                                </button>
+                            </div>
                         </div>
+
+                        <div className="bg-white shadow-lg rounded-xl">
+
+                            <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
+                                <img src={Ltnews3} alt="Real Estate" className="object-cover w-full h-full" />
+                            </div>
+                            <div className="p-6">
+                                <h3 className="text-xl font-semibold text-blue-900 pb-2">Gift Real Estate</h3>
+                                <p className="text-gray-600">
+                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.
+                                    Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
+                                    nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu,
+                                    pretium quis, sem...
+                                </p>
+
+                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                    View More
+                                </button>
+                            </div>
+                        </div>
+
                     </div>
                 </section>
-
 
                 {/* Contact us section */}
                 <section>
