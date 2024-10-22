@@ -1,0 +1,27 @@
+[
+    {
+      "title": "Ayat Real Estate",
+      "description": "Virtual Tour Expo and Virtual Exhibition",
+      "image": "/Images/Adv1.png",
+      "distance": "196 km",
+      "reviews": 16,
+      "placesToVisit": ["Central Park", "Museum", "Art Gallery"]
+    },
+    {
+      "title": "Gift Real Estate",
+      "description": "Virtual Tour Expo and Virtual Exhibition",
+      "image": "/Images/Adv1.png",
+      "distance": "150 km",
+      "reviews": 25,
+      "placesToVisit": ["Central Park", "Museum", "Art Gallery"]
+    },
+    {
+        "title": "Flintstone Real Estate",
+        "description": "Virtual Tour Expo and Virtual Exhibition",
+        "image": "/Images/Adv1.png",
+        "distance": "150 km",
+        "reviews": 25,
+        "placesToVisit": ["Central Park", "Museum", "Art Gallery"]
+      }
+  ]
+  

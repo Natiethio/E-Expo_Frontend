@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "date": "2024-10-25",
+        "date": "2024-10-29",
         "title": "Virtual Tour",
         "description": "Join us on October 12th for an exclusive virtual tour.",
         "buttonText": "Register",
@@ -25,7 +25,7 @@
     },
     {
         "id": 4,
-        "date": "2024-10-25",
+        "date": "2024-11-25",
         "title": "Virtual Tour",
         "description": "Join us on October 12th for an exclusive virtual tour.",
         "buttonText": "Register",
@@ -33,7 +33,7 @@
     },
     {
         "id": 5,
-        "date": "2024-10-25",
+        "date": "2024-10-27",
         "title": "Real Estate Expo",
         "description": "Don't miss our October 24th Real Estate Expo.",
         "buttonText": "Register",
@@ -41,7 +41,7 @@
     },
     {
         "id": 6,
-        "date": "2024-10-25",
+        "date": "2024-10-29",
         "title": "Investor Webinar",
         "description": "Join us for our webinar on investing in the real estate market.",
         "buttonText": "Sign Up",

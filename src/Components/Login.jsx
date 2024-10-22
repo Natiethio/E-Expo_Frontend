@@ -59,7 +59,7 @@ const Login = ({ open, setOpen, menuClose }) => {
                             <a href="#" className="text-center text-gray-700 hover:text-blue-950 hover:font-bold transform transition-all ease-in-out">Forget Password?</a>
                         </div>
                         <div className="relative flex py-3 px-5 items-center">
-                            <div className="flex-grow border-t border-blue-900"></div>
+                           <div className="flex-grow border-t border-blue-900"></div>  {/* have problem */}
                             <span className="flex-shrink mx-4 text-blue-950">or</span>
                             <div className="flex-grow border-t border-blue-900"></div>
                         </div>

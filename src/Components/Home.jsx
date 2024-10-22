@@ -16,8 +16,10 @@ import adv1 from '../Images/Adv1.png'
 import Hero2 from '../Images/Hero2.mp4'
 import CardUpe from './cardupcoming.json'
 import CardFeatured from './cardfeatured.json'
+import Advertisement from './advertizement.json'
 import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, FaPhoneAlt } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
+import { FaHome } from 'react-icons/fa';
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
@@ -28,7 +30,9 @@ const Home = () => {
     const [cardsToShow, setCardsToShow] = useState(4);
     const [currentIndexFeatured, setCurrentIndexFeatured] = useState(0);
     const [cardsToShowFeatured, setCardsToShowFeatured] = useState(3);
+    // const [currentIndexAdverts, setCurrentIndexAdverts] = useState(0);
     const Expo = useNavigate();
+    const RealEstates = useNavigate();
 
     const slides = [
         { id: 1, src: adv1 },
@@ -145,12 +149,26 @@ const Home = () => {
         Expo('/Expo')
     }
 
+    const handelRealestates = () => {
+        RealEstates('/Real_Estates')
+    }
+
     // const targetDate = new Date(cardfeatured.date); 
     // const daysLeft = differenceInDays(targetDate, currentDate);
 
     const getDaysLeft = (date) => {
         return formatDistanceToNow(new Date(date), { addSuffix: true });
     };
+
+    const formatDate = (dateStr) => {
+        const date = new Date(dateStr);
+        const day = date.getDate();
+        const month = date.toLocaleString('default', { month: 'short' }).toUpperCase(); // Extract the month (Oct -> OCT)
+        return { day, month };
+    };
+
+
+
 
     return (
         <>
@@ -162,14 +180,14 @@ const Home = () => {
 
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
-                <section className="relative bg-blue-900 text-white h-[500px] flex items-center justify-center mx-4 my-2">
+                <section className="relative bg-blue-900 text-white h-[500px] flex items-center justify-center mx-3 my-2">
                     <video
                         className="absolute inset-0 w-full h-full object-cover"
                         src={Hero2}
                         autoPlay
                         loop
                         muted
-                        playsInline >
+                        playsInline>
                     </video>
 
                     <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -182,6 +200,36 @@ const Home = () => {
                         </button>
                     </div>
                 </section>
+
+                <section className="relative bg-blue-900 text-white h-[500px] flex items-center justify-center mx-3 my-2">
+                    <div className="absolute inset-0 w-full h-full">
+
+                        <iframe
+                            className="w-full h-full"
+                            src="https://my.matterport.com/show?play=1&lang=en-US&m=wBEFkyJTUnW"
+                            frameBorder="0"
+                            allowFullScreen
+                            allow="xr-spatial-tracking autoplay"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                        >
+                        </iframe>
+
+                    </div>
+
+                    <div className="absolute inset-0 bg-black opacity-35"></div>
+
+                    {/* <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
+                        <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
+                        <p className="mt-4 text-lg">Explore the future of real estate with 3D tours and live events.</p>
+                        <button onClick={handelExpo} className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300">
+                            Explore Expo
+                        </button>
+                    </div> */}
+                </section>
+
 
                 {/* Featured Real Estates */}
 
@@ -247,12 +295,12 @@ const Home = () => {
                                         >
                                             <div className="relative bg-white shadow-lg rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
 
-                                            
+
                                                 <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
                                                     <h3 className="text-lg font-semibold">{cardfeatured.name}</h3>
                                                 </div>
 
-                                               
+
                                                 <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
                                                     <img
                                                         src={cardfeatured.img}
@@ -263,7 +311,7 @@ const Home = () => {
 
                                                 <div className="pl-6 pb-6">
                                                     <p className="text-gray-600">{cardfeatured.description}</p>
-                                                    <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                                    <button onClick={handelRealestates} className=" mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                                         {cardfeatured.buttonText}
                                                     </button>
                                                 </div>
@@ -343,42 +391,44 @@ const Home = () => {
                                         transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
                                     }}
                                 >
-                                    {CardUpe.map((card, index) => (
-                                        <div
-                                            key={index}
-                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4"
-                                            style={{ flex: `0 0 ${100 / cardsToShow}%` }}
-                                        >
-                                            <div className="relative bg-white shadow-lg rounded-xl overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
+                                    {CardUpe.map((card, index) => {
+                                        const { day, month } = formatDate(card.date);
 
+                                        return (
+                                            <div
+                                                key={index}
+                                                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4"
+                                                style={{ flex: `0 0 ${100 / cardsToShow}%` }}
+                                            >
+                                                <div className="relative bg-white shadow-lg rounded-xl overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
 
-                                                <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
-                                                    <span className="uppercase font-bold">{getDaysLeft(card.date)}</span>
-                                                </div>
+                                                    <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
+                                                        <span className="uppercase font-bold">{getDaysLeft(card.date)}</span>
+                                                    </div>
 
-                                                <div className="absolute top-0 left-0 bg-blue-950 text-white py-1 px-3 rounded-br-lg">
+                                                    <div
+                                                        className="text-sm absolute top-0 right-0  bg-blue-950 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 transition duration-500 ease-in-out"
+                                                    >
+                                                        <span className="font-bold">{day}</span> {/* Display the day */}
+                                                        <span className="uppercase font-bold">{month}</span> {/* Display the month */}
+                                                    </div>
 
-                                                </div>
+                                                    <div className="rounded overflow-hidden w-full h-96">
+                                                        <img src={card.img} alt="Real Estate" className="object-cover w-full h-full" />
+                                                    </div>
 
+                                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent h-64"></div>
+                                                    <div className="absolute inset-x-0 bottom-0 p-4 text-white z-10">
+                                                        <h3 className="text-xl font-semibold">{card.title}</h3>
 
-
-                                                <div className="rounded overflow-hidden w-full h-96">
-                                                    <img src={card.img} alt="Real Estate" className="object-cover w-full h-full" />
-                                                </div>
-
-
-                                                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent h-64"></div>
-                                                <div className="absolute inset-x-0 bottom-0 p-4 text-white z-10">
-                                                    <h3 className="text-xl font-semibold">{card.title}</h3>
-                                                    {/* <p className="text-sm">{card.description}</p> */}
-
-                                                    <button className="mt-2 border font-semibold border-white text-white px-4 py-2 rounded hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
-                                                        {card.buttonText}
-                                                    </button>
+                                                        <button className="mt-2 border font-semibold border-white text-white px-4 py-2 rounded hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
+                                                            {card.buttonText}
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
                             </div>
                         </div>
@@ -403,18 +453,18 @@ const Home = () => {
                     <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
                         Advertisements
                     </h2>
-                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-md shadow-lg p-4 bg-white">
+                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-xl shadow-lg p-4 bg-white">
                         {slides.map((slide, index) => (
                             <div
                                 key={slide.id}
-                                className={`absolute inset-0 flex w-full h-full transition-transform duration-1000 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"
+                                className={`flex absolute inset-0  w-full h-full transition-transform duration-1000 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"
                                     }`}>
 
-                                <div className="sm:w-2/3 w-full h-full">
+                                <div className="sm:w-2/3">
                                     <img
                                         src={slide.src}
                                         alt={`Advertisement ${index + 1}`}
-                                        className="w-full h-full object-cover rounded-l-xl"
+                                        className=" w-full h-full object-cover rounded-l-xl"
                                     />
                                 </div>
 
@@ -448,66 +498,87 @@ const Home = () => {
                     </div>
                 </section>
 
-                {/* <div class="p-10">
-                    
-                    <div class=" w-full lg:max-w-full lg:flex">
-                        <div class="h-48 lg:h-auto lg:w-48 flex-none bg-cover rounded-t lg:rounded-t-none lg:rounded-l text-center overflow-hidden" style="background-image: url('/mountain.jpg')" title="Mountain">
-                        </div>
-                        <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                            <div class="mb-8">
-                                <p class="text-sm text-gray-600 flex items-center">
-                                    <svg class="fill-current text-gray-500 w-3 h-3 mr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                        <path d="M4 8V6a6 6 0 1 1 12 0v2h1a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-8c0-1.1.9-2 2-2h1zm5 6.73V17h2v-2.27a2 2 0 1 0-2 0zM7 6v2h6V6a3 3 0 0 0-6 0z" />
-                                    </svg>
-                                    Members only
-                                </p>
-                                <div class="text-gray-900 font-bold text-xl mb-2">Best Mountain Trails 2020</div>
-                                <p class="text-gray-700 text-base">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus quia, Nonea! Maiores et perferendis eaque, exercitationem praesentium nihil.</p>
-                            </div>
-                            <div class="flex items-center">
-                                <img class="w-10 h-10 rounded-full mr-4" src="" alt="Avatar of Writer" />
-                                <div class="text-sm">
-                                    <p class="text-gray-900 leading-none">John Smith</p>
-                                    <p class="text-gray-600">Aug 18</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> */}
+                {/* <section className="container mx-auto antialiased p-3">
+                    <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
+                        Advertisements
+                    </h2>
 
+                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-md shadow-lg p-4 bg-white">
+                        {Advertisement.map((ad, index) => (
+                            <article
+                                key={index}
+                                className={`flex flex-wrap md:flex-nowrap shadow-lg mx-auto group cursor-pointer transform  absolute inset-0  w-full h-full transition-transform duration-1000 ease-in-out  ${index === currentSlide ? 'block translate-x-0' : 'hidden translate-x-full'}`}
 
-
-                {/* advertizement section */}
-                {/* <section className="container mx-auto my-12 ">
-                    <h2 className="text-3xl font-bold mb-4 text-blue-900 text-center sm:text-left">Advertisements</h2>
-                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-xl shadow-lg">
-                        {slides.map((slide, index) => (
-                            <div
-                                key={slide.id}
-                                className={`absolute inset-0 transition-transform duration-1000 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"
-                                    }`}>
+                                
+                            >
+                                
                                 <img
-                                    src={slide.src}
-                                    alt={`Advertisement ${index + 1}`}
-                                    className="w-full sm:h-full h-1/2 object-contain"
+                                    className="md:w-1/3 w-full max-h-[400px] object-cover"
+                                    src={ad.image}
+                                    alt={ad.title}
                                 />
-                            </div>
+                                <div>
+                                    <div className="p-5 pb-10">
+                                        <h1 className="text-2xl font-semibold text-gray-800 mt-4">{ad.title}</h1>
+                                        <p className="text-xl text-gray-400 mt-2 leading-relaxed">
+                                            {ad.description}
+                                        </p>
+                                    </div>
+                                    <div className="bg-blue-50 p-5">
+                                        <div className="sm:flex sm:justify-between">
+                                            <div>
+                                                <div className="text-lg text-gray-700">
+                                                    <span className="text-gray-900 font-bold">{ad.distance}</span> from Dhaka
+                                                </div>
+                                                <div className="flex items-center">
+                                                    <div className="flex">
+                                                        
+                                                        {[...Array(5)].map((_, starIndex) => (
+                                                            <svg
+                                                                key={starIndex}
+                                                                className={`w-4 h-4 mx-px fill-current ${starIndex < ad.reviews / 5 ? 'text-green-600' : 'text-gray-300'
+                                                                    }`}
+                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                viewBox="0 0 14 14"
+                                                            >
+                                                                <path d="M6.43 12l-2.36 1.64a1 1 0 0 1-1.53-1.11l.83-2.75a1 1 0 0 0-.35-1.09L.73 6.96a1 1 0 0 1 .59-1.8l2.87-.06a1 1 0 0 0 .92-.67l.95-2.71a1 1 0 0 1 1.88 0l.95 2.71c.13.4.5.66.92.67l2.87.06a1 1 0 0 1 .59 1.8l-2.3 1.73a1 1 0 0 0-.34 1.09l.83 2.75a1 1 0 0 1-1.53 1.1L7.57 12a1 1 0 0 0-1.14 0z" />
+                                                            </svg>
+                                                        ))}
+                                                    </div>
+                                                    <div className="text-gray-600 ml-2 text-sm md:text-base mt-1">
+                                                        {ad.reviews} reviews
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <button className="mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md">
+                                                Book Ticket
+                                            </button>
+                                        </div>
+                                        <div className="mt-3 text-gray-600 text-sm md:text-sm">
+                                            *Places to visit: {ad.placesToVisit.join(', ')}
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
                         ))}
-                        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                            {slides.map((_, index) => (
+
+                        
+                        <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-4">
+                            {Advertisement.map((_, index) => (
                                 <button
                                     key={index}
-                                    onClick={() => setCurrentSlide(index)}
-                                    className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-blue-500" : "bg-gray-300"
+                                    className={`mx-2 w-3 h-3 rounded-full ${index === currentSlide ? 'bg-blue-500' : 'bg-gray-400'
                                         }`}
-                                />
+                                    onClick={() => setCurrentSlide(index)}
+                                ></button>
                             ))}
                         </div>
                     </div>
                 </section> */}
 
+
                 {/* news section */}
-                <section className="container mx-auto my-12 p-4">
+                <section className="container mx-auto my-12 p-3">
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
                         <div className="bg-white shadow-lg rounded-xl">
@@ -650,7 +721,6 @@ const Home = () => {
                         </div>
                     </div>
                 </section>
-
             </div>
             <Footer />
         </>

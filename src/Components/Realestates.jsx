@@ -53,7 +53,10 @@ const Realestates = () => {
                         <div key={company.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                             {/* <img src={company.imgSrc} alt={company.name} className="w-full h-40 object-cover sm:h-48 md:h-52 lg:h-56" /> */}
 
-                            <div className="overflow-hidden w-full mb-4 h-80 rounded-t-xl">
+                            <div className="relative overflow-hidden w-full mb-4 h-80 rounded-t-xl">
+                                <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
+                                    <span className="uppercase font-bold">Logo</span>
+                                </div>
                                 <img
                                     src={company.imgSrc}
                                     alt="Real Estate"
