@@ -1,0 +1,121 @@
+[
+    {
+        "id": 1,
+        "title": "Planned Project 1",
+        "img":"/Images/giftLagare.jpg",
+        "description": "Planned project",
+        "type": "Planned"
+    },
+    {
+        "id": 2,
+        "title": "Planned Project 2",
+        "img":"/Images/ayatrealestete.png",
+        "description": "Planned project",
+        "type": "Planned"
+    },
+    {
+        "id": 3,
+        "title": "Planned Project 3",
+        "img":"/Images/Jamborobole.jpg",
+        "description": "Planned project",
+        "type": "Planned"
+    },
+    {
+        "id": 4,
+        "title": "Planned Project 4",
+        "img":"/Images/ayat2.png",
+        "description": "Planned project",
+        "type": "Planned"
+    },
+    {
+        "id": 5,
+        "title": "Planned Project 5",
+        "img":"/Images/ayat3.png",
+        "description": "planned project",
+        "type": "Planned"
+    },
+    {
+        "id": 6,
+        "title": "Planned Project 6",
+        "img":"/Images/jamboro2.png",
+        "description": "Planned project",
+        "type": "Planned"
+    },
+    {
+        "id": 7,
+        "title": "Under Construction Project 1",
+        "img":"/Images/",
+        "description": "Under construction project",
+        "type": "Under Construction"
+    },
+    {
+        "id": 8,
+        "title": "Under Construction Project 2",
+        "img":"/Images/",
+        "description": "Under construction project",
+        "type": "Under Construction"
+    },
+    {
+        "id": 10,
+        "title": "Under Construction Project 4",
+        "img":"/Images/",
+        "description": "Under construction project",
+        "type": "Under Construction"
+    },
+    {
+        "id": 11,
+        "title": "Under Construction Project 5",
+        "img":"/Images/",
+        "description": "Under construction project",
+        "type": "Under Construction"
+    },
+    {
+        "id": 12,
+        "title": "Under Construction Project 6",
+        "img":"/Images/",
+        "description": "Under construction project",
+        "type": "Under Construction"
+    },
+    {
+        "id": 13,
+        "title": "Testimonial 1",
+        "img":"/Images/reale1.png",
+        "description": "Testimonial project",
+        "type": "Testimonials"
+    },
+    {
+        "id": 14,
+        "title": "Testimonial 2",
+        "img":"/Images/reale2.png",
+        "description": "Testimonial project",
+        "type": "Testimonials"
+    },
+    {
+        "id": 15,
+        "title": "Testimonial 3",
+        "img":"/Images/reale3.png",
+        "description": "Testimonial project",
+        "type": "Testimonials"
+    },
+    {
+        "id": 16,
+        "title": "Testimonial 4",
+        "img":"/Images/reale4.png",
+        "description": "Testimonial project",
+        "type": "Testimonials"
+    },
+    {
+        "id": 17,
+        "title": "Testimonial 5",
+        "img":"/Images/reale5.png",
+        "description": "Testimonial project",
+        "type": "Testimonials"
+    },
+    {
+        "id": 18,
+        "title": "Testimonial 6",
+        "img":"/Images/reale6.png",
+        "description": "Testimonial project",
+        "type": "Testimonials"
+    }
+]

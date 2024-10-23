@@ -26,6 +26,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentSlideUpcoming, setCurrentSlideUpcoming] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(4);
     const [currentIndexFeatured, setCurrentIndexFeatured] = useState(0);
@@ -101,6 +102,9 @@ const Home = () => {
     }
 
 
+
+
+
     const prevCardSlide = (section) => {
         const totalCard = totalSlide(section);
 
@@ -138,12 +142,25 @@ const Home = () => {
 
 
     useEffect(() => {
+        const slideInterval = setInterval(() => {
+            setCurrentSlideUpcoming((prevSlide) =>
+                prevSlide === CardUpe.length - 1 ? 0 : prevSlide + 1
+            );
+        }, 7000);
+
+        return () => clearInterval(slideInterval);
+    }, [slides.length]);
+
+
+    useEffect(() => {
         const autoSlide = setInterval(() => {
             nextCardSlide('upcoming');
         }, 5000);
 
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
+
+
 
     const handelExpo = () => {
         Expo('/Expo')
@@ -190,7 +207,7 @@ const Home = () => {
                         playsInline>
                     </video>
 
-                    <div className="absolute inset-0 bg-black opacity-50"></div>
+                    <div className="absolute inset-0 bg-black opacity-35"></div>
 
                     <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
                         <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
@@ -199,35 +216,6 @@ const Home = () => {
                             Explore Expo
                         </button>
                     </div>
-                </section>
-
-                <section className="relative bg-blue-900 text-white h-[500px] flex items-center justify-center mx-3 my-2">
-                    <div className="absolute inset-0 w-full h-full">
-
-                        <iframe
-                            className="w-full h-full"
-                            src="https://my.matterport.com/show?play=1&lang=en-US&m=wBEFkyJTUnW"
-                            frameBorder="0"
-                            allowFullScreen
-                            allow="xr-spatial-tracking autoplay"
-                            autoPlay
-                            loop
-                            muted
-                            playsInline
-                        >
-                        </iframe>
-
-                    </div>
-
-                    <div className="absolute inset-0 bg-black opacity-35"></div>
-
-                    {/* <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
-                        <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
-                        <p className="mt-4 text-lg">Explore the future of real estate with 3D tours and live events.</p>
-                        <button onClick={handelExpo} className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300">
-                            Explore Expo
-                        </button>
-                    </div> */}
                 </section>
 
 
@@ -328,7 +316,7 @@ const Home = () => {
 
                 {/* upcoming events section */}
 
-                <section className="bg-gray-100 py-8">
+                <section className=" bg-gray-100 py-8">
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
                             <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center">Upcoming Events</h2>
@@ -349,39 +337,6 @@ const Home = () => {
                                 </button>
                             </div>
                         </div>
-
-                        {/* <div className="relative">
-                            <div className="overflow-hidden">
-                                <div
-                                    className="flex transition-transform duration-700 ease-in-out"
-                                    style={{
-                                        transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
-                                    }}
-                                >
-                                    {CardUpe.map((card, index) => (
-                                        <div
-                                            key={index}
-                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3"
-                                            style={{ flex: `0 0 ${100 / cardsToShow}%` }}
-                                        >
-                                            <div className="bg-white  shadow-lg rounded-2xl transition ease-in-out delay-150  hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
-                                                <div className="flex items-center text-gray-600 ">
-
-                                                </div>
-                                                <div className="rounded overflow-hidden w-full mb-4 xl:h-64 sm:h-72 h-80 ">
-                                                    <img src={card.img} alt={card.title} className="object-cover w-full h-full" />
-                                                </div>
-                                                <h3 className="text-xl text-blue-900 font-semibold pl-3">{card.title}</h3>
-                                                
-                                                <button className="mt-4 border font-semibold m-3 border-blue-900 text-blue-900 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
-                                                    Register
-                                                </button>
-                                            </div>
-                                        </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div> */}
 
                         <div className="relative">
                             <div className="overflow-hidden">
@@ -429,11 +384,25 @@ const Home = () => {
                                             </div>
                                         );
                                     })}
+
                                 </div>
                             </div>
                         </div>
+                        <div className="flex justify-center mt-4 space-x-2">
+                            {Array.from({
+                                length: Math.ceil(totalCards / cardsToShow) + (window.innerWidth > 768 && window.innerWidth < 1200 ? 2 : 1) //for less than 768 need review add one dot
+                            }, (_, index) => (
+                                <div
+                                    key={index}
+                                    className={`h-3 w-3 rounded-full cursor-pointer ${currentIndex === index ? 'bg-blue-900' : 'bg-gray-400'}`}
+                                    onClick={() => setCurrentIndex(index)}
+                                />
+                            ))}
+                        </div>
                     </div>
+
                 </section>
+
 
                 {/* Why E-Expo */}
                 <section className="container mx-auto my-12 mb-20">
@@ -490,7 +459,7 @@ const Home = () => {
                                 <button
                                     key={index}
                                     onClick={() => setCurrentSlide(index)}
-                                    className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-blue-500" : "bg-gray-300"
+                                    className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-blue-950" : "bg-gray-300"
                                         }`}
                                 />
                             ))}
@@ -680,7 +649,7 @@ const Home = () => {
                                     <label for="description" className="block text-gray-500 mb-1">Description</label>
                                     <textarea id="description" className="w-full px-3 py-2 border rounded-lg text-gray-600" rows="4" placeholder="Comments"></textarea>
                                 </div>
-                                {/* <button class="mt-6 bg-blue-900 text-white px-4 py-2 rounded-xl hover:bg-blue-700">Submit Enquiry</button> */}
+
                                 <button className="mt-6 border font-semibold bg-blue-900  text-white w-24 px-3 py-2 rounded-lg hover:border-blue-900 hover:bg-gray-100 hover:text-blue-900 transition duration-300">
                                     Submit
                                 </button>

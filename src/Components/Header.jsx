@@ -4,7 +4,7 @@ import Login from './Login';
 import Register from './Register';
 import { Link } from 'react-router-dom';
 
-const Header = () => {
+const Header = ({page}) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
@@ -75,7 +75,7 @@ const Header = () => {
                         <div className="relative">
                             <Link
                                 to="/Real_Estates"
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                className={`hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105 ${page === 'Real_Estates' ? 'text-blue-900 font-bold' : 'text-gray-700'}`}
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Real Estates
@@ -84,7 +84,7 @@ const Header = () => {
                         <div className="relative">
                             <Link
                                 to="/Expo"
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                className={`hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105 ${page === 'Explore_Expo' ? 'text-blue-900 font-bold' : 'text-gray-700'}`}
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Explore Expo

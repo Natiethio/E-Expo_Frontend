@@ -16,7 +16,7 @@ const Footer = () => {
   return (
     <div>
       <section className="px-3">
-        <div className="bg-gradient-to-br from-blue-600 via-blue-800 to-blue-950 p-6 sm:p-10 rounded-2xl w-full text-white flex items-center justify-between max-w-full mx-auto mt-10">
+        <div className="bg-gradient-to-br from-blue-600  to-blue-950 p-6 sm:p-10 rounded-2xl w-full text-white flex items-center justify-between max-w-full mx-auto mt-10">
           <div className="flex flex-col gap-6">
             <div>
               <span className="text-gray-200">Start your journey with E-Expo</span>
@@ -45,7 +45,7 @@ const Footer = () => {
             <h4 className="font-bold text-blue-900 mb-5">Information</h4>
             <ul>
               <li className="pb-2">
-                <Link to='/Expo' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-150 transform transition-all duration-300 ease-in-out">Real Estates</Link>
+                <Link to='/Real_Estates' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-150 transform transition-all duration-300 ease-in-out">Real Estates</Link>
               </li>
               <li className="pb-2">
                 <Link to='/Expo' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-150 transform transition-all duration-300 ease-in-out">Explore Expo</Link>
