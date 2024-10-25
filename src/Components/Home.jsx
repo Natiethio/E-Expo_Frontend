@@ -12,7 +12,7 @@ import Ltnews3 from '../Images/ovid.jpg'
 import Calender from '../Images/calender.png'
 import adv2 from '../Images/advertizement1.png'
 import adv1 from '../Images/Adv1.png'
-// import Hero from '../Images/Hero.mp4'
+import Tour1 from '/Images/vidtour1.mp4'
 import Hero2 from '../Images/Hero2.mp4'
 import CardUpe from './cardupcoming.json'
 import CardFeatured from './cardfeatured.json'
@@ -102,9 +102,6 @@ const Home = () => {
     }
 
 
-
-
-
     const prevCardSlide = (section) => {
         const totalCard = totalSlide(section);
 
@@ -155,7 +152,7 @@ const Home = () => {
     useEffect(() => {
         const autoSlide = setInterval(() => {
             nextCardSlide('upcoming');
-        }, 5000);
+        }, 3000);
 
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
@@ -183,8 +180,6 @@ const Home = () => {
         const month = date.toLocaleString('default', { month: 'short' }).toUpperCase(); // Extract the month (Oct -> OCT)
         return { day, month };
     };
-
-
 
 
     return (
@@ -221,21 +216,21 @@ const Home = () => {
 
                 {/* Featured Real Estates */}
 
-                <section className="bg-gray-200 py-8">
+                <section className="bg-gray-50 py-8 md:px-10">
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center">Featured Projects</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Featured Projects</h2>
                             <div className="flex space-x-2 justify-center">
                                 <button
                                     onClick={() => prevCardSlide('featured')}
-                                    className="left-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white text-center p-1 rounded-full z-10"
+                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     <FaArrowLeft />
                                 </button>
                                 <button
                                     onClick={() => nextCardSlide('featured')}
-                                    className="right-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white p-1 rounded-full z-10"
+                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     <FaArrowRight />
@@ -252,36 +247,13 @@ const Home = () => {
                                     }}
                                 >
                                     {CardFeatured.map((cardfeatured, index) => (
-                                        // <div
-                                        //     key={index}
-                                        //     className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4 rounded-xl"
-                                        //     style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}>
-                                        //     <div className="bg-white shadow-lg rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
 
-                                        //         <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
-
-                                        //             <img
-                                        //                 src={cardfeatured.img}
-                                        //                 alt="Real Estate"
-                                        //                 className="object-cover w-full h-full"
-                                        //             />
-                                        //         </div>
-
-                                        //         <div className="pl-6 pb-6">
-                                        //             <h3 className="text-xl font-semibold text-blue-900">{cardfeatured.name}</h3>
-                                        //             <p className="text-gray-600">{cardfeatured.description}</p>
-                                        //             <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
-                                        //                 {cardfeatured.buttonText}
-                                        //             </button>
-                                        //         </div>
-                                        //     </div>
-                                        // </div>
                                         <div
                                             key={index}
                                             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4 rounded-xl"
                                             style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
                                         >
-                                            <div className="relative bg-white shadow-lg rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
+                                            <div className="relative bg-white shadow-md rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
 
 
                                                 <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
@@ -316,21 +288,21 @@ const Home = () => {
 
                 {/* upcoming events section */}
 
-                <section className=" bg-gray-100 py-8">
+                <section className=" bg-gray-50 py-8 md:px-10">
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center">Upcoming Events</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 px-3 text-center">Upcoming Events</h2>
                             <div className="flex space-x-2 justify-center">
                                 <button
                                     onClick={() => prevCardSlide('upcoming')}
-                                    className="left-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white text-center p-1 rounded-full z-10"
+                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     <FaArrowLeft />
                                 </button>
                                 <button
                                     onClick={() => nextCardSlide('upcoming')}
-                                    className="right-0 top-1/2 transform -translate-y-1/2 bg-blue-900 text-white p-1 rounded-full z-10"
+                                    className="right-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     <FaArrowRight />
@@ -355,7 +327,7 @@ const Home = () => {
                                                 className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4"
                                                 style={{ flex: `0 0 ${100 / cardsToShow}%` }}
                                             >
-                                                <div className="relative bg-white shadow-lg rounded-xl overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-100 duration-300">
+                                                <div className="relative bg-white shadow-md rounded-xl overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
 
                                                     <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
                                                         <span className="uppercase font-bold">{getDaysLeft(card.date)}</span>
@@ -394,20 +366,48 @@ const Home = () => {
                             }, (_, index) => (
                                 <div
                                     key={index}
-                                    className={`h-3 w-3 rounded-full cursor-pointer ${currentIndex === index ? 'bg-blue-900' : 'bg-gray-400'}`}
+                                    className={`h-3 w-3 rounded-full cursor-pointer ${currentIndex === index ? 'bg-blue-900' : 'bg-gray-300'}`}
                                     onClick={() => setCurrentIndex(index)}
                                 />
                             ))}
                         </div>
                     </div>
-
                 </section>
 
 
+
+
                 {/* Why E-Expo */}
-                <section className="container mx-auto my-12 mb-20">
-                    <h2 className="text-3xl font-bold sm:mb-9 mb-0 text-blue-900 text-center sm:text-left">Why E-Expo?</h2>
-                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-2xl shadow-lg">
+
+                <section className='container mx-auto my-12 px-6 py-6 md:my-20'>
+                    <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
+                        Why E-Expo?
+                    </h2>
+                    <div className="flex flex-col-reverse md:flex-row gap-8">
+                        {/* Text Section */}
+                        <div className="flex-1">
+                            <p className="text-gray-700 leading-relaxed">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, purus vel dictum tincidunt, elit felis gravida purus, non malesuada nulla quam a lectus. Vivamus euismod volutpat sem sed congue dolor sit amet, consectetur adipiscing elit. Sed tincidunt, purus vel dictum tincidunt, elit felis gravida purus, non malesuada nulla quam a lectus. Vivamus euismod volutpat sem sed congue.
+                            </p>
+                        </div>
+
+                        {/* Video Section */}
+                        <div className="w-full md:w-1/2 lg:w-1/3 h-64 relative overflow-hidden rounded-lg">
+                            <video
+                                className="w-full h-full object-cover"
+                                src={Tour1}
+                                autoPlay
+                                loop
+                                muted
+                                playsInline
+                            ></video>
+                        </div>
+                    </div>
+                </section>
+
+                {/* Image Section */}
+                <section className="container mx-auto px-6 my-12 md:my-16">
+                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-2xl shadow-md">
                         <div className="absolute inset-0 transition-transform duration-1000 ease-in-out">
                             <img
                                 src={adv2}
@@ -415,14 +415,17 @@ const Home = () => {
                             />
                         </div>
                     </div>
+
                 </section>
 
+
+
                 {/* advertizement section */}
-                <section className="container mx-auto my-12">
+                <section className="container mx-auto my-12 px-3">
                     <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
                         Advertisements
                     </h2>
-                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-xl shadow-lg p-4 bg-white">
+                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-xl shadow-md p-4 bg-white">
                         {slides.map((slide, index) => (
                             <div
                                 key={slide.id}
@@ -467,90 +470,13 @@ const Home = () => {
                     </div>
                 </section>
 
-                {/* <section className="container mx-auto antialiased p-3">
-                    <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
-                        Advertisements
-                    </h2>
-
-                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-md shadow-lg p-4 bg-white">
-                        {Advertisement.map((ad, index) => (
-                            <article
-                                key={index}
-                                className={`flex flex-wrap md:flex-nowrap shadow-lg mx-auto group cursor-pointer transform  absolute inset-0  w-full h-full transition-transform duration-1000 ease-in-out  ${index === currentSlide ? 'block translate-x-0' : 'hidden translate-x-full'}`}
-
-                                
-                            >
-                                
-                                <img
-                                    className="md:w-1/3 w-full max-h-[400px] object-cover"
-                                    src={ad.image}
-                                    alt={ad.title}
-                                />
-                                <div>
-                                    <div className="p-5 pb-10">
-                                        <h1 className="text-2xl font-semibold text-gray-800 mt-4">{ad.title}</h1>
-                                        <p className="text-xl text-gray-400 mt-2 leading-relaxed">
-                                            {ad.description}
-                                        </p>
-                                    </div>
-                                    <div className="bg-blue-50 p-5">
-                                        <div className="sm:flex sm:justify-between">
-                                            <div>
-                                                <div className="text-lg text-gray-700">
-                                                    <span className="text-gray-900 font-bold">{ad.distance}</span> from Dhaka
-                                                </div>
-                                                <div className="flex items-center">
-                                                    <div className="flex">
-                                                        
-                                                        {[...Array(5)].map((_, starIndex) => (
-                                                            <svg
-                                                                key={starIndex}
-                                                                className={`w-4 h-4 mx-px fill-current ${starIndex < ad.reviews / 5 ? 'text-green-600' : 'text-gray-300'
-                                                                    }`}
-                                                                xmlns="http://www.w3.org/2000/svg"
-                                                                viewBox="0 0 14 14"
-                                                            >
-                                                                <path d="M6.43 12l-2.36 1.64a1 1 0 0 1-1.53-1.11l.83-2.75a1 1 0 0 0-.35-1.09L.73 6.96a1 1 0 0 1 .59-1.8l2.87-.06a1 1 0 0 0 .92-.67l.95-2.71a1 1 0 0 1 1.88 0l.95 2.71c.13.4.5.66.92.67l2.87.06a1 1 0 0 1 .59 1.8l-2.3 1.73a1 1 0 0 0-.34 1.09l.83 2.75a1 1 0 0 1-1.53 1.1L7.57 12a1 1 0 0 0-1.14 0z" />
-                                                            </svg>
-                                                        ))}
-                                                    </div>
-                                                    <div className="text-gray-600 ml-2 text-sm md:text-base mt-1">
-                                                        {ad.reviews} reviews
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <button className="mt-3 sm:mt-0 py-2 px-5 md:py-3 md:px-6 bg-purple-700 hover:bg-purple-600 font-bold text-white md:text-lg rounded-lg shadow-md">
-                                                Book Ticket
-                                            </button>
-                                        </div>
-                                        <div className="mt-3 text-gray-600 text-sm md:text-sm">
-                                            *Places to visit: {ad.placesToVisit.join(', ')}
-                                        </div>
-                                    </div>
-                                </div>
-                            </article>
-                        ))}
-
-                        
-                        <div className="absolute bottom-0 left-0 right-0 flex justify-center pb-4">
-                            {Advertisement.map((_, index) => (
-                                <button
-                                    key={index}
-                                    className={`mx-2 w-3 h-3 rounded-full ${index === currentSlide ? 'bg-blue-500' : 'bg-gray-400'
-                                        }`}
-                                    onClick={() => setCurrentSlide(index)}
-                                ></button>
-                            ))}
-                        </div>
-                    </div>
-                </section> */}
 
 
                 {/* news section */}
-                <section className="container mx-auto my-12 p-3">
+                <section className="container mx-auto my-10 p-3 md:px-10">
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
-                        <div className="bg-white shadow-lg rounded-xl">
+                        <div className="bg-white shadow-md rounded-xl">
 
                             <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
                                 <img src={Ltnews5} alt="Real Estate" className="object-cover w-full h-full" />
@@ -570,7 +496,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="bg-white shadow-lg rounded-xl">
+                        <div className="bg-white shadow-md rounded-xl">
 
                             <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
                                 <img src={Ltnews2} alt="Real Estate" className="object-cover w-full h-full" />
@@ -590,7 +516,7 @@ const Home = () => {
                             </div>
                         </div>
 
-                        <div className="bg-white shadow-lg rounded-xl">
+                        <div className="bg-white shadow-md rounded-xl">
 
                             <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
                                 <img src={Ltnews3} alt="Real Estate" className="object-cover w-full h-full" />
@@ -615,8 +541,8 @@ const Home = () => {
 
                 {/* Contact us section */}
                 <section>
-                    <div className="container mx-auto py-10 grid grid-cols-1 md:grid-cols-2  gap-8">
-                        <div className="bg-white shadow-lg p-6 rounded-xl">
+                    <div className="container mx-auto py-10 md:px-10 grid grid-cols-1 md:grid-cols-2  gap-8">
+                        <div className="bg-white shadow-md p-6 rounded-xl">
                             <h2 className="text-3xl font-bold text-blue-900 mb-5">Contact Us</h2>
                             <form>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -656,7 +582,7 @@ const Home = () => {
                             </form>
                         </div>
 
-                        <div className="bg-white shadow-lg p-6 rounded-lg">
+                        <div className="bg-white shadow-md p-6 rounded-lg">
                             <h2 className="text-xl  font-bold text-blue-900 mb-5">Contact Details</h2>
                             <div class="space-y-3">
                                 <div className="flex items-center">
@@ -681,7 +607,7 @@ const Home = () => {
                             <div className="map-container">
                                 <iframe
                                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.5429360696166!2d38.74532427426507!3d9.014135191046583!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b855bc14f7b6b%3A0xeed47d624097c0f4!2sSengatera%20union%20building!5e0!3m2!1sen!2set!4v1728296078644!5m2!1sen!2set"
-                                    className="w-full h-72 border-0 rounded-xl shadow-lg"
+                                    className="w-full h-72 border-0 rounded-xl shadow-md"
                                     allowFullScreen=""
                                     loading="lazy"
                                     referrerPolicy="no-referrer-when-downgrade">

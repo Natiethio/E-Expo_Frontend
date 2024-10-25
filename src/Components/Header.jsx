@@ -65,18 +65,18 @@ const Header = ({page}) => {
     return (
         <div className="pb-2">
             <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-100 shadow-lg' : 'bg-white'} `}>
-                <nav className="container mx-auto p-4 flex justify-between items-center">
-                    <div className="xl:text-xl text-xl font-bold text-blue-900 pr-1">
+                <nav className="container xl:mx-auto sm:mx-9 p-5 flex justify-between items-center">
+                    <div className="xl:text-2xl text-xl font-bold text-blue-900 pr-1">
                         <Link to="/">E-Expo</Link>
                     </div>
 
 
-                    <div className="hidden md:flex lg:space-x-8 space-x-6">
+                    <div className="hidden md:flex lg:space-x-12 space-x-4">
                         <div className="relative">
                             <Link
                                 to="/Real_Estates"
-                                className={`hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105 ${page === 'Real_Estates' ? 'text-blue-900 font-bold' : 'text-gray-700'}`}
-                                style={{ display: 'inline-block', transformOrigin: 'center' }}
+                                className={`hover:text-blue-900 font-sans xl:text-lg text-md hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105 ${page === 'Real_Estates' ? 'text-blue-900 font-bold' : 'text-gray-700'}`}
+                                style={{ display:'inline-block', transformOrigin: 'center' }}
                             >
                                 Real Estates
                             </Link>
@@ -84,7 +84,7 @@ const Header = ({page}) => {
                         <div className="relative">
                             <Link
                                 to="/Expo"
-                                className={`hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105 ${page === 'Explore_Expo' ? 'text-blue-900 font-bold' : 'text-gray-700'}`}
+                                className={`hover:text-blue-900 xl:text-lg text-md  hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105 ${page === 'Explore_Expo' ? 'text-blue-900  font-bold' : 'text-gray-700'}`}
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Explore Expo
@@ -93,7 +93,7 @@ const Header = ({page}) => {
                         <div className="relative">
                             <a
                                 href="#"
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                className="text-gray-700 xl:text-lg text-md hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Upcoming Events
@@ -103,7 +103,7 @@ const Header = ({page}) => {
                         <div className="relative" ref={dropdownRef}>
                             <button
                                 onClick={() => setShowDropdown(!showDropdown)}
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                className="text-gray-700 xl:text-lg text-md hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}>
                                 <div className="flex space-x-1 items-center">
                                     <span>More</span>
