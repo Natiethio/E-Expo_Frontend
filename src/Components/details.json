@@ -1,10 +1,10 @@
 [
     {
         "id": 1,
-        "title": "Planned Project 1",
+        "title": "Testimonial Project 1",
         "img":"/Images/giftLagare.jpg",
-        "description": "Planned Project",
-        "type": "Planned",
+        "description": "Testimonial Project",
+        "type": "Testimonial",
         "image":"",
         "rating":5,
         "location":"Ayat Site"
@@ -12,10 +12,10 @@
     },
     {
         "id": 2,
-        "title": "Planned Project 2",
+        "title": "Testimonial Project 2",
         "img":"/Images/ayatrealestete.png",
-        "description": "Planned Project",
-        "type": "Planned",
+        "description": "Testimonial Project",
+        "type": "Testimonial",
         "image":"",
         "rating":5,
         "location":"Ayat Site"
@@ -23,10 +23,10 @@
     },
     {
         "id": 3,
-        "title": "Planned Project 3",
+        "title": "Testimonial Project 3",
         "img":"/Images/Jamborobole.jpg",
-        "description": "Planned Project",
-        "type": "Planned",
+        "description": "Testimonial Project",
+        "type": "Testimonial",
         "image":"",
         "rating":5,
         "location":"Ayat Site"
@@ -34,20 +34,20 @@
     },
     {
         "id": 4,
-        "title": "Planned Project 4",
+        "title": "Testimonial Project 4",
         "img":"/Images/ayat2.png",
-        "description": "Planned Project",
-        "type": "Planned",
+        "description": "Testimonial Project",
+        "type": "Testimonial",
         "image":"",
         "rating":5,
         "location":"Ayat Site"
     },
     {
         "id": 5,
-        "title": "Planned Project 5",
+        "title": "Testimonial Project 5",
         "img":"/Images/ayat3.png",
-        "description": "Planned Project",
-        "type": "Planned",
+        "description": "Testimonial Project",
+        "type": "Testimonial",
         "image":"",
         "rating":5,
         "location":"Ayat Site"
@@ -55,10 +55,10 @@
     },
     {
         "id": 6,
-        "title": "Planned Project 6",
+        "title": "Testimonial Project 6",
         "img":"/Images/jamboro2.png",
-        "description": "Planned Project",
-        "type": "Planned",
+        "description": "Testimonial Project",
+        "type": "Testimonial",
         "image":"",
         "rating":5,
         "location":"Ayat Site"
@@ -67,7 +67,7 @@
     {
         "id": 7,
         "title": "Under Construction Project 1",
-        "img":"/Images/",
+        "img":"/Images/giftLagare.jpg",
         "description": "Under construction Project",
         "type": "Under Construction",
         "image":"",
@@ -78,7 +78,7 @@
     {
         "id": 8,
         "title": "Under Construction Project 2",
-        "img":"/Images/",
+        "img":"/Images/ayat2.png",
         "description": "Under construction Project",
         "type": "Under Construction",
         "image":"",
@@ -89,7 +89,7 @@
     {
         "id": 10,
         "title": "Under Construction Project 4",
-        "img":"/Images/",
+        "img":"/Images/ayat3.png",
         "description": "Under construction Project",
         "type": "Under Construction",
         "image":"",
@@ -100,7 +100,7 @@
     {
         "id": 11,
         "title": "Under Construction Project 5",
-        "img":"/Images/",
+        "img":"/Images/Jamborobole.jpg",
         "description": "Under construction Project",
         "type": "Under Construction",
         "image":"",
@@ -111,7 +111,7 @@
     {
         "id": 12,
         "title": "Under Construction Project 6",
-        "img":"/Images/",
+        "img":"/Images/ayatrealestete.png",
         "description": "Under construction Project",
         "type": "Under Construction",
         "image":"",
@@ -121,6 +121,17 @@
     },
     {
         "id": 13,
+        "title": "Under Construction Project 5",
+        "img":"/Images/Jamborobole.jpg",
+        "description": "Under construction Project",
+        "type": "Under Construction",
+        "image":"",
+        "rating":5,
+        "location":"Ayat Site"
+        
+    },
+    {
+        "id": 14,
         "title": "OnSale 1",
         "img":"/Images/reale1.png",
         "description": "OnSale Project",
@@ -131,7 +142,7 @@
         
     },
     {
-        "id": 14,
+        "id": 15,
         "title": "OnSale 2",
         "img":"/Images/reale2.png",
         "description": "OnSale Project",
@@ -142,7 +153,7 @@
         
     },
     {
-        "id": 15,
+        "id": 16,
         "title": "OnSale 3",
         "img":"/Images/reale3.png",
         "description": "OnSale Project",
@@ -153,7 +164,7 @@
         
     },
     {
-        "id": 16,
+        "id": 17,
         "title": "OnSale 4",
         "img":"/Images/reale4.png",
         "description": "OnSale Project",
@@ -164,7 +175,7 @@
         
     },
     {
-        "id": 17,
+        "id": 18,
         "title": "OnSale 5",
         "img":"/Images/reale5.png",
         "description": "OnSale Project",
@@ -175,7 +186,7 @@
         
     },
     {
-        "id": 18,
+        "id": 19,
         "title": "OnSale 6",
         "img":"/Images/reale6.png",
         "description": "OnSale Project",

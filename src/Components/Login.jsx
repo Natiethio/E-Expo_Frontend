@@ -61,7 +61,7 @@ const Login = ({ open, setOpen, menuClose }) => {
 
                         <div className="relative flex items-center py-3 px-5">
                             {/* <div className="flex-grow border-t border-blue-900 min-w-0"></div> */}
-                            <span className="mx-4 text-blue-950">or</span>
+                            {/* <span className="mx-4 text-blue-950">or</span> */}
                             <div className="flex-grow border-t border-blue-900 min-w-0"></div>
                         </div>
 

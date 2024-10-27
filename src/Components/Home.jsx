@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 import Header from './Header'
 import Footer from './Footer'
 import { Helmet } from 'react-helmet'
-import Gift from '../Images/giftLagare.jpg'
-import Ayat from '../Images/ayatrealestete.png'
-import Jamboro from '../Images/Jamborobole.jpg'
+import { motion } from 'framer-motion';
+import { useInView } from "react-intersection-observer";
 import Ltnews2 from '../Images/news2.png'
 import Ltnews5 from '../Images/news5.jpg'
 import Ltnews3 from '../Images/ovid.jpg'
 import Calender from '../Images/calender.png'
 import adv2 from '../Images/advertizement1.png'
 import adv1 from '../Images/Adv1.png'
-import Tour1 from '/Images/vidtour1.mp4'
+
 import Hero2 from '../Images/Hero2.mp4'
+import Hero1 from '/Images/Hero1.mp4'
 import CardUpe from './cardupcoming.json'
 import CardFeatured from './cardfeatured.json'
 import Advertisement from './advertizement.json'
@@ -26,6 +26,7 @@ import { formatDistanceToNow } from 'date-fns';
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
+    const [currentSlideadv, setCurrentSlideAdv] = useState(0);
     const [currentSlideUpcoming, setCurrentSlideUpcoming] = useState(0);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(4);
@@ -40,6 +41,11 @@ const Home = () => {
         { id: 2, src: adv1 },
         { id: 3, src: adv1 },
     ];
+
+    const { ref, inView } = useInView({
+        triggerOnce: true,
+        threshold: 0.1
+    });
 
     useEffect(() => {
         const updateCardsToShow = () => {
@@ -148,6 +154,14 @@ const Home = () => {
         return () => clearInterval(slideInterval);
     }, [slides.length]);
 
+    useEffect(() => {
+        const slideInterval = setInterval(() => {
+            setCurrentSlideAdv((prevSlide) => (prevSlide + 1) % Advertisement.length);
+        }, 7000);
+
+        return () => clearInterval(slideInterval);
+    }, []);
+
 
     useEffect(() => {
         const autoSlide = setInterval(() => {
@@ -192,17 +206,17 @@ const Home = () => {
 
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
-                <section className="relative bg-blue-900 text-white h-[500px] flex items-center justify-center mx-3 my-2">
+                <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-2">
                     <video
                         className="absolute inset-0 w-full h-full object-cover"
-                        src={Hero2}
+                        src={Hero1}
                         autoPlay
                         loop
                         muted
                         playsInline>
                     </video>
 
-                    <div className="absolute inset-0 bg-black opacity-35"></div>
+                    <div className="absolute inset-0 bg-black opacity-25"></div>
 
                     <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
                         <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
@@ -213,13 +227,16 @@ const Home = () => {
                     </div>
                 </section>
 
-
                 {/* Featured Real Estates */}
-
-                <section className="bg-gray-50 py-8 md:px-10">
+                <motion.section
+                    className="container mx-auto my-6 px-3 py-6 md:my-10"
+                    initial={{ opacity: 0, y: -50 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}
+                >
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Featured Projects</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Featured Listings</h2>
                             <div className="flex space-x-2 justify-center">
                                 <button
                                     onClick={() => prevCardSlide('featured')}
@@ -241,25 +258,21 @@ const Home = () => {
                         <div className="relative">
                             <div className="overflow-hidden">
                                 <div
-                                    className="flex transition-transform duration-700 ease-in-out "
+                                    className="flex transition-transform duration-700 ease-in-out"
                                     style={{
                                         transform: `translateX(-${currentIndexFeatured * (100 / cardsToShowFeatured)}%)`
                                     }}
                                 >
                                     {CardFeatured.map((cardfeatured, index) => (
-
                                         <div
                                             key={index}
                                             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4 rounded-xl"
                                             style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
                                         >
                                             <div className="relative bg-white shadow-md rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
-
-
                                                 <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
                                                     <h3 className="text-lg font-semibold">{cardfeatured.name}</h3>
                                                 </div>
-
 
                                                 <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
                                                     <img
@@ -271,24 +284,26 @@ const Home = () => {
 
                                                 <div className="pl-6 pb-6">
                                                     <p className="text-gray-600">{cardfeatured.description}</p>
-                                                    <button onClick={handelRealestates} className=" mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                                    <button onClick={handelRealestates} className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                                         {cardfeatured.buttonText}
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
-
                                     ))}
                                 </div>
                             </div>
                         </div>
                     </div>
-                </section>
-
+                </motion.section>
 
                 {/* upcoming events section */}
 
-                <section className=" bg-gray-50 py-8 md:px-10">
+                <motion.section
+                    className="container mx-auto my-6 px-3 py-6 md:my-10"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}>
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
                             <h2 className="text-3xl font-bold mb-6 text-blue-900 px-3 text-center">Upcoming Events</h2>
@@ -372,42 +387,54 @@ const Home = () => {
                             ))}
                         </div>
                     </div>
-                </section>
-
-
-
+                </motion.section>
 
                 {/* Why E-Expo */}
 
-                <section className='container mx-auto my-12 px-6 py-6 md:my-20'>
+                <section className='container mx-auto my-6 px-3 py-6 md:my-12'>
                     <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
                         Why E-Expo?
                     </h2>
                     <div className="flex flex-col-reverse md:flex-row gap-8">
-                        {/* Text Section */}
                         <div className="flex-1">
                             <p className="text-gray-700 leading-relaxed">
                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, purus vel dictum tincidunt, elit felis gravida purus, non malesuada nulla quam a lectus. Vivamus euismod volutpat sem sed congue dolor sit amet, consectetur adipiscing elit. Sed tincidunt, purus vel dictum tincidunt, elit felis gravida purus, non malesuada nulla quam a lectus. Vivamus euismod volutpat sem sed congue.
                             </p>
                         </div>
 
-                        {/* Video Section */}
-                        <div className="w-full md:w-1/2 lg:w-1/3 h-64 relative overflow-hidden rounded-lg">
-                            <video
+                        <motion.div
+                            className="w-full md:w-1/2 lg:w-1/3 h-64 relative overflow-hidden rounded-lg"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 5, x: 0 }}
+                            transition={{ duration: 1, ease: "easeOut" }}>
+
+
+                            {/* <video
                                 className="w-full h-full object-cover"
                                 src={Tour1}
                                 autoPlay
                                 loop
                                 muted
                                 playsInline
-                            ></video>
-                        </div>
+                            ></video> */}
+                            <iframe
+                                src="https://app.cloudpano.com/tours/t1LtFvj5DK"
+                                title="CloudPano 3D Tour"
+                                width="100%"
+                                height="100%"
+                                frameBorder="0"
+                                allowFullScreen>
+                            </iframe>
+
+                        </motion.div>
                     </div>
                 </section>
 
+
+
                 {/* Image Section */}
-                <section className="container mx-auto px-6 my-12 md:my-16">
-                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-2xl shadow-md">
+                <section className="container mx-auto my-6 px-3 py-6 md:my-12">
+                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-2xl ">
                         <div className="absolute inset-0 transition-transform duration-1000 ease-in-out">
                             <img
                                 src={adv2}
@@ -415,13 +442,56 @@ const Home = () => {
                             />
                         </div>
                     </div>
+                </section>
 
+                {/* advertizement section */}
+                <section className='container mx-auto my-6 px-3 py-6 md:my-12'>
+                    <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
+                        Advertisements
+                    </h2>
+                    <div className="relative overflow-hidden shadow-md rounded-xl">
+                        <div
+                            className="flex transition-transform duration-700 ease-in-out"
+                            style={{ transform: `translateX(-${currentSlideadv * 100}%)` }}
+                        >
+                            {Advertisement.map((ad) => (
+                                <div
+                                    key={ad.id}
+                                    className="md:flex flex-shrink-0 w-full  gap-8"
+                                    style={{ width: '100%' }}>
+                                    <div className="w-full md:w-1/2 lg:w-5/12 h-80 relative overflow-hidden ">
+                                        <img
+                                            src={ad.image}
+                                            alt={`Advertisement ${ad.id}`}
+                                            className="w-full h-full object-cover" />
+                                    </div>
+                                    <div className="flex-1">
+                                        <h3 className="text-2xl font-semibold mb-2 text-blue-900">
+                                            {ad.title}
+                                        </h3>
+                                        <p className="text-gray-600 text-md leading-relaxed">
+                                            {ad.description}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                            {Advertisement.map((_, index) => (
+                                <span
+                                    key={index}
+                                    className={`w-3 h-3 rounded-full cursor-pointer ${index === currentSlideadv ? 'bg-blue-900' : 'bg-gray-300'
+                                        }`}
+                                    onClick={() => setCurrentSlideAdv(index)}
+                                ></span>
+                            ))}
+                        </div>
+                    </div>
                 </section>
 
 
-
-                {/* advertizement section */}
-                <section className="container mx-auto my-12 px-3">
+                {/* <section className="container mx-auto md:my-12 px-3">
                     <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
                         Advertisements
                     </h2>
@@ -468,12 +538,17 @@ const Home = () => {
                             ))}
                         </div>
                     </div>
-                </section>
+                </section> */}
 
 
 
                 {/* news section */}
-                <section className="container mx-auto my-10 p-3 md:px-10">
+                <motion.section
+                    className="container mx-auto my-6 px-3 py-6 md:my-12"
+                    initial={{ opacity: 0, y: 50 }}
+                    animate={{ opacity: 5, y: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}>
+
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
                         <div className="bg-white shadow-md rounded-xl">
@@ -537,12 +612,17 @@ const Home = () => {
                         </div>
 
                     </div>
-                </section>
+                </motion.section>
 
                 {/* Contact us section */}
                 <section>
-                    <div className="container mx-auto py-10 md:px-10 grid grid-cols-1 md:grid-cols-2  gap-8">
-                        <div className="bg-white shadow-md p-6 rounded-xl">
+
+                    <div className="container mx-auto my-12 px-3 py-3 md:my-5 grid grid-cols-1 md:grid-cols-2  gap-8" ref={ref}>
+                        <motion.div
+                            className="bg-white shadow-md p-6 rounded-xl"
+                            initial={{ opacity: 0, x: -50 }}
+                            animate={{ opacity: 5, x: 0 }}
+                            transition={{ duration: 1, ease: "easeOut" }}>
                             <h2 className="text-3xl font-bold text-blue-900 mb-5">Contact Us</h2>
                             <form>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -580,9 +660,14 @@ const Home = () => {
                                     Submit
                                 </button>
                             </form>
-                        </div>
+                        </motion.div>
 
-                        <div className="bg-white shadow-md p-6 rounded-lg">
+                        
+                        <motion.div
+                            className="bg-white shadow-md p-6 rounded-xl"
+                            initial={{ opacity: 0, x: 50 }}
+                            animate={{ opacity: 5, x: 0 }}
+                            transition={{ duration: 1, ease: "easeOut" }}>
                             <h2 className="text-xl  font-bold text-blue-900 mb-5">Contact Details</h2>
                             <div class="space-y-3">
                                 <div className="flex items-center">
@@ -613,7 +698,7 @@ const Home = () => {
                                     referrerPolicy="no-referrer-when-downgrade">
                                 </iframe>
                             </div>
-                        </div>
+                        </motion.div>
                     </div>
                 </section>
             </div>

@@ -117,6 +117,9 @@ const Header = ({page}) => {
                                             <Link to='/' className="text-gray-700 hover:scale-125">Your Expo</Link>
                                         </li>
                                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                            <a href="#" className="text-gray-700">News</a>
+                                        </li>
+                                        <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                             <a href="#" className="text-gray-700">About</a>
                                         </li>
                                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
@@ -192,6 +195,9 @@ const Header = ({page}) => {
                                         <ul className="py-1">
                                             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                                 <Link to='/' className="text-gray-700 hover:scale-125">Your Expo</Link>
+                                            </li>
+                                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                                <a href="#" className="text-gray-700">News</a>
                                             </li>
                                             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                                 <a href="#" className="text-gray-700">About</a>

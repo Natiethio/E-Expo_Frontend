@@ -1,48 +1,64 @@
-[
-    {
+{
+    "properties": [
+      {
         "id": 1,
-        "name": "A Real Estste",
-        "imgSrc": "/Images/logo1.png"
-    },
-    {
+        "name": "A Real Estate",
+        "imgSrc": "/Images/logo1.png",
+        "proptour": "https://app.cloudpano.com/tours/F_bT4A587K"
+      },
+      {
         "id": 2,
-        "name": "B Real Estse",
-        "imgSrc": "/Images/logo2.png"
-    },
-    {
+        "name": "B Real Estate",
+        "imgSrc": "/Images/logo2.png",
+        "proptour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
+      },
+      {
         "id": 3,
         "name": "C Real Estate",
-        "imgSrc": "/Images/logo3.png"
-    },
-    {
+        "imgSrc": "/Images/logo3.png",
+        "proptour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
+      },
+      {
         "id": 4,
         "name": "E Real Estate",
-        "imgSrc": "/Images/logo4.png"
-    },
-    {
+        "imgSrc": "/Images/logo4.png",
+        "proptour": "https://app.cloudpano.com/tours/F_bT4A587K"
+      },
+      {
         "id": 5,
-        "name": "F Real Estatse",
-        "imgSrc": "/Images/logo5.png"
-    },
-    {
+        "name": "F Real Estate",
+        "imgSrc": "/Images/logo5.png",
+        "proptour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
+      },
+      {
         "id": 6,
         "name": "G Real Estate",
-        "imgSrc": "/Images/logo6.png"
-    },
-    {
+        "imgSrc": "/Images/logo6.png",
+        "proptour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
+      },
+      {
         "id": 7,
         "name": "H Real Estate",
-        "imgSrc": "/Images/logo7.png"
-    },
-    {
+        "imgSrc": "/Images/logo7.png",
+        "proptour": "https://app.cloudpano.com/tours/F_bT4A587K"
+      },
+      {
         "id": 8,
         "name": "I Real Estate",
-        "imgSrc": "/Images/logo8.png"
-    },
-    {
+        "imgSrc": "/Images/logo8.png",
+        "proptour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
+      },
+      {
         "id": 9,
         "name": "J Real Estate",
-        "imgSrc": "/Images/logo9.png"
+        "imgSrc": "/Images/logo9.png",
+        "proptour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
+      }
+    ],
+    "tours": {
+      "1": "https://app.cloudpano.com/tours/F_bT4A587K",
+      "2": "https://app.cloudpano.com/tours/IfLUP2LTpy",
+      "3": "https://app.cloudpano.com/tours/t1LtFvj5DK"
     }
-
-]
+  }
+  

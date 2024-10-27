@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 const Realestates = () => {
 
     const [page, setPage] = useState("Real_Estates")
+    const [selectedTour, setSelectedTour] = useState(null);
 
     const Expo = useNavigate();
     const Detail = useNavigate();
@@ -20,6 +21,10 @@ const Realestates = () => {
         Detail(`/Details/${companyName}`);
     }
 
+    useEffect(() => {
+        setSelectedTour(companiesData.tours[1]);
+    }, []);
+
     return (
         <>
             <Helmet>
@@ -28,30 +33,20 @@ const Realestates = () => {
             <Header page={page} />
 
             {/* Hero Section */}
-            <section className="relative bg-blue-900 text-white  h-[600px] flex items-center justify-center mx-3 my-2">
+            <section className="relative bg-blue-900 text-white  h-[550px] flex items-center justify-center mx-3 my-16">
                 <div className="absolute inset-0 w-full h-full">
 
                     <iframe
-                        className="w-full h-full z-50"
-                        src="https://theviewer.co/gallery/b5795965-b810-4368-b2fe-87adcc882d00"
+                        src={selectedTour}
+                        title="3D Tour"
+                        width="100%"
+                        height="100%"
                         frameBorder="0"
-                        allowFullScreen
-                        allow="xr-spatial-tracking "
-
-                    >
+                        allowFullScreen>
                     </iframe>
 
                 </div>
 
-                <div className="absolute inset-0 bg-black opacity-35"></div>
-
-                {/* <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
-                    <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
-                    <p className="mt-4 text-lg">Explore the future of real estate with 3D tours and live events.</p>
-                    <button onClick={handelExpo} className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300">
-                        Explore Expo
-                    </button>
-                </div> */}
             </section>
 
 
@@ -62,7 +57,7 @@ const Realestates = () => {
                     Our Real Estate Partners
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                    {companiesData.map((company) => (
+                    {companiesData.properties.map((company) => (
                         <div key={company.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                             <div className="relative w-full h-80 rounded-t-xl bg-white flex items-center justify-center">
                                 <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
