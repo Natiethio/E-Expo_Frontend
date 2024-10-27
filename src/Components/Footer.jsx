@@ -15,7 +15,7 @@ const Footer = () => {
 
   return (
     <div className='bg-gray-100'>
-      <section className="mx-auto  md:mx-10">
+      <section className="mx-5 md:mx-10">
         <div className="bg-gradient-to-br from-blue-600  to-blue-950 p-6 sm:p-10 rounded-2xl w-full text-white flex items-center justify-between max-w-full mx-auto mt-10">
           <div className="flex flex-col gap-6">
             <div>
