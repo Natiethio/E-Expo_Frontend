@@ -4,7 +4,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import google from '../Images/google.svg'
 import { FaTimes } from 'react-icons/fa'
 import { gapi } from 'gapi-script'
-import { GoogleLogin } from 'react-google-login';
+// import { GoogleLogin } from 'react-google-login';
 // import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 const Login = ({ open, setOpen, menuClose }) => {
 
@@ -16,18 +16,18 @@ const Login = ({ open, setOpen, menuClose }) => {
         }
     }, [open, menuClose])
 
-    async function Googleresponsehandler (response) {
+    // async function Googleresponsehandler (response) {
 
-        const goname = response.profileObj.name
-        const goemail = response.profileObj.email
-        const goid = response.profileObj.googleId
-        const accessToken = response.accessToken;
+    //     const goname = response.profileObj.name
+    //     const goemail = response.profileObj.email
+    //     const goid = response.profileObj.googleId
+    //     const accessToken = response.accessToken;
     
-        console.log(accessToken);
-        console.log(goname);
-        console.log(goemail);
-        console.log(goid);
-    }
+    //     console.log(accessToken);
+    //     console.log(goname);
+    //     console.log(goemail);
+    //     console.log(goid);
+   // }
 
     async function onFailuer (response) {
        console.log("Login failled:" , response)
@@ -88,12 +88,12 @@ const Login = ({ open, setOpen, menuClose }) => {
                         </div>
 
                         <div className="text-center">
-                            {/* <button
+                            <button
                                 className="mt-3 shadow-sm border border-gray-300 text-md font-semibold text-black p-3 rounded-lg mb-4 hover:bg-gray-200  hover:border hover:border-gray-200 active:bg-black/75 active:border active:border-black/50 flex items-center justify-center mx-auto transform hover:scale-105 ease-out duration-500">
                                 <img src={google} alt="Google logo" className="w-6 h-6 inline mr-2" />
                                 <span className='font-semibold  font-sans'>Log in with Google</span>
-                            </button> */}
-                            <GoogleLogin
+                            </button>
+                            {/* <GoogleLogin
                                 clientId={clientId}
                                 buttonText="Sign up with Google"
                                 onSuccess={Googleresponsehandler}
@@ -109,7 +109,7 @@ const Login = ({ open, setOpen, menuClose }) => {
                                         <span className='font-semibold text-xl font-sans'>Log in with Google</span>
                                     </button>
                                 )}
-                            />
+                            /> */}
                         </div>
 
                     </DialogPanel>
