@@ -4,7 +4,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import google from '../Images/google.svg'
 import { FaTimes } from 'react-icons/fa'
 import { gapi } from 'gapi-script'
-// import { GoogleLogin } from 'react-google-login';
+import { GoogleLogin } from 'react-google-login';
 // import { googleLogout, useGoogleLogin } from '@react-oauth/google';
 const Login = ({ open, setOpen, menuClose }) => {
 
