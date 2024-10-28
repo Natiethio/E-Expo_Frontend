@@ -29,12 +29,14 @@ const Login = ({ open, setOpen, menuClose }) => {
         console.log(goid);
     }
 
+
     async function onFailuer (response) {
        console.log("Login failled:" , response)
     }
+    
 
     return (
-        
+
         <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
             <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" />
             <div className="fixed inset-0 z-10 overflow-y-auto">
