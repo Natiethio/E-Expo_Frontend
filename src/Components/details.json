@@ -7,7 +7,8 @@
         "type": "Testimonial",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/F_bT4A587K"
         
     },
     {
@@ -18,7 +19,8 @@
         "type": "Testimonial",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
         
     },
     {
@@ -29,7 +31,8 @@
         "type": "Testimonial",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
         
     },
     {
@@ -40,7 +43,8 @@
         "type": "Testimonial",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/F_bT4A587K"
     },
     {
         "id": 5,
@@ -50,7 +54,8 @@
         "type": "Testimonial",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
         
     },
     {
@@ -61,7 +66,8 @@
         "type": "Testimonial",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
         
     },
     {
@@ -72,7 +78,8 @@
         "type": "Under Construction",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/F_bT4A587K"
         
     },
     {
@@ -83,7 +90,8 @@
         "type": "Under Construction",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
         
     },
     {
@@ -94,7 +102,8 @@
         "type": "Under Construction",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
         
     },
     {
@@ -105,7 +114,8 @@
         "type": "Under Construction",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/F_bT4A587K"
         
     },
     {
@@ -116,7 +126,8 @@
         "type": "Under Construction",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
         
     },
     {
@@ -127,7 +138,8 @@
         "type": "Under Construction",
         "image":"",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
         
     },
     {
@@ -138,7 +150,8 @@
         "image":"",
         "type": "OnSale",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/F_bT4A587K"
         
     },
     {
@@ -149,7 +162,8 @@
         "image":"",
         "type": "OnSale",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
         
     },
     {
@@ -160,7 +174,8 @@
         "image":"",
         "type": "OnSale",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
         
     },
     {
@@ -171,7 +186,8 @@
         "image":"",
         "type": "OnSale",
         "rating" :5,
-        "location":"Ayat Site" 
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/F_bT4A587K" 
         
     },
     {
@@ -182,7 +198,8 @@
         "image":"",
         "type": "OnSale",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/t1LtFvj5DK"
         
     },
     {
@@ -193,6 +210,7 @@
         "image":"",
         "type": "OnSale",
         "rating":5,
-        "location":"Ayat Site"
+        "location":"Ayat Site",
+        "tour": "https://app.cloudpano.com/tours/IfLUP2LTpy"
     }
 ]

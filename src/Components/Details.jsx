@@ -95,7 +95,7 @@ const Details = () => {
             <Helmet>
                 <title>Details</title>
             </Helmet>
-            <Header page={page}/>
+            <Header page={page} />
 
             {/* Hero Section */}
             <div className="px-3 bg-gray-50">
@@ -109,7 +109,7 @@ const Details = () => {
                             frameBorder="0"
                             allowFullScreen>
                         </iframe>
-                    </div> 
+                    </div>
                 </section>
 
                 {/* Company Information Section */}
@@ -147,7 +147,7 @@ const Details = () => {
                 </section>
 
                 {/* Filtered Data Display */}
-                <section className="grid grid-cols-1 md:grid-cols-3 gap-4 md:px-10 px-5">
+                <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-10 px-5">
                     {filteredData.map((item) => (
                         <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                             <div className="relative overflow-hidden w-full h-[250px] md:h-[300px] mb-4">
@@ -159,9 +159,19 @@ const Details = () => {
                             <div className="p-4 flex justify-between items-center">
                                 <h3 className="text-lg font-semibold text-gray-800">{item.description}</h3>
                             </div>
-                            <div className="flex pl-4 pb-4 space-x-1">
-                                <FaLocationDot className="mt-1" />
-                                <h3 className="text-md font-semibold text-gray-700">{item.location}</h3>
+
+                            <div className="flex justify-between pl-4 pb-5 space-x-1">
+                                <div className='flex space-x-1 mt-2'>
+                                    <FaLocationDot className="mt-1" />
+                                    <h3 className="text-md font-semibold text-gray-700">{item.location}</h3>
+                                </div>
+                                <div>
+                                    <button
+                                        className="mr-4 border font-semibold border-blue-950 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                                        View More
+                                    </button>
+                                </div>
+
                             </div>
                         </div>
                     ))}
@@ -217,8 +227,8 @@ const Details = () => {
                                                     <div
                                                         className="text-sm absolute top-0 right-0  bg-blue-950 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 transition duration-500 ease-in-out"
                                                     >
-                                                        <span className="font-bold">{day}</span> {/* Display the day */}
-                                                        <span className="uppercase font-bold">{month}</span> {/* Display the month */}
+                                                        <span className="font-bold">{day}</span>
+                                                        <span className="uppercase font-bold">{month}</span> 
                                                     </div>
 
                                                     <div className="rounded overflow-hidden w-full h-96">

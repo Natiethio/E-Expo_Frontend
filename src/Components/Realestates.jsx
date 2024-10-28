@@ -35,7 +35,6 @@ const Realestates = () => {
             {/* Hero Section */}
             <section className="relative bg-blue-900 text-white  h-[550px] flex items-center justify-center mx-3 my-16">
                 <div className="absolute inset-0 w-full h-full">
-
                     <iframe
                         src={selectedTour}
                         title="3D Tour"
@@ -44,11 +43,8 @@ const Realestates = () => {
                         frameBorder="0"
                         allowFullScreen>
                     </iframe>
-
                 </div>
-
             </section>
-
 
 
             <section className="container mx-auto py-12 px-2 bg-gray-50">
