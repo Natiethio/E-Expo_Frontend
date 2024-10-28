@@ -11,12 +11,13 @@ import { FaArrowRight, FaLocationDot, FaArrowLeft } from 'react-icons/fa6';
 import { formatDistanceToNow } from 'date-fns';
 
 const Details = () => {
-    const [selectedCategory, setSelectedCategory] = useState('OnSale ');
+    const [selectedCategory, setSelectedCategory] = useState('OnSale');
     const [company, setCompany] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(4);
     const { companyName } = useParams();
     const navigate = useNavigate();
+    const [page, setPage] = useState("Details")
 
     useEffect(() => {
         const RealestateCompany = Realestates.properties.find((item) => item.name === companyName);
@@ -51,7 +52,6 @@ const Details = () => {
 
     useEffect(() => {
         if (embedContainerRef.current) {
-            // Create the script element and set attributes
             const script = document.createElement("script");
             script.src = "https://app.cloudpano.com/public/shareScript.js";
             script.async = true;
@@ -95,7 +95,7 @@ const Details = () => {
             <Helmet>
                 <title>Details</title>
             </Helmet>
-            <Header />
+            <Header page={page}/>
 
             {/* Hero Section */}
             <div className="px-3 bg-gray-50">

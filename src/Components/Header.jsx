@@ -2,14 +2,42 @@ import React, { useState, useEffect, useRef } from 'react';
 import { FaBell, FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
 import Login from './Login';
 import Register from './Register';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
-const Header = ({page}) => {
+const Header = ({ page }) => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
     const [showDropdown, setShowDropdown] = useState(false);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const handleContactClick = () => {
+        setShowDropdown(false);
+        if (location.pathname === '/') {
+            const contactSection = document.getElementById('contact_us');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        } else {
+            navigate('/');
+            sessionStorage.setItem('scrollToContact', 'true');
+        }
+    };
+
+    useEffect(() => {
+
+        if (location.pathname === '/' && sessionStorage.getItem('scrollToContact')) {
+            const contactSection = document.getElementById('contact_us');
+            if (contactSection) {
+                contactSection.scrollIntoView({ behavior: 'smooth' });
+            }
+            sessionStorage.removeItem('scrollToContact'); 
+        }
+    }, [location]);
+
 
     const dropdownRef = useRef(null);
 
@@ -76,7 +104,7 @@ const Header = ({page}) => {
                             <Link
                                 to="/Real_Estates"
                                 className={`hover:text-blue-900 font-sans xl:text-lg text-md hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105 ${page === 'Real_Estates' ? 'text-blue-900 font-bold' : 'text-gray-700'}`}
-                                style={{ display:'inline-block', transformOrigin: 'center' }}
+                                style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Real Estates
                             </Link>
@@ -122,8 +150,11 @@ const Header = ({page}) => {
                                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                             <a href="#" className="text-gray-700">About</a>
                                         </li>
+                                        {/* <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                            <a href="/#contact_us" className="text-gray-700">Contact us</a>
+                                        </li> */}
                                         <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                            <a href="#" className="text-gray-700">Contact us</a>
+                                            <button onClick={handleContactClick} className="text-gray-700">Contact us</button>
                                         </li>
                                     </ul>
                                 </div>
@@ -154,13 +185,13 @@ const Header = ({page}) => {
                     <div className="xl:hidden bg-gray-100 shadow-lg">
                         <div className="space-y-4 py-4 px-4">
                             <div className="relative">
-                            <Link
-                                to="/Real_Estates"
-                                className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
-                                style={{ display: 'inline-block', transformOrigin: 'center' }}
-                            >
-                                Real Estates
-                            </Link>
+                                <Link
+                                    to="/Real_Estates"
+                                    className="text-gray-700 hover:text-blue-900 hover:font-bold transition ease-in-out delay-100  hover:-translate-y-1 hover:scale-105"
+                                    style={{ display: 'inline-block', transformOrigin: 'center' }}
+                                >
+                                    Real Estates
+                                </Link>
                             </div>
                             <div className="relative">
                                 <Link
@@ -202,8 +233,11 @@ const Header = ({page}) => {
                                             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                                 <a href="#" className="text-gray-700">About</a>
                                             </li>
+                                            {/* <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                                <HashLink smooth to="/#contact_us" className="text-gray-700">Contact us</HashLink>
+                                            </li> */}
                                             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                                <a href="#" className="text-gray-700">Contact us</a>
+                                                <button onClick={handleContactClick} className="text-gray-700">Contact us</button>
                                             </li>
                                         </ul>
                                     </div>

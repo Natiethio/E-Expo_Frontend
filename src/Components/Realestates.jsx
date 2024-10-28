@@ -30,7 +30,7 @@ const Realestates = () => {
             <Helmet>
                 <title>Real_Estates</title>
             </Helmet>
-            <Header page={page} />
+            <Header page={page}/>
 
             {/* Hero Section */}
             <section className="relative bg-blue-900 text-white  h-[550px] flex items-center justify-center mx-3 my-16">

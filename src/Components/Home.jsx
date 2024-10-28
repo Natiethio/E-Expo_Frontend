@@ -430,8 +430,6 @@ const Home = () => {
                     </div>
                 </section>
 
-
-
                 {/* Image Section */}
                 <section className="container mx-auto my-6 px-3 py-6 md:my-12">
                     <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-2xl ">
@@ -465,7 +463,7 @@ const Home = () => {
                                             alt={`Advertisement ${ad.id}`}
                                             className="w-full h-full object-cover" />
                                     </div>
-                                    <div className="flex-1">
+                                    <div className="flex-1 pt-3">
                                         <h3 className="text-2xl font-semibold mb-2 text-blue-900">
                                             {ad.title}
                                         </h3>
@@ -539,8 +537,6 @@ const Home = () => {
                         </div>
                     </div>
                 </section> */}
-
-
 
                 {/* news section */}
                 <motion.section
@@ -616,8 +612,7 @@ const Home = () => {
 
                 {/* Contact us section */}
                 <section>
-
-                    <div className="container mx-auto my-12 px-3 py-3 md:my-5 grid grid-cols-1 md:grid-cols-2  gap-8" ref={ref}>
+                    <div className="container mx-auto my-12 px-3 py-3 md:my-5 grid grid-cols-1 md:grid-cols-2 gap-8" id="contact_us" ref={ref}>
                         <motion.div
                             className="bg-white shadow-md p-6 rounded-xl"
                             initial={{ opacity: 0, x: -50 }}
