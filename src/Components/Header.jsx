@@ -162,6 +162,8 @@ const Header = ({ page }) => {
                         </div>
                     </div>
 
+                    
+
                     <div className="hidden md:flex space-x-4">
                         <button onClick={() => setIsLoginOpen(true)} className="border font-semibold bg-blue-900 text-white w-24 px-3 py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
                             Login
