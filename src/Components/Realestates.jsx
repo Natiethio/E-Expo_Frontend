@@ -54,7 +54,7 @@ const Realestates = () => {
             <section className="container mx-auto py-12 px-2 bg-gray-50">
 
                 <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
-                    Our Real Estate Partners
+                    Real Estate Companies
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                     {companiesData.properties.map((company) => (

@@ -398,8 +398,22 @@ const Home = () => {
                     <div className="flex flex-col-reverse md:flex-row gap-8">
                         <div className="flex-1">
                             <p className="text-gray-700 leading-relaxed">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tincidunt, purus vel dictum tincidunt, elit felis gravida purus, non malesuada nulla quam a lectus. Vivamus euismod volutpat sem sed congue dolor sit amet, consectetur adipiscing elit. Sed tincidunt, purus vel dictum tincidunt, elit felis gravida purus, non malesuada nulla quam a lectus. Vivamus euismod volutpat sem sed congue.
+                                E-Expo offers an advanced, interactive platform designed to elevate
+                                the real estate experience. With 3D property tours, real estate developers
+                                can showcase properties in immersive detail, allowing potential buyers to
+                                explore spaces as if they were there in person. Video conferencing and live
+                                chat features foster seamless communication, enabling real-time discussions,
+                                personalized consultations, and instant answers to questions.
+                                This powerful combination not only broadens reach but also enhances
+                                engagement, making E-Expo the ideal solution for Real Estate developers
+                                looking to connect with clients more dynamically and effectively with
+                                minimized cost and effort.
                             </p>
+                            <button onClick={handelRealestates} className="flex items-center justify-center space-x-2 mt-5 border border-blue-950 font-semibold bg-gray-50 text-blue-950 w-40 px-2 py-2 rounded-md hover:border-blue-950 hover:bg-blue-950 hover:text-white transition duration-300">
+                                <span>Learn More</span>
+                                <FaArrowRight />
+                            </button>
+
                         </div>
 
                         <motion.div
@@ -657,7 +671,7 @@ const Home = () => {
                             </form>
                         </motion.div>
 
-                        
+
                         <motion.div
                             className="bg-white shadow-md p-6 rounded-xl"
                             initial={{ opacity: 0, x: 50 }}
