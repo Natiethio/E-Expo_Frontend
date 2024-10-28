@@ -9,6 +9,7 @@ import Header from './Header';
 import CardUpe from './cardupcoming.json';
 import { FaArrowRight, FaLocationDot, FaArrowLeft } from 'react-icons/fa6';
 import { formatDistanceToNow } from 'date-fns';
+// import ListingDetails from './ListingDetails';
 
 const Details = () => {
     const [selectedCategory, setSelectedCategory] = useState('OnSale');
@@ -17,6 +18,7 @@ const Details = () => {
     const [cardsToShow, setCardsToShow] = useState(4);
     const { companyName } = useParams();
     const navigate = useNavigate();
+    const DetailListing = useNavigate();
     const [page, setPage] = useState("Details")
 
     useEffect(() => {
@@ -89,6 +91,10 @@ const Details = () => {
             month: date.toLocaleString('default', { month: 'short' }).toUpperCase()
         };
     };
+
+    const handelListing = (type,id) => {
+        DetailListing(`/ListingDetails/${type}/${id}`);
+    }
 
     return (
         <>
@@ -167,7 +173,7 @@ const Details = () => {
                                 </div>
                                 <div>
                                     <button
-                                        className="mr-4 border font-semibold border-blue-950 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                                        onClick={() => handelListing(item.type, item.id)} className="mr-4 border font-semibold border-blue-950 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
                                         View More
                                     </button>
                                 </div>
@@ -264,7 +270,6 @@ const Details = () => {
                         </div>
                     </div>
                 </section>
-
                 {/* Footer */}
                 <Footer />
             </div>
