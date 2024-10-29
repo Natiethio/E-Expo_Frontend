@@ -219,8 +219,8 @@ const Home = () => {
                     <div className="absolute inset-0 bg-black opacity-25"></div>
 
                     <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
-                        <h1 className="text-4xl font-bold">Join the Latest Virtual Tours</h1>
-                        <p className="mt-4 text-lg">Explore the future of real estate with 3D tours and live events.</p>
+                        <h1 className="md:text-4xl text-3xl font-bold">Join the Latest Virtual Tours</h1>
+                        <p className="mt-4 text-lg md:text-md">Explore the future of real estate with 3D tours and live events.</p>
                         <button onClick={handelExpo} className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300">
                             Explore Expo
                         </button>

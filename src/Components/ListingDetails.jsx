@@ -3,7 +3,7 @@ import Header from './Header';
 import Footer from './Footer';
 import { Helmet } from 'react-helmet';
 import ListingsData from './details.json';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
 
@@ -17,6 +17,7 @@ const ListingDetails = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(3);
     const [totalCard, SetTotalCard] = useState(0)
+    const DetailListing = useNavigate();
 
     useEffect(() => {
 
@@ -30,10 +31,25 @@ const ListingDetails = () => {
             (item) => item.type === Listingtype && String(item.id) !== String(id)
         );
         setSimilarListings(filteredListings);
-        if(similarListings){
-            SetTotalCard(similarListings.length)
+        if (similarListings) {
+            // SetTotalCard(similarListings.length)
         }
     }, [id, Listingtype]);
+
+    // useEffect(() => {
+    //     window.scrollTo(0, 0);
+    // }, [id]);
+
+
+    const totalCards = similarListings.length
+
+    useEffect(() => {
+        const autoSlide = setInterval(() => {
+            nextCardSlide();
+        }, 6000);
+
+        return () => clearInterval(autoSlide);
+    }, [currentIndex, totalCards, cardsToShow]);
 
 
     if (!Listing) {
@@ -42,24 +58,28 @@ const ListingDetails = () => {
 
 
     const nextCardSlide = () => {
-                if (currentIndex < totalCard - cardsToShow) {
-                    setCurrentIndex(currentIndex + 1);
-                } else {
-                    setCurrentIndex(0);
-                }
+        if (currentIndex < totalCards - cardsToShow) {
+            setCurrentIndex(currentIndex + 1);
+        } else {
+            setCurrentIndex(0);
         }
-    
+    }
+
 
     const prevCardSlide = () => {
-       
-                if (currentIndex > 0) {
-                    setCurrentIndex(currentIndex - 1);
-                } else {
-                    setCurrentIndex(totalCard - cardsToShow);
-                }
-        }
-    
 
+        if (currentIndex > 0) {
+            setCurrentIndex(currentIndex - 1);
+        } else {
+            setCurrentIndex(totalCards - cardsToShow);
+        }
+    }
+
+    const handelListing = (type, id) => {
+        DetailListing(`/ListingDetails/${type}/${id}`);
+        //window.location.reload();
+        window.scrollTo(0, 0);
+    }
 
     return (
         <>
@@ -99,12 +119,25 @@ const ListingDetails = () => {
                         </p>
                     </div>
                 </section>
+                
+                {/* Maps */}
+                <section className='container mx-auto my-12 px-3 py-3'>
+                    <h2 className="text-3xl font-bold mb-9 text-blue-900 md:text-left text-center px-3">Maps</h2>
+                    <div className="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.462086870117!2d38.86919437426523!3d9.02154249103949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b9082bc707d0f%3A0xdd1ed73261ab996a!2sAyat%20Adebabay%20Station!5e0!3m2!1sen!2set!4v1730198055949!5m2!1sen!2set"
+                            className="w-full h-72 border-0 rounded-xl shadow-md"
+                            allowFullScreen=""
+                            loading="lazy"
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+                </section>
 
                 {/* Similar Listing Section */}
-                {/* <section>
+                <section>
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Featured Listings</h2>
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Similar Listings</h2>
                             <div className="flex space-x-2 justify-center">
                                 <button
                                     onClick={prevCardSlide}
@@ -131,7 +164,7 @@ const ListingDetails = () => {
                                         transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
                                     }}
                                 >
-                                    {similarListings.map((cardfeatured, index) => (
+                                    {similarListings.map((cardsimilar, index) => (
                                         <div
                                             key={index}
                                             className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4 rounded-xl"
@@ -139,21 +172,20 @@ const ListingDetails = () => {
                                         >
                                             <div className="relative bg-white shadow-md rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
                                                 <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
-                                                    <h3 className="text-lg font-semibold">{cardfeatured.title}</h3>
+                                                    <h3 className="text-lg font-semibold">{cardsimilar.type}</h3>
                                                 </div>
 
                                                 <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
                                                     <img
-                                                        src={cardfeatured.img}
+                                                        src={cardsimilar.img}
                                                         alt="Real Estate"
                                                         className="object-cover w-full h-full rounded-t-xl"
                                                     />
                                                 </div>
 
                                                 <div className="pl-6 pb-6">
-                                                    <p className="text-gray-600">{cardfeatured.description}</p>
-                                                    <button
-                                                         className="mr-4 border font-semibold border-blue-950 text-blue-950 px-4 py-2 rounded-md hover:bg-blue-900 hover:text-white transition duration-300">
+                                                    <p className="text-gray-600">{cardsimilar.description}</p>
+                                                    <button onClick={() => handelListing(cardsimilar.type, cardsimilar.id)} className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                                         View More
                                                     </button>
                                                 </div>
@@ -164,7 +196,7 @@ const ListingDetails = () => {
                             </div>
                         </div>
                     </div>
-                </section> */}
+                </section>
             </div>
             <Footer />
         </>
