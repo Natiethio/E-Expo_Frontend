@@ -9,6 +9,7 @@ import Header from './Header';
 import CardUpe from './cardupcoming.json';
 import { FaArrowRight, FaLocationDot, FaArrowLeft } from 'react-icons/fa6';
 import { formatDistanceToNow } from 'date-fns';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 // import ListingDetails from './ListingDetails';
 
 const Details = () => {

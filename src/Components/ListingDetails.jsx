@@ -5,7 +5,8 @@ import { Helmet } from 'react-helmet';
 import ListingsData from './details.json';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { FaArrowLeft, FaArrowRight } from 'react-icons/fa';
+import { FaArrowLeft, FaArrowRight, FaChevronLeft } from 'react-icons/fa';
+import { FaChevronRight } from 'react-icons/fa6';
 
 const ListingDetails = () => {
     const [page, setPage] = useState('Listing Details');

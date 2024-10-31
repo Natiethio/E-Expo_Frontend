@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import { useState, useEffect } from "react";
 import Header from './Header'
 import Footer from './Footer'
@@ -33,6 +33,7 @@ const Home = () => {
     const [currentIndexFeatured, setCurrentIndexFeatured] = useState(0);
     const [cardsToShowFeatured, setCardsToShowFeatured] = useState(3);
     // const [currentIndexAdverts, setCurrentIndexAdverts] = useState(0);
+    const autoSlideRef = useRef(null);
     const Expo = useNavigate();
     const RealEstates = useNavigate();
 
@@ -201,6 +202,27 @@ const Home = () => {
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
 
+    // const startAutoSlide = () => {
+    //     nextCardSlide('upcoming');
+    //     // autoSlideRef.current = setInterval(() => {
+    //     //     nextCardSlide('upcoming');
+    //     // }, 3000);
+    // };
+
+    // const stopAutoSlide = () => {
+    //     nextCardSlide('upcomng');
+    //     // clearInterval(autoSlideRef.current);
+       
+    // };
+
+    // useEffect(() => {
+    //     startAutoSlide(); 
+
+    //     return () => {
+    //         stopAutoSlide(); 
+    //     };
+    // }, [currentIndex, totalCards, cardsToShow]);
+
 
 
     const handelExpo = () => {
@@ -303,7 +325,7 @@ const Home = () => {
 
                 {/* Featured Real Estates */}
                 <motion.section
-                    className="container mx-auto my-6 px-10 md:px-7 py-6 md:my-10"
+                    className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
@@ -378,21 +400,24 @@ const Home = () => {
                     className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-10"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}>
+                    transition={{ duration: 1, ease: "easeOut" }}
+                    // onMouseEnter={stopAutoSlide} 
+                    // onMouseLeave={startAutoSlide}
+                    >
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
                             <h2 className="text-3xl font-bold mb-6 text-blue-900 px-3 text-center">Upcoming Events</h2>
                             <div className="flex space-x-2 justify-center">
                                 <button
                                     onClick={() => prevCardSlide('upcoming')}
-                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
+                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-900 bg-gray-50 hover:bg-gray-100 text-blue-900 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     <FaChevronLeft/>
                                 </button>
                                 <button
                                     onClick={() => nextCardSlide('upcoming')}
-                                    className="right-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
+                                    className="right-0 top-1/2 transform -translate-y-1/2 border border-blue-900 bg-gray-50 hover:bg-gray-100 text-blue-900 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     <FaChevronRight/>
@@ -426,7 +451,7 @@ const Home = () => {
                                                     <div
                                                         className="text-sm absolute top-0 right-0  bg-blue-950 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 transition duration-500 ease-in-out"
                                                     >
-                                                        <span className="font-bold">{day}</span> {/* Display the day */}
+                                                        <span className="font-bold">{day}</span> 
                                                         <span className="uppercase font-bold">{month}</span> {/* Display the month */}
                                                     </div>
 
@@ -558,7 +583,7 @@ const Home = () => {
                                         <h3 className="text-2xl font-semibold mb-2 text-blue-900">
                                             {ad.title}
                                         </h3>
-                                        <p className="text-gray-600 text-md leading-relaxed">
+                                        <p className="text-gray-600 text-md leading-relaxed px-2">
                                             {ad.description}
                                         </p>
                                     </div>
@@ -566,7 +591,7 @@ const Home = () => {
                             ))}
                         </div>
 
-                        <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+                        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
                             {Advertisement.map((_, index) => (
                                 <span
                                     key={index}
