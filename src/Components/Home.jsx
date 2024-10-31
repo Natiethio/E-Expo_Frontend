@@ -63,14 +63,14 @@ const Home = () => {
 
             setTimeout(() => {
                 setShowButon(true);
-            }, 1000);
+            }, 1500);
     
             setTimeout(() => {
                 setShowFirstLine(false);
                 setShowSecondLine(false);
                 setShowButon(false)
-            }, 7000);
-        }, 14000); 
+            }, 11000);
+        }, 22000); 
     
         return () => clearInterval(interval);
     }, []);
@@ -236,26 +236,6 @@ const Home = () => {
 
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
-                {/* <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-1">
-                    <video
-                        className="absolute inset-0 w-full h-full object-cover"
-                        src={Hero1}
-                        autoPlay
-                        loop
-                        muted
-                        playsInline>
-                    </video>
-
-                    <div className="absolute inset-0 bg-black opacity-25"></div>
-
-                    <div className="relative z-10 text-center opacity-0 hover:opacity-100 transition-opacity duration-500 ease-in-out">
-                        <h1 className="md:text-4xl text-3xl font-bold">Join the Latest Virtual Tours</h1>
-                        <p className="mt-4 text-lg md:text-md">Explore the future of real estate with 3D tours and live events.</p>
-                        <button onClick={handelExpo} className="mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300">
-                            Explore Expo
-                        </button>
-                    </div>
-                </section> */}
 
                 <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-1 overflow-hidden">
                     <video
@@ -267,7 +247,7 @@ const Home = () => {
                         playsInline
                     />
 
-                    <div className={`absolute inset-0 bg-black  ${showFirstLine ? "opacity-50" : opacity-25}`}></div>
+                    <div className={`absolute inset-0 bg-black  ${showFirstLine ? "opacity-45" : "opacity-25"}`}></div>
 
                     <div className="relative z-10 text-center">
                         <h1
@@ -280,11 +260,11 @@ const Home = () => {
                             className={`mt-4 text-lg md:text-md transform transition-all duration-1000 ease-in-out delay-500 ${showSecondLine ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
                                 }`}
                         >
-                            Explore the future of real estate with 3D tours and live events.
+                            Explore the future of real estate with 3D tours and live event
                         </p>
                         <button
                             onClick={handelExpo}
-                            className={`mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300 ${showButton ? 'opacity-100' : 'opacity-0'}`}
+                            className={`mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300 ${showButton ? 'opacity-100 ' : 'opacity-0'}`}
                         >
                             Explore Expo
                         </button>
