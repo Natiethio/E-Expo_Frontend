@@ -113,7 +113,7 @@ const Footer = () => {
         <div className="container mx-4 sm:flex justify-between items-center ">
           <p>&copy; 2024 Beten E-Expo. All rights reserved.</p>
           <div className="flex space-x-4 sm:pt-0 pt-3">
-            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaFacebook size={20} /></a>
+            <a href="https://web.facebook.com/search/top?q=%F0%9D%90%81%F0%9D%90%9E%F0%9D%90%AD%F0%9D%90%9E%F0%9D%90%A7" className="text-white hover:text-gray-300 transition duration-300"><FaFacebook size={20} /></a>
             <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaTelegram size={20} /></a>
             <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaInstagram size={20} /></a>
             <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaTwitter size={20} /></a>

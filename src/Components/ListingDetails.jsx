@@ -36,6 +36,29 @@ const ListingDetails = () => {
         }
     }, [id, Listingtype]);
 
+    useEffect(() => {
+        const UpdateCardsToShow = () => {
+            if (window.innerWidth >= 1200) {
+                setCardsToShow(3);
+            }
+            else if (window.innerWidth >= 992) {
+                setCardsToShow(2);
+            }
+            else if (window.innerWidth >= 768) {
+                setCardsToShow(1);
+            }
+            else {
+                setCardsToShow(1);
+            }
+        }
+
+        UpdateCardsToShow();
+
+        window.addEventListener('resize', UpdateCardsToShow)
+
+        return () => window.removeEventListener('resize', UpdateCardsToShow);
+    }, [])
+
     // useEffect(() => {
     //     window.scrollTo(0, 0);
     // }, [id]);
@@ -81,6 +104,8 @@ const ListingDetails = () => {
         window.scrollTo(0, 0);
     }
 
+
+
     return (
         <>
             <Helmet>
@@ -104,7 +129,7 @@ const ListingDetails = () => {
                 </section>
 
                 {/* Listing Information Section */}
-                <section className="flex flex-col md:flex-row my-14 px-11 py-6">
+                <section className="flex flex-col md:flex-row my-14 md:px-10 px-6 py-6">
                     <div className="w-full md:w-1/3 mb-4 md:mb-0 relative">
                         <img
                             src={Listing.img}
@@ -119,9 +144,9 @@ const ListingDetails = () => {
                         </p>
                     </div>
                 </section>
-                
+
                 {/* Maps */}
-                <section className='container mx-auto my-12 px-3 py-3'>
+                <section className='container mx-auto my-12 md:px-10 px-6 py-3'>
                     <h2 className="text-3xl font-bold mb-9 text-blue-900 md:text-left text-center px-3">Maps</h2>
                     <div className="map-container">
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3940.462086870117!2d38.86919437426523!3d9.02154249103949!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x164b9082bc707d0f%3A0xdd1ed73261ab996a!2sAyat%20Adebabay%20Station!5e0!3m2!1sen!2set!4v1730198055949!5m2!1sen!2set"
@@ -135,7 +160,7 @@ const ListingDetails = () => {
 
                 {/* Similar Listing Section */}
                 <section>
-                    <div className="container mx-auto">
+                    <div className="container mx-auto md:px-10 px-6">
                         <div className="sm:flex justify-between">
                             <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Similar Listings</h2>
                             <div className="flex space-x-2 justify-center">
@@ -144,14 +169,14 @@ const ListingDetails = () => {
                                     className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowLeft />
+                                    <FaChevronLeft/>
                                 </button>
                                 <button
                                     onClick={nextCardSlide}
                                     className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowRight />
+                                    <FaChevronRight/>
                                 </button>
                             </div>
                         </div>

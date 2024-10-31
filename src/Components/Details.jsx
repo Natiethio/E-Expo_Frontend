@@ -119,7 +119,7 @@ const Details = () => {
                 </section>
 
                 {/* Company Information Section */}
-                <section className="flex flex-col md:flex-row my-14 px-7 py-6">
+                <section className="flex flex-col md:flex-row my-14 md:px-10 px-7  py-6">
                     <div className="w-full md:w-1/3 mb-4 md:mb-0 relative">
                         <img
                             src={company.imgSrc}
@@ -153,7 +153,7 @@ const Details = () => {
                 </section>
 
                 {/* Filtered Data Display */}
-                <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-10 px-5">
+                <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-10 px-7">
                     {filteredData.map((item) => (
                         <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                             <div className="relative overflow-hidden w-full h-[250px] md:h-[300px] mb-4">
@@ -183,7 +183,7 @@ const Details = () => {
                     ))}
                 </section>
 
-                <section className=" bg-gray-50 py-20 md:px-10">
+                <section className=" bg-gray-50 py-20 md:px-10 px-7">
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
                             <h2 className="text-3xl font-bold mb-6 text-blue-900 px-3 text-center">Join {companyName}</h2>
@@ -193,14 +193,14 @@ const Details = () => {
                                     className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowLeft />
+                                    <FaChevronLeft/>
                                 </button>
                                 <button
                                     onClick={nextCardSlide}
                                     className="right-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowRight />
+                                    <FaChevronRight />
                                 </button>
                             </div>
                         </div>

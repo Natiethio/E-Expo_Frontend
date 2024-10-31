@@ -17,7 +17,7 @@ import Hero1 from '/Images/Hero1.mp4'
 import CardUpe from './cardupcoming.json'
 import CardFeatured from './cardfeatured.json'
 import Advertisement from './advertizement.json'
-import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaPhone, FaPhoneAlt } from 'react-icons/fa'
+import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaChevronLeft, FaChevronRight, FaPhone, FaPhoneAlt } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
 import { FaHome } from 'react-icons/fa';
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
@@ -47,7 +47,36 @@ const Home = () => {
         threshold: 0.1
     });
 
+    const [showFirstLine, setShowFirstLine] = useState(false);
+    const [showSecondLine, setShowSecondLine] = useState(false);
+    const [showButton, setShowButon] = useState(false);
+
     useEffect(() => {
+        const interval = setInterval(() => {
+            setShowFirstLine(true);
+            setShowSecondLine(false);
+            setShowButon(false)
+
+            setTimeout(() => {
+                setShowSecondLine(true);
+            }, 500);
+
+            setTimeout(() => {
+                setShowButon(true);
+            }, 1000);
+    
+            setTimeout(() => {
+                setShowFirstLine(false);
+                setShowSecondLine(false);
+                setShowButon(false)
+            }, 7000);
+        }, 14000); 
+    
+        return () => clearInterval(interval);
+    }, []);
+    
+    useEffect(() => {
+
         const updateCardsToShow = () => {
             if (window.innerWidth >= 1200) {
                 setCardsToShow(4);
@@ -70,6 +99,7 @@ const Home = () => {
 
         return () => window.removeEventListener('resize', updateCardsToShow);
     }, []);
+
 
     const totalCards = CardUpe.length;
 
@@ -206,7 +236,7 @@ const Home = () => {
 
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
-                <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-2">
+                {/* <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-1">
                     <video
                         className="absolute inset-0 w-full h-full object-cover"
                         src={Hero1}
@@ -225,11 +255,75 @@ const Home = () => {
                             Explore Expo
                         </button>
                     </div>
+                </section> */}
+
+                <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-1 overflow-hidden">
+                    <video
+                        className="absolute inset-0 w-full h-full object-cover"
+                        src={Hero1}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                    />
+
+                    <div className={`absolute inset-0 bg-black  ${showFirstLine ? "opacity-50" : opacity-25}`}></div>
+
+                    <div className="relative z-10 text-center">
+                        <h1
+                            className={`md:text-4xl text-3xl font-bold transform transition-all duration-1000 ease-in-out ${showFirstLine ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
+                                }`}
+                        >
+                            Join the Latest Virtual Tours
+                        </h1>
+                        <p
+                            className={`mt-4 text-lg md:text-md transform transition-all duration-1000 ease-in-out delay-500 ${showSecondLine ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
+                                }`}
+                        >
+                            Explore the future of real estate with 3D tours and live events.
+                        </p>
+                        <button
+                            onClick={handelExpo}
+                            className={`mt-6 font-bold border border-white text-white px-6 py-3 rounded hover:bg-white hover:border-blue-900 hover:text-blue-900 transition duration-300 ${showButton ? 'opacity-100' : 'opacity-0'}`}
+                        >
+                            Explore Expo
+                        </button>
+                    </div>
                 </section>
+
+
+                {/* Our services */}
+                {/*<section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12 '>
+                  <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 justify-center">
+                      <div className="bg-white shadow-md rounded-xl">
+                            <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
+                                <img src={''} alt="Property Listing" className="object-cover w-full h-full" />
+                            </div>
+                               <div className="p-6">
+                                <h3 className="text-xl font-semibold text-blue-900  pb-2">Property Listing</h3>
+
+
+                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                    View More
+                                </button>
+                            </div>
+                        </div>
+
+
+
+                        <div className=''>
+                            <img src="" alt="" className="object-cover" />
+                            <p>Stackholders Webiners</p>
+                        </div>
+                     </div> 
+                    </div>
+                </section> */}
+
 
                 {/* Featured Real Estates */}
                 <motion.section
-                    className="container mx-auto my-6 px-3 py-6 md:my-10"
+                    className="container mx-auto my-6 px-10 md:px-7 py-6 md:my-10"
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
@@ -243,14 +337,15 @@ const Home = () => {
                                     className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowLeft />
+                                    {/* <FaArrowLeft /> */}
+                                    <FaChevronLeft/>
                                 </button>
                                 <button
                                     onClick={() => nextCardSlide('featured')}
                                     className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowRight />
+                                    <FaChevronRight />
                                 </button>
                             </div>
                         </div>
@@ -270,6 +365,7 @@ const Home = () => {
                                             style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
                                         >
                                             <div className="relative bg-white shadow-md rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
+
                                                 <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
                                                     <h3 className="text-lg font-semibold">{cardfeatured.name}</h3>
                                                 </div>
@@ -298,9 +394,8 @@ const Home = () => {
                 </motion.section>
 
                 {/* upcoming events section */}
-
                 <motion.section
-                    className="container mx-auto my-6 px-3 py-6 md:my-10"
+                    className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-10"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}>
@@ -313,14 +408,14 @@ const Home = () => {
                                     className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowLeft />
+                                    <FaChevronLeft/>
                                 </button>
                                 <button
                                     onClick={() => nextCardSlide('upcoming')}
                                     className="right-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaArrowRight />
+                                    <FaChevronRight/>
                                 </button>
                             </div>
                         </div>
@@ -389,9 +484,11 @@ const Home = () => {
                     </div>
                 </motion.section>
 
+
+
                 {/* Why E-Expo */}
 
-                <section className='container mx-auto my-6 px-3 py-6 md:my-12'>
+                <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12'>
                     <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
                         Why E-Expo?
                     </h2>
@@ -446,7 +543,7 @@ const Home = () => {
 
                 {/* Image Section */}
                 <section className="container mx-auto my-6 px-3 py-6 md:my-12">
-                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden rounded-2xl ">
+                    <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden ">
                         <div className="absolute inset-0 transition-transform duration-1000 ease-in-out">
                             <img
                                 src={adv2}
@@ -457,7 +554,7 @@ const Home = () => {
                 </section>
 
                 {/* advertizement section */}
-                <section className='container mx-auto my-6 px-3 py-6 md:my-12'>
+                <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12'>
                     <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
                         Advertisements
                     </h2>
@@ -502,59 +599,9 @@ const Home = () => {
                     </div>
                 </section>
 
-
-                {/* <section className="container mx-auto md:my-12 px-3">
-                    <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
-                        Advertisements
-                    </h2>
-                    <div className="relative flex w-full h-80 sm:h-64 md:h-72 lg:h-96 xl:h-96 overflow-hidden rounded-xl shadow-md p-4 bg-white">
-                        {slides.map((slide, index) => (
-                            <div
-                                key={slide.id}
-                                className={`flex absolute inset-0  w-full h-full transition-transform duration-1000 ease-in-out ${index === currentSlide ? "translate-x-0" : "translate-x-full"
-                                    }`}>
-
-                                <div className="sm:w-2/3">
-                                    <img
-                                        src={slide.src}
-                                        alt={`Advertisement ${index + 1}`}
-                                        className=" w-full h-full object-cover rounded-l-xl"
-                                    />
-                                </div>
-
-                                <div className="sm:w-full w-1/2 p-6 bg-white rounded-r-xl flex flex-col">
-                                    <h3 className="text-2xl font-semibold mb-2 text-blue-900">
-                                        Advertisement Title {index + 1}
-                                    </h3>
-                                    <p className="text-gray-600">
-                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                                        tincidunt, purus vel dictum tincidunt, elit felis gravida purus,
-                                        non malesuada nulla quam a lectus. Vivamus euismod volutpat sem
-                                        sed congue dolor sit amet, consectetur adipiscing elit. Sed
-                                        tincidunt, purus vel dictum tincidunt, elit felis gravida purus,
-                                        non malesuada nulla quam a lectus. Vivamus euismod volutpat sem
-                                        sed congue
-                                    </p>
-                                </div>
-                            </div>
-                        ))}
-
-                        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                            {slides.map((_, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() => setCurrentSlide(index)}
-                                    className={`w-3 h-3 rounded-full ${index === currentSlide ? "bg-blue-950" : "bg-gray-300"
-                                        }`}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </section> */}
-
                 {/* news section */}
                 <motion.section
-                    className="container mx-auto my-6 px-3 py-6 md:my-12"
+                    className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12"
                     initial={{ opacity: 0, y: 50 }}
                     animate={{ opacity: 5, y: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}>
@@ -620,13 +667,13 @@ const Home = () => {
                                 </button>
                             </div>
                         </div>
-
                     </div>
                 </motion.section>
 
                 {/* Contact us section */}
                 <section>
-                    <div className="container mx-auto my-12 px-3 py-3 md:my-5 grid grid-cols-1 md:grid-cols-2 gap-8" id="contact_us" ref={ref}>
+
+                    <div className="container mx-auto my-12 md:px-10 px-7 py-3 md:my-5 grid grid-cols-1 md:grid-cols-2 gap-8" id="contact_us" ref={ref}>
                         <motion.div
                             className="bg-white shadow-md p-6 rounded-xl"
                             initial={{ opacity: 0, x: -50 }}

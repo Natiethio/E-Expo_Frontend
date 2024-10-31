@@ -48,7 +48,7 @@ const Realestates = () => {
             </section>
 
 
-            <section className="container mx-auto py-12 px-2 ">
+            <section className="container mx-auto py-12 px-10 ">
 
                 <h2 className="text-3xl font-bold mb-9 text-blue-900 text-center sm:text-left">
                     Real Estate Companies
