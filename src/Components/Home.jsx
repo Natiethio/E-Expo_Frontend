@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Header from './Header'
 import Footer from './Footer'
 import { Helmet } from 'react-helmet'
-import { motion } from 'framer-motion';
+import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
 import { useInView } from "react-intersection-observer";
 import Ltnews2 from '../Images/news2.png'
 import Ltnews5 from '../Images/news5.jpg'
@@ -11,11 +11,13 @@ import Ltnews3 from '../Images/ovid.jpg'
 import Calender from '../Images/calender.png'
 import adv2 from '../Images/advertizement1.png'
 import adv1 from '../Images/Adv1.png'
-
+import ourservice1 from '/Images/virtual_Tour.png'
+import ourservice2 from '/Images/ourservices2.png'
 import Hero2 from '../Images/Hero2.mp4'
 import Hero1 from '/Images/Hero1.mp4'
 import CardUpe from './cardupcoming.json'
 import CardFeatured from './cardfeatured.json'
+import serviceCards from './ourservices.json'
 import Advertisement from './advertizement.json'
 import { FaArrowCircleLeft, FaArrowLeft, FaArrowRight, FaCalendarAlt, FaChevronLeft, FaChevronRight, FaPhone, FaPhoneAlt } from 'react-icons/fa'
 import { FiMail } from 'react-icons/fi'
@@ -34,6 +36,18 @@ const Home = () => {
     const [cardsToShowFeatured, setCardsToShowFeatured] = useState(3);
     // const [currentIndexAdverts, setCurrentIndexAdverts] = useState(0);
     const autoSlideRef = useRef(null);
+    const ourserviceRef = useRef(null);
+    const control = useAnimation();
+    const [ref, inView] = useInView({ threshold: 0.2 })
+
+    useEffect(() => {
+        if (inView) {
+            control.start("visible");
+        } else {
+            control.start("hidden");
+        }
+    }, [control, inView]);
+
     const Expo = useNavigate();
     const RealEstates = useNavigate();
 
@@ -43,10 +57,10 @@ const Home = () => {
         { id: 3, src: adv1 },
     ];
 
-    const { ref, inView } = useInView({
-        triggerOnce: true,
-        threshold: 0.1
-    });
+    // const { ref, inView } = useInView({
+    //     triggerOnce: true,
+    //     threshold: 0.1
+    // });
 
     const [showFirstLine, setShowFirstLine] = useState(false);
     const [showSecondLine, setShowSecondLine] = useState(false);
@@ -65,17 +79,17 @@ const Home = () => {
             setTimeout(() => {
                 setShowButon(true);
             }, 1500);
-    
+
             setTimeout(() => {
                 setShowFirstLine(false);
                 setShowSecondLine(false);
                 setShowButon(false)
             }, 11000);
-        }, 22000); 
-    
+        }, 22000);
+
         return () => clearInterval(interval);
     }, []);
-    
+
     useEffect(() => {
 
         const updateCardsToShow = () => {
@@ -212,7 +226,7 @@ const Home = () => {
     // const stopAutoSlide = () => {
     //     nextCardSlide('upcomng');
     //     // clearInterval(autoSlideRef.current);
-       
+
     // };
 
     // useEffect(() => {
@@ -243,8 +257,21 @@ const Home = () => {
     const formatDate = (dateStr) => {
         const date = new Date(dateStr);
         const day = date.getDate();
-        const month = date.toLocaleString('default', { month: 'short' }).toUpperCase(); // Extract the month (Oct -> OCT)
+        const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
         return { day, month };
+    };
+
+    const { scrollYProgress } = useScroll({
+        target: ourserviceRef,
+        offset: ["start end", "center center"]
+    });
+
+
+    const y = useTransform(scrollYProgress, [0, 1], [-50, 0]);
+
+    const sectionVariant = {
+        visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.5 } },
+        hidden: { opacity: 0, scale: 0.9, y: 50 },
     };
 
 
@@ -282,7 +309,7 @@ const Home = () => {
                             className={`mt-4 text-lg md:text-md transform transition-all duration-1000 ease-in-out delay-500 ${showSecondLine ? "translate-y-0 opacity-100" : "-translate-y-10 opacity-0"
                                 }`}
                         >
-                            Explore the future of real estate with 3D tours and live event
+                            Explore the future of real estate with 3D tours and live events
                         </p>
                         <button
                             onClick={handelExpo}
@@ -295,7 +322,7 @@ const Home = () => {
 
 
                 {/* Our services */}
-                {/*<section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12 '>
+                {/* <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12 '>
                   <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 justify-center">
                       <div className="bg-white shadow-md rounded-xl">
@@ -312,8 +339,6 @@ const Home = () => {
                             </div>
                         </div>
 
-
-
                         <div className=''>
                             <img src="" alt="" className="object-cover" />
                             <p>Stackholders Webiners</p>
@@ -325,10 +350,11 @@ const Home = () => {
 
                 {/* Featured Real Estates */}
                 <motion.section
+                   
                     className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
-                    initial={{ opacity: 0, y: -50 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
+                   
+                    initial="hidden"
+                    animate={control}
                 >
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
@@ -340,7 +366,7 @@ const Home = () => {
                                     style={{ height: '30px', width: '30px' }}
                                 >
                                     {/* <FaArrowLeft /> */}
-                                    <FaChevronLeft/>
+                                    <FaChevronLeft />
                                 </button>
                                 <button
                                     onClick={() => nextCardSlide('featured')}
@@ -397,13 +423,13 @@ const Home = () => {
 
                 {/* upcoming events section */}
                 <motion.section
-                    className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-10"
+                    className="container mx-auto my-6 md:px-10 px-6 py-6 md:my-10"
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                    // onMouseEnter={stopAutoSlide} 
-                    // onMouseLeave={startAutoSlide}
-                    >
+                // onMouseEnter={stopAutoSlide} 
+                // onMouseLeave={startAutoSlide}
+                >
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
                             <h2 className="text-3xl font-bold mb-6 text-blue-900 px-3 text-center">Upcoming Events</h2>
@@ -413,14 +439,14 @@ const Home = () => {
                                     className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-900 bg-gray-50 hover:bg-gray-100 text-blue-900 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaChevronLeft/>
+                                    <FaChevronLeft />
                                 </button>
                                 <button
                                     onClick={() => nextCardSlide('upcoming')}
                                     className="right-0 top-1/2 transform -translate-y-1/2 border border-blue-900 bg-gray-50 hover:bg-gray-100 text-blue-900 text-center p-1 rounded-full z-10"
                                     style={{ height: '30px', width: '30px' }}
                                 >
-                                    <FaChevronRight/>
+                                    <FaChevronRight />
                                 </button>
                             </div>
                         </div>
@@ -451,7 +477,7 @@ const Home = () => {
                                                     <div
                                                         className="text-sm absolute top-0 right-0  bg-blue-950 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 transition duration-500 ease-in-out"
                                                     >
-                                                        <span className="font-bold">{day}</span> 
+                                                        <span className="font-bold">{day}</span>
                                                         <span className="uppercase font-bold">{month}</span> {/* Display the month */}
                                                     </div>
 
@@ -524,15 +550,6 @@ const Home = () => {
                             animate={{ opacity: 5, x: 0 }}
                             transition={{ duration: 1, ease: "easeOut" }}>
 
-
-                            {/* <video
-                                className="w-full h-full object-cover"
-                                src={Tour1}
-                                autoPlay
-                                loop
-                                muted
-                                playsInline
-                            ></video> */}
                             <iframe
                                 src="https://app.cloudpano.com/tours/t1LtFvj5DK"
                                 title="CloudPano 3D Tour"
@@ -545,6 +562,55 @@ const Home = () => {
                         </motion.div>
                     </div>
                 </section>
+
+                {/* Our Service Section */}
+
+
+
+                <section ref={ourserviceRef} className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12">
+                    <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Our Services</h2>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+                        {serviceCards.map((service, index) => (
+                            <motion.div
+                                key={index}
+                                style={{ y }} // Apply the Y transform to create the scroll effect
+                                className="relative group bg-white shadow-md rounded-xl overflow-hidden"
+                            >
+                                <div className="flex justify-center items-center h-64">
+                                    <img
+                                        src={service.img}
+                                        alt={service.title}
+                                        className="w-3/4 h-3/4 object-contain transition-opacity duration-300 opacity-100 group-hover:opacity-0"
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <h3 className="text-xl font-semibold text-blue-900 pb-2 transition-opacity duration-300 opacity-100 group-hover:opacity-0">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-gray-700 transition-opacity duration-300 opacity-100 group-hover:opacity-0">
+                                        {service.description}
+                                    </p>
+                                </div>
+                                <div className="absolute inset-0 bg-blue-950 bg-opacity-100 flex flex-col justify-center opacity-0 translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-transform duration-500 ease-out">
+                                    <div className="flex justify-center items-center h-64">
+                                        <img
+                                            src={service.img}
+                                            alt={service.title}
+                                            className="w-3/4 h-3/4 object-contain transition-opacity duration-300 delay-300 opacity-0 group-hover:opacity-100"
+                                        />
+                                    </div>
+                                    <h3 className="text-xl px-6 font-semibold text-white pb-2 transition-opacity duration-500 delay-500 opacity-0 group-hover:opacity-100">
+                                        {service.title}
+                                    </h3>
+                                    <p className="text-white px-6 delay-500 transition-opacity duration-500 opacity-0 group-hover:opacity-100">
+                                        {service.description}
+                                    </p>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </section>
+
 
                 {/* Image Section */}
                 <section className="container mx-auto my-6 px-3 py-6 md:my-12">

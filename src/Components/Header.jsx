@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaBell, FaBars, FaTimes, FaChevronDown } from 'react-icons/fa';
+import { FaBell, FaBars, FaTimes, FaChevronDown, FaFacebook, FaTelegram, FaInstagram, FaTwitter } from 'react-icons/fa';
 import Login from './Login';
 import Register from './Register';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -7,6 +7,7 @@ import { HashLink } from 'react-router-hash-link';
 
 const Header = ({ page }) => {
     const [isScrolled, setIsScrolled] = useState(false);
+    const [showTopBar, setShowTopBar] = useState(true);
     const [isLoginOpen, setIsLoginOpen] = useState(false);
     const [isRegisterOpen, setIsRegisterOpen] = useState(false);
     const [showMenu, setShowMenu] = useState(false);
@@ -14,8 +15,23 @@ const Header = ({ page }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
+    const TopBar = () => {
+        return (
+            <div className="container mx-auto bg-blue-900 text-white px-4 py-2 flex justify-between items-center">
+                <p>Contact us / About</p>
+                <div className="flex space-x-4">
+                    <a href="https://web.facebook.com/search/top?q=%F0%9D%90%81%F0%9D%90%9E%F0%9D%90%AD%F0%9D%90%9E%F0%9D%90%A7" className="hover:text-gray-300 transition duration-300"><FaFacebook size={20} /></a>
+                    <a href="#" className="hover:text-gray-300 transition duration-300"><FaTelegram size={20} /></a>
+                    <a href="#" className="hover:text-gray-300 transition duration-300"><FaInstagram size={20} /></a>
+                    <a href="#" className="hover:text-gray-300 transition duration-300"><FaTwitter size={20} /></a>
+                </div>
+            </div>
+        );
+    };
+
     const handleContactClick = () => {
         setShowDropdown(false);
+        handleMenuClick();
         if (location.pathname === '/') {
             const contactSection = document.getElementById('contact_us');
             if (contactSection) {
@@ -45,18 +61,31 @@ const Header = ({ page }) => {
         setShowMenu(false);
     };
 
+    // useEffect(() => {
+    //     const handleScroll = () => {
+    //         const offset = window.scrollY;
+    //         if (offset > 50) {
+    //             setIsScrolled(true);
+    //         } else {
+    //             setIsScrolled(false);
+    //         }
+    //     };
+
+    //     window.addEventListener('scroll', handleScroll);
+
+    //     return () => {
+    //         window.removeEventListener('scroll', handleScroll);
+    //     };
+    // }, []);
+
     useEffect(() => {
         const handleScroll = () => {
             const offset = window.scrollY;
-            if (offset > 50) {
-                setIsScrolled(true);
-            } else {
-                setIsScrolled(false);
-            }
+            setIsScrolled(offset > 50);
+            setShowTopBar(offset === 0); // Show TopBar only when at the top
         };
 
         window.addEventListener('scroll', handleScroll);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
@@ -92,12 +121,12 @@ const Header = ({ page }) => {
 
     return (
         <div className="pb-2">
+             {/* {showTopBar && <TopBar />} */}
             <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-100 shadow-lg' : 'bg-white'} `}>
                 <nav className="container xl:mx-auto sm:mx-9 p-4 flex justify-between items-center">
                     <div className="xl:text-2xl text-xl font-bold text-blue-900 pr-1">
                         <Link to="/">E-Expo</Link>
                     </div>
-
 
                     <div className="hidden md:flex lg:space-x-12 space-x-4">
                         <div className="relative">
@@ -168,8 +197,6 @@ const Header = ({ page }) => {
                             )}
                         </div>
                     </div>
-
-
 
                     <div className="hidden md:flex space-x-4">
                         <button onClick={() => setIsLoginOpen(true)} className="border font-semibold bg-blue-900 text-white w-24 px-3 py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
