@@ -142,7 +142,7 @@ const Header = ({ page }) => {
                     </div>
                 )}
 
-                <nav className="container xl:mx-auto sm:mx-9 p-4 flex justify-between items-center">
+                <nav className="container xl:mx-auto sm:mx-9 p-4 flex lg:justify-between justify-around items-center">
                     <div className="xl:text-2xl text-xl font-bold text-blue-900 pr-1">
                         <Link to="/">E-Expo</Link>
                     </div>

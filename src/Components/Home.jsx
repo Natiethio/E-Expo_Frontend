@@ -351,7 +351,7 @@ const Home = () => {
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
 
-                <section className={`relative bg-blue-900 text-white xl:h-[580px] h-[550px] flex items-center justify-center mx-3  overflow-hidden ${isScrolled ? 'my-0' : 'my-1'}`}>
+                <section className={`relative bg-blue-900 text-white xl:h-[580px] h-[550px] flex items-center justify-center mx-3  overflow-hidden my-1`}>
                     <video
                         className="absolute inset-0 w-full h-full object-cover"
                         src={Hero1}
