@@ -389,7 +389,7 @@ const Home = () => {
                     variants={fadeIn("up", 0.3)}
                     initial="hidden"
                     whileInView={"show"}
-                    viewport={{ once: false, amount: 0.7 }}
+                    viewport={{ once: false, amount: 0.5 }}
                     className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
 
                     animate={control}
@@ -667,7 +667,7 @@ const Home = () => {
                                 variants={fadeIn("right", 0.3)}
                                 initial="hidden"
                                 whileInView={"show"}
-                                viewport={{ once: false, amount: 0.9 }}
+                                viewport={{ once: false, amount: 0.5 }}
                                 className="flex-1">
                                 <p className="text-gray-700 leading-relaxed">
                                     E-Expo offers an advanced, interactive platform designed to elevate
@@ -693,7 +693,7 @@ const Home = () => {
                                 variants={fadeIn("left", 0.2)}
                                 initial="hidden"
                                 whileInView={"show"}
-                                viewport={{ once: false, amount: 0.7 }}
+                                viewport={{ once: false, amount: 0.5 }}
                             >
 
                                 <iframe
@@ -722,7 +722,7 @@ const Home = () => {
                                 variants={fadeIn("up", 0.2)}
                                 initial="hidden"
                                 whileInView={"show"}
-                                viewport={{ once: false, amount: 0.9 }}
+                                viewport={{ once: false, amount: 0.5 }}
                                 // style={{ y }} 
                                 className="relative group bg-white shadow-md rounded-xl overflow-hidden"
                             >
@@ -766,7 +766,7 @@ const Home = () => {
                     variants={fadeIn("left", 0.3)}
                     initial="hidden"
                     whileInView={"show"}
-                    viewport={{ once: false, amount: 0.7 }}
+                    viewport={{ once: false, amount: 0.5 }}
                     className="container mx-auto my-6 px-3 py-6 md:my-12">
                     <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden ">
                         <div className="absolute inset-0 transition-transform duration-1000 ease-in-out">
@@ -829,7 +829,7 @@ const Home = () => {
                     variants={fadeIn("up", 0.3)}
                     initial="hidden"
                     whileInView={"show"}
-                    viewport={{ once: false, amount: 0.7 }}
+                    viewport={{ once: false, amount: 0.5 }}
                     className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12"
                 >
 
@@ -906,7 +906,7 @@ const Home = () => {
                             variants={fadeIn("right", 0.3)}
                             initial="hidden"
                             whileInView={"show"}
-                            viewport={{ once: false, amount: 0.7 }}>
+                            viewport={{ once: false, amount: 0.5 }}>
                             <h2 className="text-3xl font-bold text-blue-900 mb-5">Contact Us</h2>
                             <form>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -952,7 +952,7 @@ const Home = () => {
                             variants={fadeIn("left", 0.3)}
                             initial="hidden"
                             whileInView={"show"}
-                            viewport={{ once: false, amount: 0.7 }}>
+                            viewport={{ once: false, amount: 0.5 }}>
                             <h2 className="text-xl  font-bold text-blue-900 mb-5">Contact Details</h2>
                             <div class="space-y-3">
                                 <div className="flex items-center">
