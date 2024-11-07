@@ -6,7 +6,7 @@ import { FaTimes } from 'react-icons/fa'
 import { gapi } from 'gapi-script'
 import { GoogleLogin } from 'react-google-login';
 // import { googleLogout, useGoogleLogin } from '@react-oauth/google';
-const Login = ({ open, setOpen, menuClose }) => {
+const Login = ({ open, setOpen, menuClose, topbar, setTop }) => {
 
     const clientId = "700680501060-jsnarj217sc5vekhnvaqcmm86jr3njl4.apps.googleusercontent.com"
 
@@ -37,7 +37,7 @@ const Login = ({ open, setOpen, menuClose }) => {
     
     return (
 
-        <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
+        <Dialog open={open} onClose={() => {setOpen(false); setTop(true)}} className="relative z-10">
             <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" />
             <div className="fixed inset-0 z-10 overflow-y-auto">
                 <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -47,7 +47,10 @@ const Login = ({ open, setOpen, menuClose }) => {
                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                                     <DialogTitle as="h3" className="flex justify-between md:text-2xl text-lg font-bold leading-6 text-blue-900 mb-5">
                                         Login to Your Account
-                                        <button onClick={() => setOpen(false)} className="border border-blue-900 hover:border-blue-950  rounded-full text-blue-900 hover:text-blue-950">
+                                        <button onClick={() => {
+                                            setOpen(false)
+                                            setTop(true)
+                                            }} className="border border-blue-900 hover:border-blue-950  rounded-full text-blue-900 hover:text-blue-950">
                                             <FaTimes />
                                         </button>
 
@@ -81,7 +84,7 @@ const Login = ({ open, setOpen, menuClose }) => {
                                 className="border inline-flex w-full justify-center rounded-md bg-blue-900 px-6 py-2 hover:text-blue-950 hover:bg-white hover:border-blue-900 hover:border:text-sm font-semibold text-white shadow-sm sm:ml-3 sm:w-auto">
                                 Login
                             </button>
-                            <a href="#" className="text-center text-gray-700 hover:text-blue-950 hover:font-bold transform transition-all ease-in-out pt-2">Forget Password?</a>
+                            {/* <a href="#" className="text-center text-gray-700 hover:text-blue-950 hover:font-bold transform transition-all ease-in-out pt-2">Forget Password?</a> */}
                         </div>
 
                         <div className="relative flex items-center py-3 px-5">

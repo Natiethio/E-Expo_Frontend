@@ -4,6 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import { Helmet } from 'react-helmet'
 import { motion, useAnimation, useScroll, useTransform } from 'framer-motion';
+import { fadeIn } from '../variants'
 import { useInView } from "react-intersection-observer";
 import Ltnews2 from '../Images/news2.png'
 import Ltnews5 from '../Images/news5.jpg'
@@ -25,6 +26,13 @@ import { FaHome } from 'react-icons/fa';
 import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Pagination } from 'swiper/modules';
+import 'swiper/swiper-bundle.css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import './swiper.css'
+
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -33,7 +41,12 @@ const Home = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(4);
     const [currentIndexFeatured, setCurrentIndexFeatured] = useState(0);
+    const [FeatureSlide, setFeatureSlide] = useState(0);
+    //const [direction, setDirection] = useState('forward');
+    const [isScrolled, setIsScrolled] = useState(false);
     const [cardsToShowFeatured, setCardsToShowFeatured] = useState(3);
+    const swiperRef = useRef(null);
+
     // const [currentIndexAdverts, setCurrentIndexAdverts] = useState(0);
     const autoSlideRef = useRef(null);
     const ourserviceRef = useRef(null);
@@ -178,6 +191,29 @@ const Home = () => {
         }
     };
 
+    // const updateCurrentIndex = () => {
+    //     if (swiperRef.current) {
+    //         setCurrentIndex(swiperRef.current.swiper.activeIndex);
+    //     }
+    // };
+
+
+    const handlePrev = () => {
+        if (swiperRef.current) {
+            swiperRef.current.swiper.slidePrev();
+
+
+            // updateCurrentIndex();
+        }
+    };
+
+    const handleNext = () => {
+        if (swiperRef.current) {
+            swiperRef.current.swiper.slideNext();
+            //updateCurrentIndex();
+        }
+    };
+
     useEffect(() => {
         const slideInterval = setInterval(() => {
             setCurrentSlide((prevSlide) =>
@@ -211,10 +247,28 @@ const Home = () => {
     useEffect(() => {
         const autoSlide = setInterval(() => {
             nextCardSlide('upcoming');
+            //handleNext()
         }, 3000);
 
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
+
+    // useEffect(() => {
+    //     const autoSlide = setInterval(() => {
+    //          if (currentIndexFeatured < totalCards - cardsToShowFeatured) {
+
+    //                 setCurrentIndexFeatured(currentIndexFeatured + 1);
+
+    //                 handleNext();
+    //         } 
+    //         else if(currentIndexFeatured == totalCards - cardsToShowFeatured) {
+    //             handlePrev();
+    //         }
+    //     }, 3000);
+
+    //     return () => clearInterval(autoSlide);
+    // }, [currentIndexFeatured, totalCards, cardsToShowFeatured]);
+
 
     // const startAutoSlide = () => {
     //     nextCardSlide('upcoming');
@@ -237,10 +291,21 @@ const Home = () => {
     //     };
     // }, [currentIndex, totalCards, cardsToShow]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            setIsScrolled(offset > 50);
+        };
 
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
 
     const handelExpo = () => {
-        Expo('/Expo')
+        // Expo('/Expo')
+        Expo('/UpcomingEvents')
     }
 
     const handelRealestates = () => {
@@ -263,10 +328,10 @@ const Home = () => {
 
     const { scrollYProgress } = useScroll({
         target: ourserviceRef,
-        offset: ["start end", "center center"]
+        offset: ["start end", "center center"] // Trigger when section is fully in view
     });
 
-
+    // Define the Y transformation based on scroll progress
     const y = useTransform(scrollYProgress, [0, 1], [-50, 0]);
 
     const sectionVariant = {
@@ -286,15 +351,14 @@ const Home = () => {
             <div className="min-h-screen bg-gray-50 pt-16">
                 {/* Hero Section */}
 
-                <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-1 overflow-hidden">
+                <section className={`relative bg-blue-900 text-white xl:h-[580px] h-[550px] flex items-center justify-center mx-3  overflow-hidden ${isScrolled ? 'my-0' : 'my-1'}`}>
                     <video
                         className="absolute inset-0 w-full h-full object-cover"
                         src={Hero1}
                         autoPlay
                         loop
                         muted
-                        playsInline
-                    />
+                        playsInline />
 
                     <div className={`absolute inset-0 bg-black  ${showFirstLine ? "opacity-45" : "opacity-25"}`}></div>
 
@@ -320,61 +384,123 @@ const Home = () => {
                     </div>
                 </section>
 
+                {/* Featured Real Estates */}
+                <motion.section
+                    variants={fadeIn("up", 0.3)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
+                    className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
 
-                {/* Our services */}
-                {/* <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12 '>
-                  <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 justify-center">
-                      <div className="bg-white shadow-md rounded-xl">
-                            <div className="rounded-t-xl overflow-hidden w-full mb-4 h-96">
-                                <img src={''} alt="Property Listing" className="object-cover w-full h-full" />
-                            </div>
-                               <div className="p-6">
-                                <h3 className="text-xl font-semibold text-blue-900  pb-2">Property Listing</h3>
+                    animate={control}
+                >
+                    <div className="container mx-auto">
+                        <div className="sm:flex justify-between items-center">
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Featured Listings</h2>
 
-
-                                <button className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
-                                    View More
-                                </button>
+                            <div className="flex items-center justify-center sm:justify-end space-x-4">
+                                {CardFeatured.length >= 4 && (
+                                    <>
+                                        <button
+                                            onClick={handlePrev}
+                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
+                                            style={{ height: '30px', width: '30px' }}
+                                        >
+                                            <FaChevronLeft />
+                                        </button>
+                                        <button
+                                            onClick={handleNext}
+                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
+                                            style={{ height: '30px', width: '30px' }}
+                                        >
+                                            <FaChevronRight />
+                                        </button>
+                                    </>
+                                )}
+                                <a href="#" className="font-semibold text-blue-900 hover:underline">
+                                    See More
+                                </a>
                             </div>
                         </div>
 
-                        <div className=''>
-                            <img src="" alt="" className="object-cover" />
-                            <p>Stackholders Webiners</p>
-                        </div>
-                     </div> 
+                        <Swiper
+                            ref={swiperRef}
+                            modules={[Pagination]}
+                            slidesPerView={cardsToShowFeatured}
+                            spaceBetween={20}
+                            // navigation
+                            pagination={{
+                                clickable: true,
+                            }}
+                            speed={800}
+                            className="mySwiper"
+
+
+                        >
+                            {CardFeatured.map((card, index) => (
+                                <SwiperSlide key={index} className="p-3 pt-4 rounded-xl">
+                                    <div className="relative bg-white shadow-md rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
+                                        <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
+                                            <h3 className="text-lg font-semibold">{card.name}</h3>
+                                        </div>
+
+                                        <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
+                                            <img
+                                                src={card.img}
+                                                alt="Real Estate"
+                                                className="object-cover w-full h-full rounded-t-xl"
+                                            />
+                                        </div>
+
+                                        <div className="pl-6 pb-6">
+                                            <p className="text-gray-600">{card.description}</p>
+                                            <button onClick={handelRealestates} className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                                                {card.buttonText}
+                                            </button>
+                                        </div>
+                                    </div>
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
                     </div>
-                </section> */}
+                </motion.section>
 
 
                 {/* Featured Real Estates */}
-                <motion.section
-                   
+                {/* <motion.section
                     className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
-                   
                     initial="hidden"
                     animate={control}
                 >
                     <div className="container mx-auto">
-                        <div className="sm:flex justify-between">
+                        <div className="sm:flex justify-between items-center">
                             <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Featured Listings</h2>
-                            <div className="flex space-x-2 justify-center">
-                                <button
-                                    onClick={() => prevCardSlide('featured')}
-                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
-                                    style={{ height: '30px', width: '30px' }}
+                            <div className="flex items-center space-x-4 justify-center">
+                                {CardFeatured.length >= 4 && (
+                                    <>
+                                        <button
+                                            onClick={() => prevCardSlide('featured')}
+                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
+                                            style={{ height: '30px', width: '30px' }}
+                                        >
+                                            <FaChevronLeft />
+                                        </button>
+                                        <button
+                                            onClick={() => nextCardSlide('featured')}
+                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
+                                            style={{ height: '30px', width: '30px' }}
+                                        >
+                                            <FaChevronRight />
+                                        </button>
+                                    </>
+                                )}
+                                <a
+                                    href="#"
+                                    onClick={handelRealestates}
+                                    className="text-blue-900 font-semibold hover:underline"
                                 >
-                                    {/* <FaArrowLeft /> */}
-                                    <FaChevronLeft />
-                                </button>
-                                <button
-                                    onClick={() => nextCardSlide('featured')}
-                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
-                                    style={{ height: '30px', width: '30px' }}
-                                >
-                                    <FaChevronRight />
-                                </button>
+                                    See all
+                                </a>
                             </div>
                         </div>
 
@@ -419,7 +545,8 @@ const Home = () => {
                             </div>
                         </div>
                     </div>
-                </motion.section>
+                </motion.section> */}
+
 
                 {/* upcoming events section */}
                 <motion.section
@@ -427,8 +554,7 @@ const Home = () => {
                     initial={{ opacity: 0, x: 50 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 1, ease: "easeOut" }}
-                // onMouseEnter={stopAutoSlide} 
-                // onMouseLeave={startAutoSlide}
+
                 >
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between">
@@ -512,6 +638,17 @@ const Home = () => {
                                 />
                             ))}
                         </div>
+                        {/* {CardUpe.length >= 5 && (
+                            <div className="flex justify-center mt-4 space-x-2">
+                                {Array(Math.ceil(totalCards / cardsToShow)).fill().map((_, i) => (
+                                    <button
+                                        key={i}
+                                        className={`h-2 w-2 rounded-full ${i === currentIndex ? 'bg-blue-900' : 'bg-gray-300'}`}
+                                        onClick={() => setCurrentIndex(i + 1)}
+                                    ></button>
+                                ))}
+                            </div>
+                        )} */}
                     </div>
                 </motion.section>
 
@@ -519,61 +656,74 @@ const Home = () => {
 
                 {/* Why E-Expo */}
 
-                <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12'>
-                    <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
-                        Why E-Expo?
-                    </h2>
-                    <div className="flex flex-col-reverse md:flex-row gap-8">
-                        <div className="flex-1">
-                            <p className="text-gray-700 leading-relaxed">
-                                E-Expo offers an advanced, interactive platform designed to elevate
-                                the real estate experience. With 3D property tours, real estate developers
-                                can showcase properties in immersive detail, allowing potential buyers to
-                                explore spaces as if they were there in person. Video conferencing and live
-                                chat features foster seamless communication, enabling real-time discussions,
-                                personalized consultations, and instant answers to questions.
-                                This powerful combination not only broadens reach but also enhances
-                                engagement, making E-Expo the ideal solution for Real Estate developers
-                                looking to connect with clients more dynamically and effectively with
-                                minimized cost and effort.
-                            </p>
-                            <button onClick={handelRealestates} className="flex items-center justify-center space-x-2 mt-5 border border-blue-950 font-semibold bg-gray-50 text-blue-950 w-40 px-2 py-2 rounded-md hover:border-blue-950 hover:bg-blue-950 hover:text-white transition duration-300">
-                                <span>Learn More</span>
-                                <FaArrowRight />
-                            </button>
+                <section className=' bg-gray-200'>
+                    <div className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12'>
+                        <h2
+                            className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
+                            Why E-Expo?
+                        </h2>
+                        <div className="flex flex-col-reverse md:flex-row gap-8">
+                            <motion.div
+                                variants={fadeIn("right", 0.3)}
+                                initial="hidden"
+                                whileInView={"show"}
+                                viewport={{ once: false, amount: 0.9 }}
+                                className="flex-1">
+                                <p className="text-gray-700 leading-relaxed">
+                                    E-Expo offers an advanced, interactive platform designed to elevate
+                                    the real estate experience. With 3D property tours, real estate developers
+                                    can showcase properties in immersive detail, allowing potential buyers to
+                                    explore spaces as if they were there in person. Video conferencing and live
+                                    chat features foster seamless communication, enabling real-time discussions,
+                                    personalized consultations, and instant answers to questions.
+                                    This powerful combination not only broadens reach but also enhances
+                                    engagement, making E-Expo the ideal solution for Real Estate developers
+                                    looking to connect with clients more dynamically and effectively with
+                                    minimized cost and effort.
+                                </p>
+                                <button onClick={handelRealestates} className="flex items-center justify-center space-x-2 mt-5 border border-blue-950 font-semibold bg-gray-50 text-blue-950 w-40 px-2 py-2 rounded-md hover:border-blue-950 hover:bg-blue-950 hover:text-white transition duration-300">
+                                    <span>Learn More</span>
+                                    <FaArrowRight />
+                                </button>
 
+                            </motion.div>
+
+                            <motion.div
+                                className="w-full md:w-1/2 lg:w-1/3 h-64 relative overflow-hidden rounded-lg"
+                                variants={fadeIn("left", 0.2)}
+                                initial="hidden"
+                                whileInView={"show"}
+                                viewport={{ once: false, amount: 0.7 }}
+                            >
+
+                                <iframe
+                                    src="https://app.cloudpano.com/tours/t1LtFvj5DK"
+                                    title="CloudPano 3D Tour"
+                                    width="100%"
+                                    height="100%"
+                                    frameBorder="0"
+                                    allowFullScreen>
+                                </iframe>
+
+                            </motion.div>
                         </div>
-
-                        <motion.div
-                            className="w-full md:w-1/2 lg:w-1/3 h-64 relative overflow-hidden rounded-lg"
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 5, x: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}>
-
-                            <iframe
-                                src="https://app.cloudpano.com/tours/t1LtFvj5DK"
-                                title="CloudPano 3D Tour"
-                                width="100%"
-                                height="100%"
-                                frameBorder="0"
-                                allowFullScreen>
-                            </iframe>
-
-                        </motion.div>
                     </div>
                 </section>
 
                 {/* Our Service Section */}
 
-
-
+                {/* <section ref={ourserviceRef} className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12"> */}
                 <section ref={ourserviceRef} className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12">
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Our Services</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
                         {serviceCards.map((service, index) => (
                             <motion.div
                                 key={index}
-                                style={{ y }} // Apply the Y transform to create the scroll effect
+                                variants={fadeIn("up", 0.2)}
+                                initial="hidden"
+                                whileInView={"show"}
+                                viewport={{ once: false, amount: 0.9 }}
+                                // style={{ y }} 
                                 className="relative group bg-white shadow-md rounded-xl overflow-hidden"
                             >
                                 <div className="flex justify-center items-center h-64">
@@ -611,9 +761,13 @@ const Home = () => {
                     </div>
                 </section>
 
-
-                {/* Image Section */}
-                <section className="container mx-auto my-6 px-3 py-6 md:my-12">
+                {/* Banner Section */}
+                <motion.section
+                    variants={fadeIn("left", 0.3)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
+                    className="container mx-auto my-6 px-3 py-6 md:my-12">
                     <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden ">
                         <div className="absolute inset-0 transition-transform duration-1000 ease-in-out">
                             <img
@@ -622,7 +776,7 @@ const Home = () => {
                             />
                         </div>
                     </div>
-                </section>
+                </motion.section>
 
                 {/* advertizement section */}
                 <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12'>
@@ -672,10 +826,12 @@ const Home = () => {
 
                 {/* news section */}
                 <motion.section
+                    variants={fadeIn("up", 0.3)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
                     className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12"
-                    initial={{ opacity: 0, y: 50 }}
-                    animate={{ opacity: 5, y: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}>
+                >
 
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
@@ -747,9 +903,10 @@ const Home = () => {
                     <div className="container mx-auto my-12 md:px-10 px-7 py-3 md:my-5 grid grid-cols-1 md:grid-cols-2 gap-8" id="contact_us" ref={ref}>
                         <motion.div
                             className="bg-white shadow-md p-6 rounded-xl"
-                            initial={{ opacity: 0, x: -50 }}
-                            animate={{ opacity: 5, x: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}>
+                            variants={fadeIn("right", 0.3)}
+                            initial="hidden"
+                            whileInView={"show"}
+                            viewport={{ once: false, amount: 0.7 }}>
                             <h2 className="text-3xl font-bold text-blue-900 mb-5">Contact Us</h2>
                             <form>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -792,9 +949,10 @@ const Home = () => {
 
                         <motion.div
                             className="bg-white shadow-md p-6 rounded-xl"
-                            initial={{ opacity: 0, x: 50 }}
-                            animate={{ opacity: 5, x: 0 }}
-                            transition={{ duration: 1, ease: "easeOut" }}>
+                            variants={fadeIn("left", 0.3)}
+                            initial="hidden"
+                            whileInView={"show"}
+                            viewport={{ once: false, amount: 0.7 }}>
                             <h2 className="text-xl  font-bold text-blue-900 mb-5">Contact Details</h2>
                             <div class="space-y-3">
                                 <div className="flex items-center">

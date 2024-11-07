@@ -4,7 +4,7 @@ import { Dialog, DialogBackdrop, DialogPanel, DialogTitle } from '@headlessui/re
 import { Label } from '@headlessui/react'
 import { FaTimes } from 'react-icons/fa'
 
-const Register = ({ open, setOpen, menuClose }) => {
+const Register = ({ open, setOpen, menuClose, topbar, setTop }) => {
 
     useEffect(() => {
         if (open) {
@@ -12,7 +12,7 @@ const Register = ({ open, setOpen, menuClose }) => {
         }
     }, [open, menuClose])
     return (
-        <Dialog open={open} onClose={() => setOpen(false)} className="relative z-10">
+        <Dialog open={open} onClose={() => {setOpen(false); setTop(true)}} className="relative z-10">
             <DialogBackdrop className="fixed inset-0 bg-gray-500 bg-opacity-75 backdrop-blur-sm transition-opacity" />
             <div className="fixed inset-0 z-10 overflow-y-auto">
                 <div className="flex min-h-full items-center justify-center p-4 text-center sm:p-0">
@@ -22,7 +22,7 @@ const Register = ({ open, setOpen, menuClose }) => {
                                 <div className="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                                     <DialogTitle as="h3" className="flex justify-between md:text-2xl text-lg font-bold leading-6 text-blue-900 mb-5">
                                         Register Here
-                                        <button onClick={() => setOpen(false)} className="border border-blue-900 hover:border-blue-950 border-spacing-10 rounded-xl text-blue-900 hover:text-blue-950">
+                                        <button onClick={() => {setOpen(false); setTop(true)}} className="border border-blue-900 hover:border-blue-950 border-spacing-10 rounded-xl text-blue-900 hover:text-blue-950">
                                             <FaTimes />
                                         </button>
                                     </DialogTitle>

@@ -9,12 +9,13 @@ const Realestates = () => {
 
     const [page, setPage] = useState("Real_Estates")
     const [selectedTour, setSelectedTour] = useState(null);
+    const [isScrolled, setIsScrolled] = useState(false);
 
     const Expo = useNavigate();
     const Detail = useNavigate();
 
     const handelExpo = () => {
-        Expo('/Expo')
+        Expo('/UpcomingEvents')
     }
 
     const handelDetail = (companyName) => {
@@ -23,6 +24,18 @@ const Realestates = () => {
 
     useEffect(() => {
         setSelectedTour(companiesData.tours[1]);
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            setIsScrolled(offset > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
     }, []);
 
     return (
@@ -34,7 +47,7 @@ const Realestates = () => {
 
             {/* Hero Section */}
             <div className="min-h-screen bg-gray-50">
-            <section className="relative bg-blue-900 text-white  h-[550px] flex items-center justify-center mx-3 my-16">
+            <section className={`relative bg-blue-900 text-white  xl:h-[580px] h-[550px] flex items-center justify-center mx-3   ${isScrolled ?  'my-5' : 'my-24'}`}>
                 <div className="absolute inset-0 w-full h-full">
                     <iframe
                         src={selectedTour}
@@ -44,7 +57,8 @@ const Realestates = () => {
                         frameBorder="0"
                         allowFullScreen>
                     </iframe>
-                </div>
+                </div>   
+
             </section>
 
 
@@ -91,7 +105,7 @@ const Realestates = () => {
                 </div>
             </section>
             </div>
-            <Footer />
+            <Footer page={page} />
         </>
     );
 };

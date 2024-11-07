@@ -6,6 +6,7 @@ import ExploreExpo from './Components/ExploreExpo'
 import Realestates from './Components/Realestates'
 import Details from './Components/Details'
 import ListingDetails from './Components/ListingDetails'
+import UpcomingEvents from './Components/UpcomingEvents'
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 
 const App = () => {
@@ -15,6 +16,7 @@ const App = () => {
       <Route path='/' element={<Home/>}/>
       <Route path='/Real_Estates' element={<Realestates/>}/>
       <Route path='/Expo' element={<ExploreExpo/>}/>
+      <Route path='/UpcomingEvents' element={<UpcomingEvents/>}/>
       <Route path="/Details/:companyName" element={<Details />} />
       <Route path="/ListingDetails/:Listingtype/:id" element={<ListingDetails />} />
     </Routes>

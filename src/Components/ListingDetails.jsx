@@ -18,6 +18,7 @@ const ListingDetails = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(3);
     const [totalCard, SetTotalCard] = useState(0)
+    const [isScrolled, setIsScrolled] = useState(false);
     const DetailListing = useNavigate();
 
     useEffect(() => {
@@ -75,6 +76,18 @@ const ListingDetails = () => {
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            setIsScrolled(offset > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
 
     if (!Listing) {
         return <div>Loading...</div>;
@@ -116,7 +129,7 @@ const ListingDetails = () => {
 
             <div className="min-h-screen bg-gray-50">
                 {/* Hero Section */}
-                <section className="relative bg-blue-900 text-white h-[550px] flex items-center justify-center mx-3 my-16">
+                <section className={`relative bg-blue-900 text-white xl:h-[580px] h-[550px] flex items-center justify-center mx-3 ${isScrolled ?  'my-5' : 'my-24'}`}>
                     <div className="absolute inset-0 w-full h-full">
                         <iframe
                             src={selectedTour}

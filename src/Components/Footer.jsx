@@ -1,17 +1,31 @@
 import React from 'react';
-import { FaFacebook, FaHome, FaInstagram, FaTelegram, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaHome, FaInstagram, FaLinkedin, FaPhoneAlt, FaTelegram, FaTwitter } from 'react-icons/fa';
 import { FiMail } from 'react-icons/fi';
-import { FaPhone } from 'react-icons/fa6';
+import { FaPhone, FaPhoneFlip, FaX } from 'react-icons/fa6';
 import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-const Footer = () => {
+const Footer = ({ page }) => {
 
+  const [topFooter, setTopFooter] = useState(false)
   const Expo = useNavigate()
 
   const handelExpo = () => {
-    Expo('/Expo')
+    // Expo('/Expo')
+    Expo('/UpcomingEvents')
   }
+
+  useEffect(() => {
+    if (page === "Upcoming_Events") {
+      setTopFooter(true)
+      console.log(page)
+    }
+    else if(page === "Real_Estates"){
+      setTopFooter(true)
+      console.log(page)
+    }
+  }, [])
 
   return (
     <div className='bg-gray-100'>
@@ -19,13 +33,35 @@ const Footer = () => {
         <div className="bg-gradient-to-br from-blue-600  to-blue-950 p-6 sm:p-10 rounded-2xl w-full text-white flex items-center justify-between max-w-full mx-auto mt-10">
           <div className="flex flex-col gap-6">
             <div>
-              <span className="text-gray-200">Start your journey with E-Expo</span>
+              {
+                topFooter ? (
+                  <span className="text-gray-200">Are you a Real Estate Builder?</span>
+                ) :
+                  <span className="text-gray-200 text-md">Start your journey with E-Expo</span>
+              }
+
               <br />
-              <span className="text-gray-200 text-4xl font-semibold">Explore Expo</span>
+              {
+                topFooter ? (
+                  <span className="text-gray-200 text-4xl font-semibold">Work With US</span>
+                ) :
+                  <span className="text-gray-200 text-4xl font-semibold">Explore Expo</span>
+              }
+
             </div>
-            <button onClick={handelExpo} className="mt-2 border font-semibold border-white w-fit text-white px-4 py-2 rounded-xl hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
-              Start now
-            </button>
+
+            {
+              topFooter ? (
+                <button  className="mt-2 border font-semibold border-white w-fit text-white px-4 py-2 rounded-xl hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
+                  Register Here
+                </button>
+              ) :
+                <button onClick={handelExpo} className="mt-2 border font-semibold border-white w-fit text-white px-4 py-2 rounded-xl hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
+                  Start now
+                </button>
+            }
+
+
           </div>
           <div>
             <FaHome className="w-20 h-20 text-gray-100" />
@@ -47,9 +83,9 @@ const Footer = () => {
               <li className="pb-2">
                 <Link to='/Real_Estates' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-150 transform transition-all duration-300 ease-in-out">Real Estates</Link>
               </li>
-              <li className="pb-2">
+              {/* <li className="pb-2">
                 <Link to='/Expo' className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-150 transform transition-all duration-300 ease-in-out">Explore Expo</Link>
-              </li>
+              </li> */}
               <li className="pb-2">
                 <a href="#" className="text-gray-500 hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out">Upcoming Events</a>
               </li>
@@ -116,11 +152,13 @@ const Footer = () => {
             <a href="https://web.facebook.com/search/top?q=%F0%9D%90%81%F0%9D%90%9E%F0%9D%90%AD%F0%9D%90%9E%F0%9D%90%A7" className="text-white hover:text-gray-300 transition duration-300"><FaFacebook size={20} /></a>
             <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaTelegram size={20} /></a>
             <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaInstagram size={20} /></a>
-            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaTwitter size={20} /></a>
+            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaLinkedin size={20} /></a>
+            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaX size={20} /></a>
+
           </div>
         </div>
       </div>
-       
+
 
 
 

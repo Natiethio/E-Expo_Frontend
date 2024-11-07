@@ -1,9 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { FaBell, FaBars, FaTimes, FaChevronDown, FaFacebook, FaTelegram, FaInstagram, FaTwitter } from 'react-icons/fa';
+import { FaBell, FaBars, FaTimes, FaChevronDown, FaFacebook, FaTelegram, FaInstagram, FaTwitter, FaLinkedin, FaPhoneAlt } from 'react-icons/fa';
 import Login from './Login';
 import Register from './Register';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
+import { FaLocationDot, FaX } from 'react-icons/fa6';
+import { FiMail } from 'react-icons/fi';
 
 const Header = ({ page }) => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -15,19 +17,7 @@ const Header = ({ page }) => {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const TopBar = () => {
-        return (
-            <div className="container mx-auto bg-blue-900 text-white px-4 py-2 flex justify-between items-center">
-                <p>Contact us / About</p>
-                <div className="flex space-x-4">
-                    <a href="https://web.facebook.com/search/top?q=%F0%9D%90%81%F0%9D%90%9E%F0%9D%90%AD%F0%9D%90%9E%F0%9D%90%A7" className="hover:text-gray-300 transition duration-300"><FaFacebook size={20} /></a>
-                    <a href="#" className="hover:text-gray-300 transition duration-300"><FaTelegram size={20} /></a>
-                    <a href="#" className="hover:text-gray-300 transition duration-300"><FaInstagram size={20} /></a>
-                    <a href="#" className="hover:text-gray-300 transition duration-300"><FaTwitter size={20} /></a>
-                </div>
-            </div>
-        );
-    };
+
 
     const handleContactClick = () => {
         setShowDropdown(false);
@@ -82,7 +72,7 @@ const Header = ({ page }) => {
         const handleScroll = () => {
             const offset = window.scrollY;
             setIsScrolled(offset > 50);
-            setShowTopBar(offset === 0); // Show TopBar only when at the top
+            setShowTopBar(offset === 0);
         };
 
         window.addEventListener('scroll', handleScroll);
@@ -121,8 +111,37 @@ const Header = ({ page }) => {
 
     return (
         <div className="pb-2">
-             {/* {showTopBar && <TopBar />} */}
+            {/* {showTopBar && <TopBar />} */}
+
+
             <header className={`fixed top-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-gray-100 shadow-lg' : 'bg-white'} `}>
+                {showTopBar && (
+                    <div
+                        className={`bg-blue-950 text-white flex justify-between items-center px-4 py-2 md:px-8 transform transition-all duration-500 ease-in-out ${showTopBar ? 'opacity-100 translate-y-0 transform transition-all duration-500 ease-in-out delay-200' : 'opacity-0 -translate-y-full'}`}
+                    >
+                        <div className="hidden md:flex items-center space-x-2 py-2">
+                            <FaLocationDot className="text-white" />
+                            <span>Sengatera Traders Building, Addis Ababa, Ethiopia</span>
+                        </div>
+                        {/* <div className="md:hidden items-center space-x-2 py-2 ">
+                            <FaPhoneAlt className="text-white hover:text-gray-300" />
+                            <a href="tel:+251911362741" className="text-white hover:text-gray-300 transform transition-all duration-300 ease-in-out">+251-911-362-741</a>
+                        </div> */}
+                        <div className="flex items-center space-x-2 py-2">
+                            <FiMail className="text-white" />
+                            <a href="mailto:infoe-expo@gmail.com" className="text-white hover:text-gray-200 transform transition-all duration-300 ease-in-out">infoe-expo@gmail.com</a>
+                        </div>
+
+                        <div className="flex space-x-3">
+                            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaFacebook size={20} /></a>
+                            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaTelegram size={20} /></a>
+                            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaInstagram size={20} /></a>
+                            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaLinkedin size={20} /></a>
+                            <a href="#" className="text-white hover:text-gray-300 transition duration-300"><FaX size={20} /></a>
+                        </div>
+                    </div>
+                )}
+
                 <nav className="container xl:mx-auto sm:mx-9 p-4 flex justify-between items-center">
                     <div className="xl:text-2xl text-xl font-bold text-blue-900 pr-1">
                         <Link to="/">E-Expo</Link>
@@ -134,40 +153,42 @@ const Header = ({ page }) => {
                                 onMouseEnter={() => setShowDropdown(false)}
                                 onClick={() => setShowDropdown(false)}
                                 to="/Real_Estates"
-                                className={` hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out ${page === 'Real_Estates' ? 'text-blue-900 font-bold scale-105' : 'text-gray-600 font-semibold'}`}
+                                className={` hover:text-blue-900 xl:text-lg text-md  font-semibold hover:scale-105 transform transition-all duration-300 ease-in-out ${page === 'Real_Estates' ? 'text-blue-900 font-bold scale-105' : 'text-gray-600 font-semibold'}`}
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
                                 Real Estates
                             </Link>
                         </div>
+
+                        <div className="relative">
+                            <Link
+                                to="/UpcomingEvents"
+                                onMouseEnter={() => setShowDropdown(false)}
+                                onClick={() => setShowDropdown(false)}
+                                className={`hover:text-blue-900 xl:text-lg text-md font-semibold  hover:scale-105 transform transition-all duration-300 ease-in-out ${page === 'Upcoming_Events' ? 'text-blue-900 font-bold scale-105' : 'text-gray-600 font-semibold'}`}
+                                style={{ display: 'inline-block', transformOrigin: 'center' }}
+                            >
+                                Upcoming Events
+                            </Link>
+                        </div>
+
                         <div className="relative">
                             <Link
                                 onMouseEnter={() => setShowDropdown(false)}
                                 onClick={() => setShowDropdown(false)}
                                 to="/Expo"
-                                className={`hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out ${page === 'Explore_Expo' ? 'text-blue-900 font-bold scale-105' : 'text-gray-600 font-semibold'}`}
+                                className={`hover:text-blue-900 xl:text-lg text-md font-semibold  hover:scale-105 transform transition-all duration-300 ease-in-out ${page === 'Explore_Expo' ? 'text-blue-900 font-bold scale-105' : 'text-gray-600 font-semibold'}`}
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}
                             >
-                                Explore Expo
+                                Your Expos
                             </Link>
-                        </div>
-                        <div className="relative">
-                            <a
-                                href="#"
-                                onMouseEnter={() => setShowDropdown(false)}
-                                onClick={() => setShowDropdown(false)}
-                                className={`hover:text-blue-900 hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out ${page === 'Upcoming_Events' ? 'text-blue-900 font-bold scale-105' : 'text-gray-600 font-semibold'}`}
-                                style={{ display: 'inline-block', transformOrigin: 'center' }}
-                            >
-                                Upcoming Events
-                            </a>
                         </div>
 
                         <div className="relative" ref={dropdownRef}>
                             <button
                                 onMouseEnter={() => setShowDropdown(!showDropdown)}
                                 // onMouseLeave={() => setShowDropdown(!showDropdown)}
-                                className={`hover:text-blue-900 text-gray-600 font-semibold hover:font-bold hover:scale-105 transform transition-all duration-300 ease-in-out`}
+                                className={`hover:text-blue-900 text-gray-600 xl:text-lg text-md font-semibold hover:scale-105 transform transition-all duration-300 ease-in-out`}
                                 style={{ display: 'inline-block', transformOrigin: 'center' }}>
                                 <div className="flex space-x-1 items-center">
                                     <span>More</span>
@@ -177,11 +198,11 @@ const Header = ({ page }) => {
                             {showDropdown && (
                                 <div className={`absolute top-10 left-0 mt-2 w-48  shadow-lg border  rounded-b-md ${isScrolled ? 'bg-gray-100 shadow-lg' : 'bg-white'}`}>
                                     <ul className="py-1">
-                                        <li className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${isScrolled ? 'hover:bg-gray-200' : 'hover:bg-gray-100'}`}>
+                                        {/* <li className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${isScrolled ? 'hover:bg-gray-200' : 'hover:bg-gray-100'}`}>
                                             <Link to='/' className="text-gray-700 hover:scale-125">Your Expo</Link>
-                                        </li>
+                                        </li> */}
                                         <li className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${isScrolled ? 'hover:bg-gray-200' : 'hover:bg-gray-100'}`}>
-                                            <a href="#" className="text-gray-700">News</a>
+                                            <a href="#" className="text-gray-700">Blogs</a>
                                         </li>
                                         <li className={`px-4 py-2 hover:bg-gray-100 cursor-pointer ${isScrolled ? 'hover:bg-gray-200' : 'hover:bg-gray-100'}`}>
                                             <a href="#" className="text-gray-700">About</a>
@@ -199,10 +220,16 @@ const Header = ({ page }) => {
                     </div>
 
                     <div className="hidden md:flex space-x-4">
-                        <button onClick={() => setIsLoginOpen(true)} className="border font-semibold bg-blue-900 text-white w-24 px-3 py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
+                        <button onClick={() => {
+                            setIsLoginOpen(true)
+                            setShowTopBar(false)
+                        }} className="border font-semibold bg-blue-900 text-white w-24 px-3 py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
                             Login
                         </button>
-                        <button onClick={() => setIsRegisterOpen(true)} className="border font-semibold border-blue-900 text-blue-950 w-24 px-3 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                        <button onClick={() => {
+                            setIsRegisterOpen(true)
+                            setShowTopBar(false)
+                        }} className="border font-semibold border-blue-900 text-blue-950 w-24 px-3 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                             Register
                         </button>
                         <button className="text-blue-950">
@@ -229,23 +256,26 @@ const Header = ({ page }) => {
                                     Real Estates
                                 </Link>
                             </div>
+
+                            <div className="relative">
+                                <Link
+                                    to="/UpcomingEvents"
+                                    className="text-gray-700 hover:text-blue-950 hover:font-bold transform transition-transform duration-300"
+                                    style={{ display: 'inline-block', transformOrigin: 'center' }}
+                                >
+                                    Upcoming Events
+                                </Link>
+                            </div>
+
                             <div className="relative">
                                 <Link
                                     to="/Expo"
                                     className="text-gray-700 hover:text-blue-950 transform hover:font-bold transition-transform duration-300"
                                     style={{ display: 'inline-block', transformOrigin: 'center' }}>
-                                    Explore Expo
+                                    Your Expos
                                 </Link>
                             </div>
-                            <div className="relative">
-                                <a
-                                    href="#"
-                                    className="text-gray-700 hover:text-blue-950 hover:font-bold transform transition-transform duration-300"
-                                    style={{ display: 'inline-block', transformOrigin: 'center' }}
-                                >
-                                    Upcoming Events
-                                </a>
-                            </div>
+
                             <div className="relative" ref={dropdownRef}>
                                 <button
                                     onClick={() => setShowDropdown(!showDropdown)}
@@ -260,11 +290,11 @@ const Header = ({ page }) => {
                                 {showDropdown && (
                                     <div className="absolute left-0 mt-2 w-48 bg-white shadow-lg border border-gray-200 rounded-md">
                                         <ul className="py-1">
-                                            <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
+                                            {/* <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                                 <Link to='/' className="text-gray-700 hover:scale-125">Your Expo</Link>
-                                            </li>
+                                            </li> */}
                                             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
-                                                <a href="#" className="text-gray-700">News</a>
+                                                <a href="#" className="text-gray-700">Blogs</a>
                                             </li>
                                             <li className="px-4 py-2 hover:bg-gray-100 cursor-pointer">
                                                 <a href="#" className="text-gray-700">About</a>
@@ -279,18 +309,24 @@ const Header = ({ page }) => {
                                     </div>
                                 )}
                             </div>
-                            <button onClick={() => setIsLoginOpen(true)} className="block w-1/3 border font-semibold bg-blue-900 text-white py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
+                            <button onClick={() => {
+                                setIsLoginOpen(true)
+                                setShowTopBar(false)
+                                }} className="block w-1/3 border font-semibold bg-blue-900 text-white py-2 rounded-md hover:border-blue-900 hover:bg-gray-100 hover:text-blue-950 transition duration-300">
                                 Login
                             </button>
-                            <button onClick={() => setIsRegisterOpen(true)} className="block w-1/3 border font-semibold border-blue-900 text-blue-950 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
+                            <button onClick={() => {
+                                setIsRegisterOpen(true)
+                                setShowTopBar(false)
+                            }} className="block w-1/3 border font-semibold border-blue-900 text-blue-950 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
                                 Register
                             </button>
                         </div>
                     </div>
                 )}
 
-                <Register open={isRegisterOpen} setOpen={setIsRegisterOpen} menuClose={handleMenuLogin} />
-                <Login open={isLoginOpen} setOpen={setIsLoginOpen} menuClose={handleMenuLogin} />
+                <Register open={isRegisterOpen} setOpen={setIsRegisterOpen} menuClose={handleMenuLogin} topbar={showTopBar} setTop={setShowTopBar} />
+                <Login open={isLoginOpen} setOpen={setIsLoginOpen} menuClose={handleMenuLogin} topbar={showTopBar} setTop={setShowTopBar} />
             </header>
         </div>
     );

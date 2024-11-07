@@ -17,6 +17,7 @@ const Details = () => {
     const [company, setCompany] = useState(null);
     const [currentIndex, setCurrentIndex] = useState(0);
     const [cardsToShow, setCardsToShow] = useState(4);
+    const [isScrolled, setIsScrolled] = useState(false);
     const { companyName } = useParams();
     const navigate = useNavigate();
     const DetailListing = useNavigate();
@@ -73,6 +74,20 @@ const Details = () => {
         }
     }, []);
 
+    useEffect(() => {
+        const handleScroll = () => {
+            const offset = window.scrollY;
+            setIsScrolled(offset > 50);
+        };
+
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
+    
+
     if (!company) return <p>Company not found</p>;
 
     const filteredData = DetailsRealestate.filter((item) => item.type === selectedCategory);
@@ -106,7 +121,7 @@ const Details = () => {
 
             {/* Hero Section */}
             <div className="px-3 bg-gray-50">
-                <section className="relative bg-blue-900 text-white h-[600px] flex items-center justify-center my-12">
+                <section className={`relative bg-blue-900 text-white xl:h-[580px] h-[550px] flex items-center justify-center  ${isScrolled ?  'my-5' : 'my-24'}`}>
                     <div className="w-full h-full">
                         <iframe
                             src={company.proptour}
@@ -154,7 +169,7 @@ const Details = () => {
                 </section>
 
                 {/* Filtered Data Display */}
-                <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-10 px-7">
+                <section className="grid grid-cols-1 md:grid-cols-3 gap-6 md:px-16 px-10">
                     {filteredData.map((item) => (
                         <div key={item.id} className="bg-white rounded-lg shadow-lg overflow-hidden">
                             <div className="relative overflow-hidden w-full h-[250px] md:h-[300px] mb-4">
