@@ -27,12 +27,11 @@ import { FaLocationDot, FaPhoneFlip } from 'react-icons/fa6'
 import { useNavigate } from 'react-router-dom';
 import { formatDistanceToNow } from 'date-fns';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Pagination } from 'swiper/modules';
+import { Autoplay, FreeMode, Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import './swiper.css'
-
 
 const Home = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,12 +41,10 @@ const Home = () => {
     const [cardsToShow, setCardsToShow] = useState(4);
     const [currentIndexFeatured, setCurrentIndexFeatured] = useState(0);
     const [FeatureSlide, setFeatureSlide] = useState(0);
-    //const [direction, setDirection] = useState('forward');
     const [isScrolled, setIsScrolled] = useState(false);
     const [cardsToShowFeatured, setCardsToShowFeatured] = useState(3);
     const swiperRef = useRef(null);
-
-    // const [currentIndexAdverts, setCurrentIndexAdverts] = useState(0);
+    const swiperupdRef = useRef(null);
     const autoSlideRef = useRef(null);
     const ourserviceRef = useRef(null);
     const control = useAnimation();
@@ -70,10 +67,6 @@ const Home = () => {
         { id: 3, src: adv1 },
     ];
 
-    // const { ref, inView } = useInView({
-    //     triggerOnce: true,
-    //     threshold: 0.1
-    // });
 
     const [showFirstLine, setShowFirstLine] = useState(false);
     const [showSecondLine, setShowSecondLine] = useState(false);
@@ -191,28 +184,43 @@ const Home = () => {
         }
     };
 
-    // const updateCurrentIndex = () => {
-    //     if (swiperRef.current) {
-    //         setCurrentIndex(swiperRef.current.swiper.activeIndex);
-    //     }
-    // };
 
+    const handlePrev = (section) => {
 
-    const handlePrev = () => {
-        if (swiperRef.current) {
-            swiperRef.current.swiper.slidePrev();
-
-
-            // updateCurrentIndex();
+        switch (section) {
+            case 'upcoming':
+                if (swiperupdRef.current) {
+                    swiperupdRef.current.swiper.slidePrev();
+                }
+                break;
+            case 'featured':
+                if (swiperRef.current) {
+                    swiperRef.current.swiper.slidePrev();
+                }
+                break;
+            default:
+                break;
         }
     };
 
-    const handleNext = () => {
-        if (swiperRef.current) {
-            swiperRef.current.swiper.slideNext();
-            //updateCurrentIndex();
+    const handleNext = (section) => {
+        switch (section) {
+            case 'upcoming':
+                if (swiperupdRef.current) {
+                    swiperupdRef.current.swiper.slideNext();
+                }
+                break;
+
+            case 'featured':
+                if (swiperRef.current) {
+                    swiperRef.current.swiper.slideNext();
+                }
+                break;
+            default:
+                break;
         }
     };
+
 
     useEffect(() => {
         const slideInterval = setInterval(() => {
@@ -235,6 +243,7 @@ const Home = () => {
         return () => clearInterval(slideInterval);
     }, [slides.length]);
 
+
     useEffect(() => {
         const slideInterval = setInterval(() => {
             setCurrentSlideAdv((prevSlide) => (prevSlide + 1) % Advertisement.length);
@@ -253,43 +262,6 @@ const Home = () => {
         return () => clearInterval(autoSlide);
     }, [currentIndex, totalCards, cardsToShow]);
 
-    // useEffect(() => {
-    //     const autoSlide = setInterval(() => {
-    //          if (currentIndexFeatured < totalCards - cardsToShowFeatured) {
-
-    //                 setCurrentIndexFeatured(currentIndexFeatured + 1);
-
-    //                 handleNext();
-    //         } 
-    //         else if(currentIndexFeatured == totalCards - cardsToShowFeatured) {
-    //             handlePrev();
-    //         }
-    //     }, 3000);
-
-    //     return () => clearInterval(autoSlide);
-    // }, [currentIndexFeatured, totalCards, cardsToShowFeatured]);
-
-
-    // const startAutoSlide = () => {
-    //     nextCardSlide('upcoming');
-    //     // autoSlideRef.current = setInterval(() => {
-    //     //     nextCardSlide('upcoming');
-    //     // }, 3000);
-    // };
-
-    // const stopAutoSlide = () => {
-    //     nextCardSlide('upcomng');
-    //     // clearInterval(autoSlideRef.current);
-
-    // };
-
-    // useEffect(() => {
-    //     startAutoSlide(); 
-
-    //     return () => {
-    //         stopAutoSlide(); 
-    //     };
-    // }, [currentIndex, totalCards, cardsToShow]);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -312,8 +284,6 @@ const Home = () => {
         RealEstates('/Real_Estates')
     }
 
-    // const targetDate = new Date(cardfeatured.date); 
-    // const daysLeft = differenceInDays(targetDate, currentDate);
 
     const getDaysLeft = (date) => {
         return formatDistanceToNow(new Date(date), { addSuffix: true });
@@ -331,7 +301,6 @@ const Home = () => {
         offset: ["start end", "center center"] // Trigger when section is fully in view
     });
 
-    // Define the Y transformation based on scroll progress
     const y = useTransform(scrollYProgress, [0, 1], [-50, 0]);
 
     const sectionVariant = {
@@ -384,14 +353,16 @@ const Home = () => {
                     </div>
                 </section>
 
-                {/* Featured Real Estates */}
+
+
+                {/* Featured Listings Section */}
+
                 <motion.section
                     variants={fadeIn("up", 0.3)}
                     initial="hidden"
                     whileInView={"show"}
                     viewport={{ once: false, amount: 0.5 }}
                     className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
-
                     animate={control}
                 >
                     <div className="container mx-auto">
@@ -402,14 +373,14 @@ const Home = () => {
                                 {CardFeatured.length >= 4 && (
                                     <>
                                         <button
-                                            onClick={handlePrev}
+                                            onClick={() => handlePrev('featured')}
                                             className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronLeft />
                                         </button>
                                         <button
-                                            onClick={handleNext}
+                                            onClick={() => handleNext('featured')}
                                             className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
@@ -428,15 +399,14 @@ const Home = () => {
                             modules={[Pagination]}
                             slidesPerView={cardsToShowFeatured}
                             spaceBetween={20}
+                            loop={true}
                             // navigation
                             pagination={{
                                 clickable: true,
                             }}
                             speed={800}
-                            className="mySwiper"
+                            className="mySwiper">
 
-
-                        >
                             {CardFeatured.map((card, index) => (
                                 <SwiperSlide key={index} className="p-3 pt-4 rounded-xl">
                                     <div className="relative bg-white shadow-md rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
@@ -466,192 +436,93 @@ const Home = () => {
                 </motion.section>
 
 
-                {/* Featured Real Estates */}
-                {/* <motion.section
-                    className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
-                    initial="hidden"
-                    animate={control}
-                >
+                {/* upcoming events section */}
+
+                <motion.section
+                    className="container mx-auto my-6 md:px-10 px-6 py-6 md:my-10"
+                    initial={{ opacity: 0, x: 50 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 1, ease: "easeOut" }}>
                     <div className="container mx-auto">
+
                         <div className="sm:flex justify-between items-center">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Featured Listings</h2>
-                            <div className="flex items-center space-x-4 justify-center">
-                                {CardFeatured.length >= 4 && (
+                            <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center px-3">Upcoming Events</h2>
+
+                            <div className="flex items-center justify-center sm:justify-end space-x-4">
+                                {CardUpe.length >= 5 && (
                                     <>
                                         <button
-                                            onClick={() => prevCardSlide('featured')}
-                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
+                                            onClick={() => handlePrev('upcoming')}
+                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronLeft />
                                         </button>
                                         <button
-                                            onClick={() => nextCardSlide('featured')}
-                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 text-center p-1 rounded-full z-10"
+                                            onClick={() => handleNext('upcoming')}
+                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronRight />
                                         </button>
                                     </>
                                 )}
-                                <a
-                                    href="#"
-                                    onClick={handelRealestates}
-                                    className="text-blue-900 font-semibold hover:underline"
-                                >
-                                    See all
+                                <a href="#" className="font-semibold text-blue-900 hover:underline">
+                                    See More
                                 </a>
                             </div>
                         </div>
 
-                        <div className="relative">
-                            <div className="overflow-hidden">
-                                <div
-                                    className="flex transition-transform duration-700 ease-in-out"
-                                    style={{
-                                        transform: `translateX(-${currentIndexFeatured * (100 / cardsToShowFeatured)}%)`
-                                    }}
-                                >
-                                    {CardFeatured.map((cardfeatured, index) => (
-                                        <div
-                                            key={index}
-                                            className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4 rounded-xl"
-                                            style={{ flex: `0 0 ${100 / cardsToShowFeatured}%` }}
-                                        >
-                                            <div className="relative bg-white shadow-md rounded-xl transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
+                        <Swiper
+                            ref={swiperupdRef}
+                            modules={[Pagination, FreeMode, Autoplay]}
+                            autoplay={{ delay: 3000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                            slidesPerView={cardsToShow}
+                            spaceBetween={20}
+                            loop={true}
+                            // navigation
+                            pagination={{
+                                clickable: true,
+                            }}
+                            speed={800}
+                            className="mySwiper">
 
-                                                <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-4 py-1 rounded-br-xl rounded-tl-xl z-10">
-                                                    <h3 className="text-lg font-semibold">{cardfeatured.name}</h3>
-                                                </div>
+                            {CardUpe.map((card, index) => {
+                                const { day, month } = formatDate(card.date);
 
-                                                <div className="overflow-hidden w-full mb-4 h-96 rounded-t-xl">
-                                                    <img
-                                                        src={cardfeatured.img}
-                                                        alt="Real Estate"
-                                                        className="object-cover w-full h-full rounded-t-xl"
-                                                    />
-                                                </div>
+                                return (
+                                    <SwiperSlide key={index} className="p-3 pt-4 rounded-xl">
+                                        <div className="relative bg-white shadow-md rounded-xl overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
+                                            <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
+                                                <span className="uppercase font-bold">{getDaysLeft(card.date)}</span>
+                                            </div>
 
-                                                <div className="pl-6 pb-6">
-                                                    <p className="text-gray-600">{cardfeatured.description}</p>
-                                                    <button onClick={handelRealestates} className="mt-4 border font-semibold border-blue-900 text-blue-900 px-4 py-2 rounded hover:bg-blue-900 hover:text-white transition duration-300">
-                                                        {cardfeatured.buttonText}
-                                                    </button>
-                                                </div>
+                                            <div
+                                                className="text-sm absolute top-0 right-0 bg-blue-950 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 transition duration-500 ease-in-out"
+                                            >
+                                                <span className="font-bold">{day}</span>
+                                                <span className="uppercase font-bold">{month}</span>
+                                            </div>
+
+                                            <div className="rounded overflow-hidden w-full h-96">
+                                                <img src={card.img} alt="Real Estate" className="object-cover w-full h-full" />
+                                            </div>
+
+                                            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent h-64"></div>
+                                            <div className="absolute inset-x-0 bottom-0 p-4 text-white z-10">
+                                                <h3 className="text-xl font-semibold">{card.title}</h3>
+
+                                                <button className="mt-2 border font-semibold border-white text-white px-4 py-2 rounded hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
+                                                    {card.buttonText}
+                                                </button>
                                             </div>
                                         </div>
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </motion.section> */}
-
-
-                {/* upcoming events section */}
-                <motion.section
-                    className="container mx-auto my-6 md:px-10 px-6 py-6 md:my-10"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}
-
-                >
-                    <div className="container mx-auto">
-                        <div className="sm:flex justify-between">
-                            <h2 className="text-3xl font-bold mb-6 text-blue-900 px-3 text-center">Upcoming Events</h2>
-                            <div className="flex space-x-2 justify-center">
-                                <button
-                                    onClick={() => prevCardSlide('upcoming')}
-                                    className="left-0 top-1/2 transform -translate-y-1/2 border border-blue-900 bg-gray-50 hover:bg-gray-100 text-blue-900 text-center p-1 rounded-full z-10"
-                                    style={{ height: '30px', width: '30px' }}
-                                >
-                                    <FaChevronLeft />
-                                </button>
-                                <button
-                                    onClick={() => nextCardSlide('upcoming')}
-                                    className="right-0 top-1/2 transform -translate-y-1/2 border border-blue-900 bg-gray-50 hover:bg-gray-100 text-blue-900 text-center p-1 rounded-full z-10"
-                                    style={{ height: '30px', width: '30px' }}
-                                >
-                                    <FaChevronRight />
-                                </button>
-                            </div>
-                        </div>
-
-                        <div className="relative">
-                            <div className="overflow-hidden">
-                                <div
-                                    className="flex transition-transform duration-700 ease-in-out"
-                                    style={{
-                                        transform: `translateX(-${currentIndex * (100 / cardsToShow)}%)`
-                                    }}
-                                >
-                                    {CardUpe.map((card, index) => {
-                                        const { day, month } = formatDate(card.date);
-
-                                        return (
-                                            <div
-                                                key={index}
-                                                className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-3 pt-4"
-                                                style={{ flex: `0 0 ${100 / cardsToShow}%` }}
-                                            >
-                                                <div className="relative bg-white shadow-md rounded-xl overflow-hidden transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:shadow-xl hover:bg-gray-50 duration-300">
-
-                                                    <div className="absolute top-0 left-0 flex items-center bg-blue-950 text-white px-3 py-1 rounded-br-lg z-10">
-                                                        <span className="uppercase font-bold">{getDaysLeft(card.date)}</span>
-                                                    </div>
-
-                                                    <div
-                                                        className="text-sm absolute top-0 right-0  bg-blue-950 px-4 text-white rounded-full h-16 w-16 flex flex-col items-center justify-center mt-3 mr-3 transition duration-500 ease-in-out"
-                                                    >
-                                                        <span className="font-bold">{day}</span>
-                                                        <span className="uppercase font-bold">{month}</span> {/* Display the month */}
-                                                    </div>
-
-                                                    <div className="rounded overflow-hidden w-full h-96">
-                                                        <img src={card.img} alt="Real Estate" className="object-cover w-full h-full" />
-                                                    </div>
-
-                                                    <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black to-transparent h-64"></div>
-                                                    <div className="absolute inset-x-0 bottom-0 p-4 text-white z-10">
-                                                        <h3 className="text-xl font-semibold">{card.title}</h3>
-
-                                                        <button className="mt-2 border font-semibold border-white text-white px-4 py-2 rounded hover:bg-blue-950 hover:text-white hover:border-blue-950 transition duration-300">
-                                                            {card.buttonText}
-                                                        </button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        );
-                                    })}
-
-                                </div>
-                            </div>
-                        </div>
-                        <div className="flex justify-center mt-4 space-x-2">
-                            {Array.from({
-                                length: Math.ceil(totalCards / cardsToShow) + (window.innerWidth > 768 && window.innerWidth < 1200 ? 2 : 1) //for less than 768 need review add one dot
-                            }, (_, index) => (
-                                <div
-                                    key={index}
-                                    className={`h-3 w-3 rounded-full cursor-pointer ${currentIndex === index ? 'bg-blue-900' : 'bg-gray-300'}`}
-                                    onClick={() => setCurrentIndex(index)}
-                                />
-                            ))}
-                        </div>
-                        {/* {CardUpe.length >= 5 && (
-                            <div className="flex justify-center mt-4 space-x-2">
-                                {Array(Math.ceil(totalCards / cardsToShow)).fill().map((_, i) => (
-                                    <button
-                                        key={i}
-                                        className={`h-2 w-2 rounded-full ${i === currentIndex ? 'bg-blue-900' : 'bg-gray-300'}`}
-                                        onClick={() => setCurrentIndex(i + 1)}
-                                    ></button>
-                                ))}
-                            </div>
-                        )} */}
+                                    </SwiperSlide>
+                                );
+                            })}
+                        </Swiper>
                     </div>
                 </motion.section>
-
 
 
                 {/* Why E-Expo */}

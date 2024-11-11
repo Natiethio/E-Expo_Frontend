@@ -17,14 +17,14 @@ const Footer = ({ page }) => {
   }
 
   useEffect(() => {
-    if (page === "Upcoming_Events") {
+    if (page === "Upcoming_Events" || "Real_Estates") {
       setTopFooter(true)
       console.log(page)
     }
-    else if(page === "Real_Estates"){
-      setTopFooter(true)
-      console.log(page)
-    }
+    // else if(page === "Real_Estates"){
+    //   setTopFooter(true)
+    //   console.log(page)
+    // }
   }, [])
 
   return (
