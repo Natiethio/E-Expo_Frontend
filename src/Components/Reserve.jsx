@@ -174,3 +174,50 @@
                         </div>
                     </div>
                 </motion.section> */}
+
+                // Advertizements
+
+            //     <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12'>
+            //     <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
+            //         Advertisements
+            //     </h2>
+            //     <div className="relative overflow-hidden shadow-md rounded-xl">
+            //         <div
+            //             className="flex transition-transform duration-700 ease-in-out"
+            //             style={{ transform: `translateX(-${currentSlideadv * 100}%)` }}
+            //         >
+            //             {Advertisement.map((ad) => (
+            //                 <div
+            //                     key={ad.id}
+            //                     className="md:flex flex-shrink-0 w-full  gap-8"
+            //                     style={{ width: '100%' }}>
+            //                     <div className="w-full md:w-1/2 lg:w-5/12 h-80 relative overflow-hidden ">
+            //                         <img
+            //                             src={ad.image}
+            //                             alt={`Advertisement ${ad.id}`}
+            //                             className="w-full h-full object-cover" />
+            //                     </div>
+            //                     <div className="flex-1 pt-3">
+            //                         <h3 className="text-2xl font-semibold mb-2 text-blue-900">
+            //                             {ad.title}
+            //                         </h3>
+            //                         <p className="text-gray-600 text-md leading-relaxed px-2">
+            //                             {ad.description}
+            //                         </p>
+            //                     </div>
+            //                 </div>
+            //             ))}
+            //         </div>
+
+            //         <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
+            //             {Advertisement.map((_, index) => (
+            //                 <span
+            //                     key={index}
+            //                     className={`w-3 h-3 rounded-full cursor-pointer ${index === currentSlideadv ? 'bg-blue-900' : 'bg-gray-300'
+            //                         }`}
+            //                     onClick={() => setCurrentSlideAdv(index)}
+            //                 ></span>
+            //             ))}
+            //         </div>
+            //     </div>
+            // </section>

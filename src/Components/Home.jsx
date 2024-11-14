@@ -374,14 +374,14 @@ const Home = () => {
                                     <>
                                         <button
                                             onClick={() => handlePrev('featured')}
-                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
+                                            className="border border-gray-400 hover:border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue mp]-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronLeft />
                                         </button>
                                         <button
                                             onClick={() => handleNext('featured')}
-                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
+                                            className="border border-gray-400 hover:border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronRight />
@@ -453,14 +453,14 @@ const Home = () => {
                                     <>
                                         <button
                                             onClick={() => handlePrev('upcoming')}
-                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
+                                            className="border border-gray-400 hover:border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronLeft />
                                         </button>
                                         <button
                                             onClick={() => handleNext('upcoming')}
-                                            className="border border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
+                                            className="border border-gray-400 hover:border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronRight />
@@ -552,7 +552,7 @@ const Home = () => {
                                     looking to connect with clients more dynamically and effectively with
                                     minimized cost and effort.
                                 </p>
-                                <button onClick={handelRealestates} className="flex items-center justify-center space-x-2 mt-5 border border-blue-950 font-semibold bg-gray-50 text-blue-950 w-40 px-2 py-2 rounded-md hover:border-blue-950 hover:bg-blue-950 hover:text-white transition duration-300">
+                                <button onClick={handelRealestates} className="flex items-center justify-center space-x-2 mt-5 border border-blue-950 font-semibold bg-gray-200 text-blue-950 w-40 px-2 py-2 rounded-md hover:border-blue-950 hover:bg-blue-950 hover:text-white transition duration-300">
                                     <span>Learn More</span>
                                     <FaArrowRight />
                                 </button>
@@ -586,7 +586,7 @@ const Home = () => {
                 {/* <section ref={ourserviceRef} className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12"> */}
                 <section ref={ourserviceRef} className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12">
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Our Services</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center">
+                    <div className="grid grid-cols-1  md:grid-cols-3 gap-6 justify-center">
                         {serviceCards.map((service, index) => (
                             <motion.div
                                 key={index}
@@ -650,48 +650,44 @@ const Home = () => {
                 </motion.section>
 
                 {/* advertizement section */}
-                <section className='container mx-auto my-6 md:px-10 px-7 py-6 md:my-12'>
+
+                <section className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12">
                     <h2 className="text-3xl font-bold mb-8 text-blue-900 text-center md:text-left">
                         Advertisements
                     </h2>
+
                     <div className="relative overflow-hidden shadow-md rounded-xl">
-                        <div
-                            className="flex transition-transform duration-700 ease-in-out"
-                            style={{ transform: `translateX(-${currentSlideadv * 100}%)` }}
+                        <Swiper
+                            modules={[ Autoplay]}
+                            autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
+                            // pagination={{ clickable: true }}
+                            spaceBetween={0}
+                            slidesPerView={1}
+                            loop={true}
+                            className="w-full mySwiper"
                         >
                             {Advertisement.map((ad) => (
-                                <div
-                                    key={ad.id}
-                                    className="md:flex flex-shrink-0 w-full  gap-8"
-                                    style={{ width: '100%' }}>
-                                    <div className="w-full md:w-1/2 lg:w-5/12 h-80 relative overflow-hidden ">
-                                        <img
-                                            src={ad.image}
-                                            alt={`Advertisement ${ad.id}`}
-                                            className="w-full h-full object-cover" />
+                                <SwiperSlide key={ad.id}>
+                                    <div className="md:flex flex-shrink-0 w-full gap-8">
+                                        <div className="w-full md:w-1/2 lg:w-5/12 h-80 relative overflow-hidden">
+                                            <img
+                                                src={ad.image}
+                                                alt={`Advertisement ${ad.id}`}
+                                                className="w-full h-full object-cover"
+                                            />
+                                        </div>
+                                        <div className="flex-1 pt-3">
+                                            <h3 className="text-2xl font-semibold mb-2 text-blue-900">
+                                                {ad.title}
+                                            </h3>
+                                            <p className="text-gray-600 text-md leading-relaxed px-2">
+                                                {ad.description}
+                                            </p>
+                                        </div>
                                     </div>
-                                    <div className="flex-1 pt-3">
-                                        <h3 className="text-2xl font-semibold mb-2 text-blue-900">
-                                            {ad.title}
-                                        </h3>
-                                        <p className="text-gray-600 text-md leading-relaxed px-2">
-                                            {ad.description}
-                                        </p>
-                                    </div>
-                                </div>
+                                </SwiperSlide>
                             ))}
-                        </div>
-
-                        <div className="absolute bottom-3 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                            {Advertisement.map((_, index) => (
-                                <span
-                                    key={index}
-                                    className={`w-3 h-3 rounded-full cursor-pointer ${index === currentSlideadv ? 'bg-blue-900' : 'bg-gray-300'
-                                        }`}
-                                    onClick={() => setCurrentSlideAdv(index)}
-                                ></span>
-                            ))}
-                        </div>
+                        </Swiper>
                     </div>
                 </section>
 

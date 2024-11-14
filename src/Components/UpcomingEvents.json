@@ -1,0 +1,75 @@
+[
+    {
+      "id": 1,
+      "image": "/Images/noah.jpg",
+      "title": "Event Title 1",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      "date": "2024-11-14",
+      "type": "Investor Webinar",
+      "trending": "true"
+    },
+    {
+      "id": 2,
+      "image": "/Images/noah2.jpg",
+      "title": "Event Title 2",
+      "description": "Ut enim ad minim veniam, quis nostrud exercitation dolor sit amet, consectetur adipiscing elit",
+      "date": "2024-11-17",
+      "type": "Virtual Conference",
+      "trending": "false"
+    },
+    {
+      "id": 3,
+      "image": "/Images/upcoming3.jpg",
+      "title": "Event Title 3",
+      "description": "Duis aute irure dolor in reprehenderit in voluptate velit.",
+      "date": "2024-11-20",
+      "type": "Investor Webinar",
+      "trending": "true"
+    },
+    {
+      "id": 4,
+      "image": "/Images/upcoming5.png",
+      "title": "Event Title 4",
+      "description": "Excepteur sint occaecat cupidatat non proident.",
+      "date": "2024-11-22",
+      "type": "Virtual Conference",
+      "trending": "true"
+    },
+    {
+      "id": 5,
+      "image": "/Images/noah.jpg",
+      "title": "Event Title 5",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "date": "2024-11-15",
+      "type": "Investor Webinar",
+      "trending": "false"
+    },
+    {
+      "id": 6,
+      "image": "/Images/noah2.jpg",
+      "title": "Event Title 6",
+      "description": "Ut enim ad minim veniam, quis nostrud exercitation.",
+      "date": "2024-11-18",
+      "type": "Virtual Conference",
+      "trending": "false"
+    },
+    {
+      "id": 7,
+      "image": "/Images/upcoming3.jpg",
+      "title": "Event Title 7",
+      "description": "Duis aute irure dolor in reprehenderit in voluptate velit.",
+      "date": "2024-11-20",
+      "type": "Investor Webinar",
+      "trending": "true"
+    },
+    {
+      "id": 8,
+      "image": "/Images/noah.jpg",
+      "title": "Event Title 8",
+      "description": "Excepteur sint occaecat cupidatat non proident.",
+      "date": "2024-11-22",
+      "type": "Virtual Conference",
+      "trending": "false"
+    }
+  ]
+  
