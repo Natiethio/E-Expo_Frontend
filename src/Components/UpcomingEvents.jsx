@@ -3,6 +3,7 @@ import Header from './Header'
 import Footer from './Footer'
 import { Helmet } from 'react-helmet'
 import eventsData from './UpcomingEvents.json';
+
 import Advertisement from './advertizement.json'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Hero1 from '/Images/Hero1.mp4'
@@ -11,6 +12,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, FreeMode, Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
 import 'swiper/swiper-bundle.css';
 import 'swiper/css/navigation';
+
 import 'swiper/css/pagination';
 import './swiper.css'
 import './upcomingevents.css'
@@ -20,6 +22,7 @@ const UpcomingEvents = () => {
   const [filteredEvents, setFilteredEvents] = useState(eventsData);
   const [filter, setFilter] = useState('All');
   const [pageno, setPageno] = useState(1);
+  const [eventsPerPage, setEventsPerPage] = useState(6);
   const itemsPerPage = 4;
 
 
