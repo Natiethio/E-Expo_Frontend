@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import { Helmet } from 'react-helmet'
-import eventsData from './upcomingEvents.json';
+import eventsData from './UpcomingEvents.json';
 import Advertisement from './advertizement.json'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Hero1 from '/Images/Hero1.mp4'
@@ -116,7 +116,7 @@ const UpcomingEvents = () => {
                   <span className="uppercase font-bold">{getDaysLeft(event.date)}</span>
                 </div>
                 
-                <img src={event.image} alt={event.title} className="w-full md:w-1/3 h-52 object-cover" />
+                <img src={event.image} alt={event.title} className="w-full md:w-1/3 h-52 object-cover aspect-video" />
                 
                 <div className="flex flex-col justify-between p-4">
                   <div>
