@@ -200,6 +200,7 @@ const UpcomingEvents = () => {
               spaceBetween={0}
               slidesPerView={1}
               loop={true}
+              speed={1000}
               className="w-full mySwiper"
             >
               {Advertisement.map((ad) => (
