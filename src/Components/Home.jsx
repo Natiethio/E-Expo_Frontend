@@ -49,6 +49,7 @@ const Home = () => {
     const ourserviceRef = useRef(null);
     const control = useAnimation();
     const [ref, inView] = useInView({ threshold: 0.2 })
+    const transition = { duration: 2, type: "spring" };
 
     useEffect(() => {
         if (inView) {
@@ -358,12 +359,13 @@ const Home = () => {
                 {/* Featured Listings Section */}
 
                 <motion.section
-                    variants={fadeIn("up", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.5 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    // transition={{ duration: 1, type: "spring" }}
+                    transition={{ duration: 1.5, delay: 0.2, type: "spring" }}
                     className="container mx-auto my-6 px-8 md:px-7 py-6 md:my-10"
-                    animate={control}
+                // animate={control}
                 >
                     <div className="container mx-auto">
                         <div className="sm:flex justify-between items-center">
@@ -374,7 +376,7 @@ const Home = () => {
                                     <>
                                         <button
                                             onClick={() => handlePrev('featured')}
-                                            className="border border-gray-400 hover:border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue mp]-950 p-1 rounded-full"
+                                            className="border border-gray-400 hover:border-blue-950 bg-gray-50 hover:bg-gray-100 text-blue-950 p-1 rounded-full"
                                             style={{ height: '30px', width: '30px' }}
                                         >
                                             <FaChevronLeft />
@@ -440,9 +442,10 @@ const Home = () => {
 
                 <motion.section
                     className="container mx-auto my-6 md:px-10 px-6 py-6 md:my-10"
-                    initial={{ opacity: 0, x: 50 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 1, ease: "easeOut" }}>
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.2 }}
+                    transition={{ duration: 1.5, delay: 0.2, type: "spring" }}>
                     <div className="container mx-auto">
 
                         <div className="sm:flex justify-between items-center">
@@ -590,10 +593,10 @@ const Home = () => {
                         {serviceCards.map((service, index) => (
                             <motion.div
                                 key={index}
-                                variants={fadeIn("up", 0.2)}
-                                initial="hidden"
-                                whileInView={"show"}
-                                viewport={{ once: false, amount: 0.5 }}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: false, amount: 0.1 }}
+                                transition={{ duration: 1.5, delay: 0.2, type: "spring" }}
                                 // style={{ y }} 
                                 className="relative group bg-white shadow-md rounded-xl overflow-hidden"
                             >
@@ -634,10 +637,10 @@ const Home = () => {
 
                 {/* Banner Section */}
                 <motion.section
-                    variants={fadeIn("left", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.5 }}
+                    // variants={fadeIn("left", 0.3)}
+                    // initial="hidden"
+                    // whileInView={"show"}
+                    // viewport={{ once: false, amount: 0.5 }}
                     className="container mx-auto my-6 px-3 py-6 md:my-12">
                     <div className="relative w-full h-48 sm:h-32 md:h-36 lg:h-44 xl:h-52 overflow-hidden ">
                         <div className="absolute inset-0 transition-transform duration-1000 ease-in-out">
@@ -658,12 +661,13 @@ const Home = () => {
 
                     <div className="relative overflow-hidden shadow-md rounded-xl">
                         <Swiper
-                            modules={[ Autoplay]}
+                            modules={[Autoplay]}
                             autoplay={{ delay: 5000, disableOnInteraction: false, pauseOnMouseEnter: true }}
                             // pagination={{ clickable: true }}
                             spaceBetween={0}
                             slidesPerView={1}
                             loop={true}
+                            speed={1000}
                             className="w-full mySwiper"
                         >
                             {Advertisement.map((ad) => (
@@ -693,12 +697,11 @@ const Home = () => {
 
                 {/* news section */}
                 <motion.section
-                    variants={fadeIn("up", 0.3)}
-                    initial="hidden"
-                    whileInView={"show"}
-                    viewport={{ once: false, amount: 0.5 }}
-                    className="container mx-auto my-6 md:px-10 px-7 py-6 md:my-12"
-                >
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: false, amount: 0.1 }}
+                    transition={{ duration: 1.5, delay: 0.2, type: "spring" }}
+                    className="container mx-auto my-6 md:px-7 px-7 py-6 md:my-10">
 
                     <h2 className="text-3xl font-bold mb-6 text-blue-900 text-center sm:text-left">Latest News</h2>
                     <div className="grid md:grid-cols-3 grid-cols-1 sm:gap-6  justify-center">
@@ -773,7 +776,7 @@ const Home = () => {
                             variants={fadeIn("right", 0.3)}
                             initial="hidden"
                             whileInView={"show"}
-                            viewport={{ once: false, amount: 0.5 }}>
+                            viewport={{ once: true, amount: 0.5 }}>
                             <h2 className="text-3xl font-bold text-blue-900 mb-5">Contact Us</h2>
                             <form>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -819,7 +822,7 @@ const Home = () => {
                             variants={fadeIn("left", 0.3)}
                             initial="hidden"
                             whileInView={"show"}
-                            viewport={{ once: false, amount: 0.5 }}>
+                            viewport={{ once: true, amount: 0.5 }}>
                             <h2 className="text-xl  font-bold text-blue-900 mb-5">Contact Details</h2>
                             <div class="space-y-3">
                                 <div className="flex items-center">
