@@ -153,6 +153,7 @@ const UpcomingEvents = () => {
                 <FaChevronRight />
               </button>
             </div>
+            
           </div>
 
           {/* Right Column */}
